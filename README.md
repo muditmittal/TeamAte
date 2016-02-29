@@ -10,4 +10,4 @@ Codepath Group Project (Team Ate)
 -----------------------------------
 We are designing an app to address food cravings.
 
-! [Crave App Sketches](https://github.com/muditmittal/TeamAte/blob/master/IMG_1563.JPG)
+![Crave App Sketches](https://github.com/muditmittal/TeamAte/blob/master/IMG_1563.JPG)
