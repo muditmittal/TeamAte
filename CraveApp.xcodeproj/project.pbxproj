@@ -8,15 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		AE2FCB501C878F7D00BF6632 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2FCB4F1C878F7D00BF6632 /* HomeViewController.swift */; };
+		AE2FCB521C87C97800BF6632 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE56BFE21C86DEB300A5AFCB /* Main.storyboard */; };
+		AE2FCB541C87CB1100BF6632 /* TrayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2FCB531C87CB1100BF6632 /* TrayViewController.swift */; };
 		AE56BFDF1C86DEB200A5AFCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE56BFDE1C86DEB200A5AFCB /* AppDelegate.swift */; };
 		AE56BFE11C86DEB300A5AFCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE56BFE01C86DEB300A5AFCB /* ViewController.swift */; };
-		AE56BFE41C86DEB300A5AFCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE56BFE21C86DEB300A5AFCB /* Main.storyboard */; };
 		AE56BFE61C86DEB300A5AFCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE56BFE51C86DEB300A5AFCB /* Assets.xcassets */; };
 		AE56BFE91C86DEB300A5AFCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE56BFE71C86DEB300A5AFCB /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AE2FCB4F1C878F7D00BF6632 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		AE2FCB531C87CB1100BF6632 /* TrayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrayViewController.swift; sourceTree = "<group>"; };
 		AE56BFDB1C86DEB200A5AFCB /* CraveApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CraveApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE56BFDE1C86DEB200A5AFCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE56BFE01C86DEB300A5AFCB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +42,7 @@
 		AE2FCB511C878F8400BF6632 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AE2FCB531C87CB1100BF6632 /* TrayViewController.swift */,
 				AE2FCB4F1C878F7D00BF6632 /* HomeViewController.swift */,
 			);
 			name = ViewControllers;
@@ -134,9 +137,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE2FCB521C87C97800BF6632 /* Main.storyboard in Resources */,
 				AE56BFE91C86DEB300A5AFCB /* LaunchScreen.storyboard in Resources */,
 				AE56BFE61C86DEB300A5AFCB /* Assets.xcassets in Resources */,
-				AE56BFE41C86DEB300A5AFCB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +152,7 @@
 			files = (
 				AE56BFE11C86DEB300A5AFCB /* ViewController.swift in Sources */,
 				AE56BFDF1C86DEB200A5AFCB /* AppDelegate.swift in Sources */,
+				AE2FCB541C87CB1100BF6632 /* TrayViewController.swift in Sources */,
 				AE2FCB501C878F7D00BF6632 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
