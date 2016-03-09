@@ -23,11 +23,10 @@ class HomeViewController: UIViewController {
         
         //hiding until activated
         trayView.alpha = 0
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        
 //        trayViewController = storyboard.instantiateViewControllerWithIdentifier("TrayViewController") as!TrayViewController
 //        trayView.addSubview(trayViewController.view)
-//        trayViewController.didMoveToParentViewController(self)
         
         
     }
