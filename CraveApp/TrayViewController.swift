@@ -10,10 +10,8 @@ import UIKit
 
 
 class TrayViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    //homeViewController.hamburgerViewController = self
-    @IBOutlet var trayCollectionView: UICollectionView!
     
-    @IBOutlet var trayView: UIView!
+    @IBOutlet var trayCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,14 +39,5 @@ class TrayViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

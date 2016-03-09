@@ -12,8 +12,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet var trayView: UIView!
     @IBOutlet var foodTextBox: UITextField!
-    var trayViewOriginalCenter: CGPoint!
-    var trayViewController: UIViewController!
+ 
     
     
     override func viewDidLoad() {

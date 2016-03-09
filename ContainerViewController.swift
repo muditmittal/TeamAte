@@ -25,6 +25,7 @@ class ContainerViewController: UIViewController {
         homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
         trayView.addSubview(trayViewController.view)
         homeView.addSubview(homeViewController.view)
+        print(trayViewController.view)
         trayViewController.didMoveToParentViewController(self)
         homeViewController.didMoveToParentViewController(self)
     }
