@@ -14,25 +14,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="gmz-dD-TNJ" userLabel="aboveKeyboardView">
-                                <rect key="frame" x="6" y="0.0" width="314" height="414"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="415"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aRF-8U-ckh">
-                                        <rect key="frame" x="20" y="80" width="46" height="84"/>
+                                        <rect key="frame" x="26" y="80" width="46" height="84"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="75"/>
                                         <color key="textColor" red="0.22352941176470589" green="0.22352941176470589" blue="0.22352941176470589" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CRAVE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OaI-Ka-cup">
-                                        <rect key="frame" x="20" y="127" width="274" height="169"/>
+                                        <rect key="frame" x="26" y="127" width="274" height="169"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="75"/>
                                         <color key="textColor" red="0.22352941176470589" green="0.22352941176470589" blue="0.22352941176470589" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" id="WH6-Dn-qlF" userLabel="foodTextBox">
-                                        <rect key="frame" x="22" y="321" width="272" height="30"/>
+                                        <rect key="frame" x="28" y="321" width="272" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <gestureRecognizers/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -42,11 +42,11 @@
                                         </connections>
                                     </textField>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="Underline" id="dpS-N4-6sd">
-                                        <rect key="frame" x="22" y="354" width="272" height="8"/>
+                                        <rect key="frame" x="28" y="354" width="272" height="8"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kdr-Lf-RYB">
-                                        <rect key="frame" x="93" y="22" width="128" height="21"/>
+                                        <rect key="frame" x="99" y="22" width="128" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -56,10 +56,9 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="foodTextBox" destination="WH6-Dn-qlF" id="iRI-j0-uog"/>
+                        <outlet property="aboveKeyboardView" destination="gmz-dD-TNJ" id="5xm-hD-FFr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -72,11 +71,11 @@
             <objects>
                 <viewController storyboardIdentifier="TrayViewController" id="5na-L1-yMY" userLabel="Tray View Controller" customClass="TrayViewController" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jbc-hx-yh7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="154"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="K2R-vf-zXY" userLabel="foodView">
-                                <rect key="frame" x="0.0" y="414" width="320" height="154"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="154"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gVe-kq-86v">
@@ -203,8 +202,9 @@
                                 <color key="backgroundColor" red="0.69474327997256513" green="0.86036084302339777" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="154"/>
                     <connections>
                         <outlet property="trayCollectionView" destination="gVe-kq-86v" id="NTI-b1-fEi"/>
                     </connections>
@@ -221,13 +221,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="vHe-QF-Si4" userLabel="homeView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="397"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" id="vHe-QF-Si4" userLabel="homeView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="415"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" id="FhQ-h5-DLr" userLabel="trayView">
-                                <rect key="frame" x="0.0" y="397" width="320" height="171"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" id="FhQ-h5-DLr" userLabel="trayView">
+                                <rect key="frame" x="0.0" y="414" width="320" height="154"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>

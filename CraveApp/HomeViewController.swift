@@ -11,7 +11,8 @@ import UIKit
 class HomeViewController: UIViewController {
     
     @IBOutlet var trayView: UIView!
-    @IBOutlet var foodTextBox: UITextField!
+    @IBOutlet var aboveKeyboardView: UIView!
+    
  
     
     
