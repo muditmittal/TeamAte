@@ -109,6 +109,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kvi-Ye-I5l" userLabel="foodItem2Button">
                                 <rect key="frame" x="93" y="27" width="46" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="gR7-o5-0Ae" kind="modal" id="9rz-B3-8hS"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4ie-h2-MRH" userLabel="foodItem3Button">
                                 <rect key="frame" x="177" y="27" width="46" height="47"/>
@@ -174,11 +177,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="COg-lL-eMZ" userLabel="firstCard">
-                                        <rect key="frame" x="13" y="18" width="300" height="506"/>
+                                        <rect key="frame" x="9" y="18" width="300" height="506"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fooditem1" id="lMH-VN-89y">
-                                                <rect key="frame" x="-6" y="0.0" width="326" height="151"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="151"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DWx-y0-rzF">
@@ -191,37 +194,70 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" id="Trd-aV-K9E" userLabel="thirdCard">
-                                        <rect key="frame" x="649" y="18" width="300" height="506"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fooditem1" id="pha-Tg-eoR">
-                                                <rect key="frame" x="-6" y="0.0" width="306" height="151"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" red="1" green="0.47301861309999998" blue="0.43241932420000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
                                     <view contentMode="scaleToFill" id="96y-L9-yc5" userLabel="secondCard">
                                         <rect key="frame" x="330" y="18" width="300" height="506"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fooditem1" id="eds-tQ-LY8">
-                                                <rect key="frame" x="-6" y="0.0" width="326" height="151"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="151"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mky-bs-FjY">
+                                                <rect key="frame" x="129" y="192" width="42" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.69474327999999996" green="0.86012027138157898" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="Trd-aV-K9E" userLabel="thirdCard">
+                                        <rect key="frame" x="649" y="18" width="300" height="506"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fooditem1" id="pha-Tg-eoR">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="151"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e2Z-7K-2Pn">
+                                                <rect key="frame" x="129" y="183" width="42" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="0.47301861309999998" blue="0.43241932420000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="HFH-7s-Eky" userLabel="trayView">
+                                        <rect key="frame" x="0.0" y="414" width="320" height="154"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.66666666666666663" green="0.10199938322368421" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="r0v-1n-gYn" userLabel="trayView">
+                                        <rect key="frame" x="640" y="414" width="320" height="154"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.66666666669999997" green="0.1019993832" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="Hxk-0X-9zY" userLabel="trayView">
+                                        <rect key="frame" x="320" y="414" width="320" height="154"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.66666666669999997" green="0.1019993832" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="WxW-xI-ZDd"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="960" height="568"/>
                     <connections>
                         <outlet property="scrollView" destination="zGa-VR-eN9" id="fHs-FM-H4g"/>
+                        <outlet property="trayView" destination="HFH-7s-Eky" id="j0H-EC-bqs"/>
+                        <outlet property="trayView2" destination="Hxk-0X-9zY" id="TGf-me-3uK"/>
+                        <outlet property="trayView3" destination="r0v-1n-gYn" id="OJE-OX-c9e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97c-W6-yIq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -280,4 +316,7 @@
         <image name="fooditem7" width="54" height="48"/>
         <image name="fooditem8" width="45" height="47"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="DP4-7M-712"/>
+    </inferredMetricsTieBreakers>
 </document>
