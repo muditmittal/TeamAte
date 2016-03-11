@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SecondTrayEl.swift">
-   </FileRef>
-   <FileRef
       location = "group:CraveApp.xcodeproj">
    </FileRef>
    <FileRef
