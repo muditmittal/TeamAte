@@ -1,5 +1,5 @@
 //
-//  TrayViewController.swift
+//  TrayVC.swift
 //  CraveApp
 //
 //  Created by Jenn Leung on 3/10/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TrayViewController: UIViewController {
+class TrayVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

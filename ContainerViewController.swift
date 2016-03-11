@@ -21,7 +21,7 @@ class ContainerViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        trayViewController = storyboard.instantiateViewControllerWithIdentifier("TrayViewController") as! TrayViewController
+        trayViewController = storyboard.instantiateViewControllerWithIdentifier("TrayVC") as! TrayVC
         homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
         
         let homeFrame = CGRect(x: 0, y: 0, width: homeView.frame.size.width, height: homeView.frame.size.height)
@@ -49,15 +49,5 @@ class ContainerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

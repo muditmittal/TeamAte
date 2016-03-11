@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		83ACDA3B73D1E022B974EA4C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED034128126406A02FEC90F9 /* libPods.a */; };
+		AE0EA3F81C9280E300067CBE /* TrayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0EA3F71C9280E300067CBE /* TrayVC.swift */; };
+		AE0EA3FB1C92846C00067CBE /* BaseTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0EA3F91C92846C00067CBE /* BaseTransition.swift */; };
+		AE0EA3FC1C92846C00067CBE /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0EA3FA1C92846C00067CBE /* FadeTransition.swift */; };
 		AE2FCB501C878F7D00BF6632 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2FCB4F1C878F7D00BF6632 /* HomeViewController.swift */; };
 		AE2FCB521C87C97800BF6632 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE56BFE21C86DEB300A5AFCB /* Main.storyboard */; };
-		AE2FCB541C87CB1100BF6632 /* TrayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2FCB531C87CB1100BF6632 /* TrayViewController.swift */; };
 		AE4506681C90C56C005B3138 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4506671C90C56C005B3138 /* ContainerViewController.swift */; };
 		AE45066C1C90CA3B005B3138 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE45066B1C90CA3B005B3138 /* CustomCell.swift */; };
+		AE4506B41C9170F5005B3138 /* SecondTrayEl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4506B31C9170F5005B3138 /* SecondTrayEl.swift */; };
 		AE56BFDF1C86DEB200A5AFCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE56BFDE1C86DEB200A5AFCB /* AppDelegate.swift */; };
 		AE56BFE11C86DEB300A5AFCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE56BFE01C86DEB300A5AFCB /* ViewController.swift */; };
 		AE56BFE61C86DEB300A5AFCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE56BFE51C86DEB300A5AFCB /* Assets.xcassets */; };
@@ -22,10 +25,13 @@
 /* Begin PBXFileReference section */
 		17A6C320C2003BEE26603B9A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		206D0AE2E5267CFCCAAD3E20 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		AE0EA3F71C9280E300067CBE /* TrayVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrayVC.swift; sourceTree = "<group>"; };
+		AE0EA3F91C92846C00067CBE /* BaseTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTransition.swift; sourceTree = "<group>"; };
+		AE0EA3FA1C92846C00067CBE /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		AE2FCB4F1C878F7D00BF6632 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		AE2FCB531C87CB1100BF6632 /* TrayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrayViewController.swift; sourceTree = "<group>"; };
 		AE4506671C90C56C005B3138 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerViewController.swift; path = ../ContainerViewController.swift; sourceTree = "<group>"; };
 		AE45066B1C90CA3B005B3138 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		AE4506B31C9170F5005B3138 /* SecondTrayEl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondTrayEl.swift; sourceTree = "<group>"; };
 		AE56BFDB1C86DEB200A5AFCB /* CraveApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CraveApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE56BFDE1C86DEB200A5AFCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE56BFE01C86DEB300A5AFCB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,12 +71,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AE0EA3FD1C92847300067CBE /* Transition Files */ = {
+			isa = PBXGroup;
+			children = (
+				AE0EA3F91C92846C00067CBE /* BaseTransition.swift */,
+				AE0EA3FA1C92846C00067CBE /* FadeTransition.swift */,
+			);
+			name = "Transition Files";
+			sourceTree = "<group>";
+		};
 		AE2FCB511C878F8400BF6632 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AE0EA3F71C9280E300067CBE /* TrayVC.swift */,
+				AE4506B31C9170F5005B3138 /* SecondTrayEl.swift */,
 				AE45066B1C90CA3B005B3138 /* CustomCell.swift */,
 				AE4506671C90C56C005B3138 /* ContainerViewController.swift */,
-				AE2FCB531C87CB1100BF6632 /* TrayViewController.swift */,
 				AE2FCB4F1C878F7D00BF6632 /* HomeViewController.swift */,
 			);
 			name = ViewControllers;
@@ -101,6 +117,7 @@
 				AE56BFE01C86DEB300A5AFCB /* ViewController.swift */,
 				AE56BFE21C86DEB300A5AFCB /* Main.storyboard */,
 				AE2FCB511C878F8400BF6632 /* ViewControllers */,
+				AE0EA3FD1C92847300067CBE /* Transition Files */,
 				AE56BFE51C86DEB300A5AFCB /* Assets.xcassets */,
 				AE56BFE71C86DEB300A5AFCB /* LaunchScreen.storyboard */,
 				AE56BFEA1C86DEB300A5AFCB /* Info.plist */,
@@ -232,11 +249,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE56BFE11C86DEB300A5AFCB /* ViewController.swift in Sources */,
+				AE0EA3FC1C92846C00067CBE /* FadeTransition.swift in Sources */,
 				AE56BFDF1C86DEB200A5AFCB /* AppDelegate.swift in Sources */,
 				AE4506681C90C56C005B3138 /* ContainerViewController.swift in Sources */,
-				AE2FCB541C87CB1100BF6632 /* TrayViewController.swift in Sources */,
+				AE4506B41C9170F5005B3138 /* SecondTrayEl.swift in Sources */,
 				AE45066C1C90CA3B005B3138 /* CustomCell.swift in Sources */,
+				AE0EA3FB1C92846C00067CBE /* BaseTransition.swift in Sources */,
 				AE2FCB501C878F7D00BF6632 /* HomeViewController.swift in Sources */,
+				AE0EA3F81C9280E300067CBE /* TrayVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
