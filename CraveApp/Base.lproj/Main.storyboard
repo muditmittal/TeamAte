@@ -64,13 +64,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Gd8-zG-cc9"/>
             </objects>
-            <point key="canvasLocation" x="162" y="366"/>
+            <point key="canvasLocation" x="500" y="277"/>
         </scene>
         <!--Tray View Controller-->
         <scene sceneID="UV6-yC-BTv">
             <objects>
                 <viewController storyboardIdentifier="TrayVC" id="JuX-wt-cFr" userLabel="Tray View Controller" customClass="TrayVC" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uZW-Dl-unx">
+                    <view key="view" contentMode="scaleToFill" id="uZW-Dl-unx" userLabel="trayView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="154"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -109,9 +109,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kvi-Ye-I5l" userLabel="foodItem2Button">
                                 <rect key="frame" x="93" y="27" width="46" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="gR7-o5-0Ae" kind="modal" id="9rz-B3-8hS"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4ie-h2-MRH" userLabel="foodItem3Button">
                                 <rect key="frame" x="177" y="27" width="46" height="47"/>
@@ -140,12 +137,13 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HWu-Hz-GmB" userLabel="foodItem1Button">
                                 <rect key="frame" x="18" y="27" width="46" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="gR7-o5-0Ae" kind="modal" id="DP4-7M-712"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.55686274509803924" green="0.81176470588235294" blue="0.81960784313725488" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="pCA-yP-MpF" appends="YES" id="I5N-TK-40V"/>
+                        </connections>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="154"/>
@@ -158,16 +156,18 @@
                         <outlet property="foodItem6Button" destination="6Ac-qr-UFQ" id="vsT-Yf-yaw"/>
                         <outlet property="foodItem7Button" destination="oNQ-qV-igz" id="bpV-HH-7LA"/>
                         <outlet property="foodItem8Button" destination="daN-sA-ZJv" id="CaH-8d-dZy"/>
+                        <outlet property="trayView" destination="uZW-Dl-unx" id="JaK-yY-4Bw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="esf-Uc-ZNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="pCA-yP-MpF"/>
             </objects>
             <point key="canvasLocation" x="869" y="366"/>
         </scene>
         <!--Card View Controller-->
         <scene sceneID="sdx-zT-bck">
             <objects>
-                <viewController id="gR7-o5-0Ae" customClass="CardViewController" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CardViewController" id="gR7-o5-0Ae" customClass="CardViewController" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="StQ-eG-f7q">
                         <rect key="frame" x="0.0" y="0.0" width="960" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -233,17 +233,17 @@
                                     <view clipsSubviews="YES" contentMode="scaleToFill" id="HFH-7s-Eky" userLabel="trayView">
                                         <rect key="frame" x="0.0" y="414" width="320" height="154"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66666666666666663" green="0.10199938322368421" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.22394120065789475" green="0.10199938322368421" blue="0.66666666666666663" alpha="0.70299303209459463" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" id="r0v-1n-gYn" userLabel="trayView">
                                         <rect key="frame" x="640" y="414" width="320" height="154"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66666666669999997" green="0.1019993832" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.22394120065789475" green="0.10199938322368421" blue="0.66666666666666663" alpha="0.70299303209459463" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" id="Hxk-0X-9zY" userLabel="trayView">
                                         <rect key="frame" x="320" y="414" width="320" height="154"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66666666669999997" green="0.1019993832" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.22394120065789475" green="0.10199938322368421" blue="0.66666666666666663" alpha="0.70299303209459463" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
                             </scrollView>
@@ -269,9 +269,14 @@
             <objects>
                 <viewController id="SiN-mJ-uTR" userLabel="Container View Controller" customClass="ContainerViewController" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yXU-ks-BNq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="960" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" id="yTj-lQ-Bhc" userLabel="cardView">
+                                <rect key="frame" x="-1" y="0.0" width="961" height="569"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" id="vHe-QF-Si4" userLabel="homeView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="415"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -280,12 +285,14 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" id="FhQ-h5-DLr" userLabel="trayView">
                                 <rect key="frame" x="0.0" y="414" width="320" height="154"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="960" height="568"/>
                     <connections>
+                        <outlet property="cardView" destination="yTj-lQ-Bhc" id="8vb-k3-IB4"/>
                         <outlet property="homeView" destination="vHe-QF-Si4" id="k1k-i3-v42"/>
                         <outlet property="trayView" destination="FhQ-h5-DLr" id="QFb-Fv-2Hq"/>
                     </connections>
@@ -302,7 +309,7 @@
                     <color key="backgroundColor" red="0.039215686270000001" green="0.30588235289999999" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="-178" y="366"/>
+            <point key="canvasLocation" x="-122" y="912"/>
         </scene>
     </scenes>
     <resources>
@@ -316,7 +323,4 @@
         <image name="fooditem7" width="54" height="48"/>
         <image name="fooditem8" width="45" height="47"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="DP4-7M-712"/>
-    </inferredMetricsTieBreakers>
 </document>
