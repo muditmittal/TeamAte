@@ -42,6 +42,10 @@ class ContainerViewController: UIViewController {
         //trayViewController.didMoveToParentViewController(self)
 //        homeViewController.didMoveToParentViewController(self)
         
+        
+        
+        // this is from a pull request – Alvin
+        
     }
 
     override func didReceiveMemoryWarning() {
