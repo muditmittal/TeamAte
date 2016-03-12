@@ -22,15 +22,15 @@ class CardViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         scrollView.delegate = self
         scrollView.contentSize = CGSize(width: 960, height: 568)
-        
-        trayViewController = storyboard!.instantiateViewControllerWithIdentifier("TrayVC") as! TrayVC
-        let trayFrame = CGRect(x: 0, y: 0, width: trayView.frame.size.width, height: 154)
-        
-        trayViewController.view.frame = trayFrame
-        trayViewController.view.frame = trayView.bounds
-        
-        trayView.addSubview(trayViewController.view)
-        trayView.center.y += 65
+        // Jenn - this is the code where I created a Tray VC in the card view instead of container
+        //        trayViewController = storyboard!.instantiateViewControllerWithIdentifier("TrayVC") as! TrayVC
+        //        let trayFrame = CGRect(x: 0, y: 0, width: trayView.frame.size.width, height: 154)
+        //
+        //        trayViewController.view.frame = trayFrame
+        //        trayViewController.view.frame = trayView.bounds
+        //
+        //        trayView.addSubview(trayViewController.view)
+        //        trayView.center.y += 65
         
     }
     
@@ -41,7 +41,6 @@ class CardViewController: UIViewController, UIScrollViewDelegate {
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         // This method is called as the user scrolls
-        //if we scroll to second page
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
