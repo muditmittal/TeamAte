@@ -28,15 +28,67 @@ class TrayVC: UIViewController {
         super.viewDidLoad()
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "onCustomPan:")
         
-        // Attach it to a view of your choice. If it's a UIImageView, remember to enable user interaction
         trayView.userInteractionEnabled = true
+    
         trayView.addGestureRecognizer(panGestureRecognizer)
         trayOriginalCenter = CGPoint(x: trayView.center.x, y: trayView.center.y)
         
         //setting tray up and down positions
         trayDown = CGPoint(x: 160, y: 77)
         trayUp = CGPoint(x: 160, y: 137)
+        print("parent \(parentViewController)")
     }
+    
+    func setupHandlers() {
+        print("hey")
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    
+        @IBAction func foodClicked(button: UIButton) {
+            switch button {
+            case foodItem1Button:
+                //print("hamburger")
+                handleButtonClicked("Hamburger")
+            case foodItem2Button:
+                print("pizza")
+                handleButtonClicked("Pizza")
+            case foodItem3Button:
+                print("sushi")
+                handleButtonClicked("Sushi")
+            case foodItem4Button:
+                print("cupcake")
+                handleButtonClicked("Cupcake")
+            case foodItem5Button:
+                print("boba")
+                handleButtonClicked("Boba")
+            case foodItem6Button:
+                print("spaghetti")
+                handleButtonClicked("Spaghetti")
+            case foodItem7Button:
+                handleButtonClicked("Popcorn")
+            case foodItem8Button:
+                handleButtonClicked("Ice Cream")
+            default:
+                handleButtonClicked("Other")
+            }
+        }
+    
+        func handleButtonClicked (food: String) {
+            print (food)
+            //api_call(food).done(populate_result_view(results))
+            //load_result_view(food) // in loading state
+            // load result view, pass the response into result view
+            //someone clicks on button, send api request of respective button
+            //
+    
+        }
+    
     
     func onCustomPan(sender: UIPanGestureRecognizer) {
         let point = sender.locationInView(view)
@@ -53,28 +105,24 @@ class TrayVC: UIViewController {
             //print("Gesture changed at: \(point)")
         } else if sender.state == UIGestureRecognizerState.Ended {
             //print("Gesture ended at: \(point)")
-
+            
             if point.y > 0 {
                 UIView.animateWithDuration(0.3, animations: { () -> Void in
                     //if panning up, then set tray to up position
-                        self.trayView.center = self.trayUp
+                    self.trayView.center = self.trayUp
                 })
             }
             if point.y < 0 {
                 UIView.animateWithDuration(0.3, animations: { () -> Void in
                     //if panning down, then set tray to down position
                     self.trayView.center = self.trayDown
-
+                    
                 })
             }
             
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     
     
 }

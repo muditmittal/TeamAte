@@ -46,16 +46,20 @@ class ContainerViewController: UIViewController {
         trayView.addSubview(trayViewController.view)
         cardView.addSubview(cardViewController.view)
         
-        //trayViewController.didMoveToParentViewController(self)
-        //homeViewController.didMoveToParentViewController(self)
+        trayViewController.didMoveToParentViewController(self)
+        homeViewController.didMoveToParentViewController(self)
         
-        
+        //print(trayViewController.setupHandlers())
+       
         
         // this is from a pull request – Alvin
         // this is pull/push from Mudit
         
     }
-
+    
+//    func sample (){
+//         print(TrayVC().setupHandlers())
+//    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
