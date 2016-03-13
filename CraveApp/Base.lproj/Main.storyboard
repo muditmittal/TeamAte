@@ -230,21 +230,6 @@
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="0.47301861309999998" blue="0.43241932420000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="HFH-7s-Eky" userLabel="trayView">
-                                        <rect key="frame" x="0.0" y="414" width="320" height="154"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.22394120065789475" green="0.10199938322368421" blue="0.66666666666666663" alpha="0.70299303209459463" colorSpace="calibratedRGB"/>
-                                    </view>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="r0v-1n-gYn" userLabel="trayView">
-                                        <rect key="frame" x="640" y="414" width="320" height="154"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.22394120065789475" green="0.10199938322368421" blue="0.66666666666666663" alpha="0.70299303209459463" colorSpace="calibratedRGB"/>
-                                    </view>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="Hxk-0X-9zY" userLabel="trayView">
-                                        <rect key="frame" x="320" y="414" width="320" height="154"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.22394120065789475" green="0.10199938322368421" blue="0.66666666666666663" alpha="0.70299303209459463" colorSpace="calibratedRGB"/>
-                                    </view>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -255,9 +240,6 @@
                     <size key="freeformSize" width="960" height="568"/>
                     <connections>
                         <outlet property="scrollView" destination="zGa-VR-eN9" id="fHs-FM-H4g"/>
-                        <outlet property="trayView" destination="HFH-7s-Eky" id="j0H-EC-bqs"/>
-                        <outlet property="trayView2" destination="Hxk-0X-9zY" id="TGf-me-3uK"/>
-                        <outlet property="trayView3" destination="r0v-1n-gYn" id="OJE-OX-c9e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97c-W6-yIq" userLabel="First Responder" sceneMemberID="firstResponder"/>

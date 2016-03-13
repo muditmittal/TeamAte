@@ -21,9 +21,8 @@ class TrayVC: UIViewController {
     
     @IBOutlet var trayView: UIView!
     var trayOriginalCenter: CGPoint!
-    var trayDownOffset: CGFloat!
     var trayDown: CGPoint!
-    
+    var trayUp: CGPoint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +32,10 @@ class TrayVC: UIViewController {
         trayView.userInteractionEnabled = true
         trayView.addGestureRecognizer(panGestureRecognizer)
         trayOriginalCenter = CGPoint(x: trayView.center.x, y: trayView.center.y)
-        trayDownOffset = 60
         
+        //setting tray up and down positions
+        trayDown = CGPoint(x: 160, y: 77)
+        trayUp = CGPoint(x: 160, y: 137)
     }
     
     func onCustomPan(sender: UIPanGestureRecognizer) {
@@ -55,16 +56,15 @@ class TrayVC: UIViewController {
 
             if point.y > 0 {
                 UIView.animateWithDuration(0.3, animations: { () -> Void in
-                    // moving tray back down
-                    self.trayDown = CGPoint(x: self.trayView.center.x, y: self.trayView.center.y + self.trayDownOffset)
-                    
-                    self.trayView.center = self.trayDown
+                    //if panning up, then set tray to up position
+                        self.trayView.center = self.trayUp
                 })
             }
             if point.y < 0 {
                 UIView.animateWithDuration(0.3, animations: { () -> Void in
-                    //moving tray back Up
-                    self.trayView.center = CGPoint(x: self.trayOriginalCenter.x, y: self.trayView.center.y - self.trayDownOffset)
+                    //if panning down, then set tray to down position
+                    self.trayView.center = self.trayDown
+
                 })
             }
             
