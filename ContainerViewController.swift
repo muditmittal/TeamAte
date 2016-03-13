@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContainerViewController: UIViewController {
+class ContainerViewController: UIViewController, TrayVCDelegate {
     
     var trayViewController: UIViewController!
     var homeViewController: UIViewController!
@@ -19,35 +19,42 @@ class ContainerViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         //instantiate VCs
-        trayViewController = storyboard.instantiateViewControllerWithIdentifier("TrayVC") as! TrayVC
-        homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
-        cardViewController = storyboard.instantiateViewControllerWithIdentifier("CardViewController") as! CardViewController
+        let trayViewController = storyboard.instantiateViewControllerWithIdentifier("TrayVC") as! TrayVC
+        let homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+        let cardViewController = storyboard.instantiateViewControllerWithIdentifier("CardViewController") as! CardViewController
+        
+        trayViewController.delegate = self
+        
+        presentViewController(trayViewController, animated: true, completion: nil)
         
         //setting up the frame
-        let homeFrame = CGRect(x: 0, y: 0, width: homeView.frame.size.width, height: homeView.frame.size.height)
-        homeViewController.view.frame = homeFrame
-        homeViewController.view.frame = homeView.bounds
-        
-        let trayFrame = CGRect(x: 0, y: 0, width: trayView.frame.size.width, height: 154)
-        trayViewController.view.frame = trayFrame
-        trayViewController.view.frame = trayView.bounds
-        
-        let cardFrame = CGRect(x: 0, y: 0, width: cardView.frame.size.width, height: cardView.frame.size.height)
-        
-        cardViewController.view.frame = cardFrame
-        cardViewController.view.frame = cardView.bounds
-        
-        homeView.addSubview(homeViewController.view)
+//        let homeFrame = CGRect(x: 0, y: 0, width: homeView.frame.size.width, height: homeView.frame.size.height)
+//        homeViewController.view.frame = homeFrame
+//        homeViewController.view.frame = homeView.bounds
+//        
+//        let trayFrame = CGRect(x: 0, y: 0, width: trayView.frame.size.width, height: 154)
+//        trayViewController.view.frame = trayFrame
+//        trayViewController.view.frame = trayView.bounds
+//        
+//        let cardFrame = CGRect(x: 0, y: 0, width: cardView.frame.size.width, height: cardView.frame.size.height)
+//        
+//        cardViewController.view.frame = cardFrame
+//        cardViewController.view.frame = cardView.bounds
         trayView.addSubview(trayViewController.view)
-        cardView.addSubview(cardViewController.view)
+        homeView.addSubview(homeViewController.view)
         
-        trayViewController.didMoveToParentViewController(self)
-        homeViewController.didMoveToParentViewController(self)
+
+//        view.addSubview(cardViewController.view)
+//        view.bringSubviewToFront(cardViewController.view)
+        
+//        trayViewController.didMoveToParentViewController(self)
+//        homeViewController.didMoveToParentViewController(self)
         
         //print(trayViewController.setupHandlers())
        
@@ -56,10 +63,17 @@ class ContainerViewController: UIViewController {
         // this is pull/push from Mudit
         
     }
-    
-//    func sample (){
-//         print(TrayVC().setupHandlers())
-//    }
+
+    func foodPicker(vc: TrayVC, foodType: String) {
+        print("WE'RE IN HERE")
+        print(foodType)
+        cardView.addSubview(cardViewController.view)
+        presentViewController(cardViewController, animated: true, completion: nil)
+    }
+    func sample (){
+        print(TrayVC().handleButtonClicked("Burger"))
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

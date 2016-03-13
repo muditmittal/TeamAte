@@ -131,6 +131,13 @@
                                     <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="YRY-r8-ikT"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Ac-qr-UFQ" userLabel="foodItem6Button">
+                                <rect key="frame" x="93" y="94" width="46" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="Vpt-HO-zpK"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oNQ-qV-igz" userLabel="foodItem7Button">
                                 <rect key="frame" x="179" y="95" width="46" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -152,11 +159,11 @@
                                     <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="kuT-nw-GH2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Ac-qr-UFQ" userLabel="foodItem6Button">
-                                <rect key="frame" x="93" y="94" width="46" height="49"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kB6-bg-Skk" userLabel="foodItem1Button">
+                                <rect key="frame" x="16" y="28" width="46" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="Vpt-HO-zpK"/>
+                                    <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="CAo-5l-eq3"/>
                                 </connections>
                             </button>
                         </subviews>
