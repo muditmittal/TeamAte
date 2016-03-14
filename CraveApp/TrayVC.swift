@@ -43,9 +43,6 @@ class TrayVC: UIViewController {
         trayUp = CGPoint(x: 160, y: 137)
     }
     
-    func setupHandlers() {
-        print("Hamburger")
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -55,33 +52,41 @@ class TrayVC: UIViewController {
 
     
     @IBAction func foodClicked(button: UIButton) {
-        print("infoodclicked")
         switch button {
         case foodItem1Button:
             print("hamburger")
             handleButtonClicked("Hamburger")
             delegate?.foodPicker(self, foodType: "Hamburger")
         case foodItem2Button:
-            print("pizza")
-            handleButtonClicked("Pizza")
+            //print("pizza")
+            //handleButtonClicked("Pizza")
+            delegate?.foodPicker(self, foodType: "Pizza")
         case foodItem3Button:
             print("sushi")
             handleButtonClicked("Sushi")
+            delegate?.foodPicker(self, foodType: "Sushi")
+
         case foodItem4Button:
             print("cupcake")
             handleButtonClicked("Cupcake")
+            delegate?.foodPicker(self, foodType: "Cupcake")
         case foodItem5Button:
             print("boba")
             handleButtonClicked("Boba")
+            delegate?.foodPicker(self, foodType: "Boba")
         case foodItem6Button:
             print("spaghetti")
             handleButtonClicked("Spaghetti")
+            delegate?.foodPicker(self, foodType: "Spaghetti")
         case foodItem7Button:
             handleButtonClicked("Popcorn")
+            delegate?.foodPicker(self, foodType: "Popcorn")
         case foodItem8Button:
             handleButtonClicked("Ice Cream")
+            delegate?.foodPicker(self, foodType: "Ice Cream")
         default:
-            handleButtonClicked("Other")
+            handleButtonClicked("Local")
+            delegate?.foodPicker(self, foodType: "Local")
             
         }
         

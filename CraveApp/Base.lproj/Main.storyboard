@@ -159,13 +159,6 @@
                                     <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="kuT-nw-GH2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kB6-bg-Skk" userLabel="foodItem1Button">
-                                <rect key="frame" x="16" y="28" width="46" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="CAo-5l-eq3"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.55686274509803924" green="0.81176470588235294" blue="0.81960784313725488" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
@@ -212,8 +205,8 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="151"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DWx-y0-rzF">
-                                                <rect key="frame" x="129" y="180" width="42" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DWx-y0-rzF">
+                                                <rect key="frame" x="38" y="180" width="235" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -268,6 +261,7 @@
                     <size key="freeformSize" width="960" height="568"/>
                     <connections>
                         <outlet property="cardOne" destination="COg-lL-eMZ" id="hrb-pw-3XN"/>
+                        <outlet property="cardOneLabel" destination="DWx-y0-rzF" id="ULb-t8-oMP"/>
                         <outlet property="cardThree" destination="Trd-aV-K9E" id="L35-FK-2fa"/>
                         <outlet property="cardTwo" destination="Trd-aV-K9E" id="xfO-n1-aPO"/>
                         <outlet property="scrollView" destination="zGa-VR-eN9" id="fHs-FM-H4g"/>
@@ -285,15 +279,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="960" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="yTj-lQ-Bhc" userLabel="cardView">
-                                <rect key="frame" x="-1" y="0.0" width="961" height="569"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" id="vHe-QF-Si4" userLabel="homeView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="415"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="yTj-lQ-Bhc" userLabel="cardView">
+                                <rect key="frame" x="-1" y="0.0" width="961" height="569"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" id="FhQ-h5-DLr" userLabel="trayView">
                                 <rect key="frame" x="0.0" y="414" width="320" height="154"/>
