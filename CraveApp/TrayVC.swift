@@ -8,7 +8,11 @@
 
 import UIKit
 
+//protocol here?
+
 class TrayVC: UIViewController {
+    
+    weak var delegate: TrayVCDelegate?
     
     @IBOutlet var foodItem1Button: UIButton!
     @IBOutlet var foodItem2Button: UIButton!
@@ -24,70 +28,80 @@ class TrayVC: UIViewController {
     var trayDown: CGPoint!
     var trayUp: CGPoint!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "onCustomPan:")
         
         trayView.userInteractionEnabled = true
-    
+        
         trayView.addGestureRecognizer(panGestureRecognizer)
         trayOriginalCenter = CGPoint(x: trayView.center.x, y: trayView.center.y)
         
         //setting tray up and down positions
         trayDown = CGPoint(x: 160, y: 77)
         trayUp = CGPoint(x: 160, y: 137)
-        print("parent \(parentViewController)")
     }
     
-    func setupHandlers() {
-        print("hey")
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+
     
-    
-        @IBAction func foodClicked(button: UIButton) {
-            switch button {
-            case foodItem1Button:
-                //print("hamburger")
-                handleButtonClicked("Hamburger")
-            case foodItem2Button:
-                print("pizza")
-                handleButtonClicked("Pizza")
-            case foodItem3Button:
-                print("sushi")
-                handleButtonClicked("Sushi")
-            case foodItem4Button:
-                print("cupcake")
-                handleButtonClicked("Cupcake")
-            case foodItem5Button:
-                print("boba")
-                handleButtonClicked("Boba")
-            case foodItem6Button:
-                print("spaghetti")
-                handleButtonClicked("Spaghetti")
-            case foodItem7Button:
-                handleButtonClicked("Popcorn")
-            case foodItem8Button:
-                handleButtonClicked("Ice Cream")
-            default:
-                handleButtonClicked("Other")
-            }
+    @IBAction func foodClicked(button: UIButton) {
+        switch button {
+        case foodItem1Button:
+            print("hamburger")
+            handleButtonClicked("Hamburger")
+            delegate?.foodPicker(self, foodType: "Hamburger")
+        case foodItem2Button:
+            //print("pizza")
+            //handleButtonClicked("Pizza")
+            delegate?.foodPicker(self, foodType: "Pizza")
+        case foodItem3Button:
+            print("sushi")
+            handleButtonClicked("Sushi")
+            delegate?.foodPicker(self, foodType: "Sushi")
+
+        case foodItem4Button:
+            print("cupcake")
+            handleButtonClicked("Cupcake")
+            delegate?.foodPicker(self, foodType: "Cupcake")
+        case foodItem5Button:
+            print("boba")
+            handleButtonClicked("Boba")
+            delegate?.foodPicker(self, foodType: "Boba")
+        case foodItem6Button:
+            print("spaghetti")
+            handleButtonClicked("Spaghetti")
+            delegate?.foodPicker(self, foodType: "Spaghetti")
+        case foodItem7Button:
+            handleButtonClicked("Popcorn")
+            delegate?.foodPicker(self, foodType: "Popcorn")
+        case foodItem8Button:
+            handleButtonClicked("Ice Cream")
+            delegate?.foodPicker(self, foodType: "Ice Cream")
+        default:
+            handleButtonClicked("Local")
+            delegate?.foodPicker(self, foodType: "Local")
+            
         }
+        
+    }
     
-        func handleButtonClicked (food: String) {
-            print (food)
-            //api_call(food).done(populate_result_view(results))
-            //load_result_view(food) // in loading state
-            // load result view, pass the response into result view
-            //someone clicks on button, send api request of respective button
-            //
     
-        }
+    func handleButtonClicked (food: String) {
+        print (food)
+        //api_call(food).done(populate_result_view(results))
+        //load_result_view(food) // in loading state
+        // load result view, pass the response into result view
+        //someone clicks on button, send api request of respective button
+        //
+        
+    }
     
     
     func onCustomPan(sender: UIPanGestureRecognizer) {
@@ -122,7 +136,7 @@ class TrayVC: UIViewController {
             
         }
     }
-
+    
     
     
 }

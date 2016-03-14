@@ -18,6 +18,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var cardOne: UIView!
     @IBOutlet var cardTwo: UIView!
     @IBOutlet var cardThree: UIView!
+    @IBOutlet var cardOneLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

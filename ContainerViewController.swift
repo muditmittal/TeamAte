@@ -8,17 +8,18 @@
 
 import UIKit
 
-class ContainerViewController: UIViewController {
+class ContainerViewController: UIViewController, TrayVCDelegate {
     
-    var trayViewController: UIViewController!
-    var homeViewController: UIViewController!
-    var cardViewController: UIViewController!
+    var trayViewController: TrayVC!
+    var homeViewController: HomeViewController!
+    var cardViewController: CardViewController!
     @IBOutlet var trayView: UIView!
     @IBOutlet var homeView: UIView!
     @IBOutlet var cardView: UIView!
-    
+    var cardViewOriginalCenter: CGPoint!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -28,42 +29,54 @@ class ContainerViewController: UIViewController {
         homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
         cardViewController = storyboard.instantiateViewControllerWithIdentifier("CardViewController") as! CardViewController
         
-        //setting up the frame
-        let homeFrame = CGRect(x: 0, y: 0, width: homeView.frame.size.width, height: homeView.frame.size.height)
-        homeViewController.view.frame = homeFrame
-        homeViewController.view.frame = homeView.bounds
+        trayViewController.delegate = self
         
-        let trayFrame = CGRect(x: 0, y: 0, width: trayView.frame.size.width, height: 154)
-        trayViewController.view.frame = trayFrame
-        trayViewController.view.frame = trayView.bounds
+        //setting up the frame, idk if i need this??
+        //        let homeFrame = CGRect(x: 0, y: 0, width: homeView.frame.size.width, height: homeView.frame.size.height)
+        //        homeViewController.view.frame = homeFrame
+        //        homeViewController.view.frame = homeView.bounds
+        //
+        //        let trayFrame = CGRect(x: 0, y: 0, width: trayView.frame.size.width, height: 154)
+        //        trayViewController.view.frame = trayFrame
+        //        trayViewController.view.frame = trayView.bounds
+        //
+        //        let cardFrame = CGRect(x: 0, y: 0, width: cardView.frame.size.width, height: cardView.frame.size.height)
+        //
+        //        cardViewController.view.frame = cardFrame
+        //        cardViewController.view.frame = cardView.bounds
         
-        let cardFrame = CGRect(x: 0, y: 0, width: cardView.frame.size.width, height: cardView.frame.size.height)
-        
-        cardViewController.view.frame = cardFrame
-        cardViewController.view.frame = cardView.bounds
-        
-        homeView.addSubview(homeViewController.view)
         trayView.addSubview(trayViewController.view)
+        homeView.addSubview(homeViewController.view)
         cardView.addSubview(cardViewController.view)
-        
+        cardView.alpha = 0
+        cardViewOriginalCenter = CGPoint(x: cardView.center.x, y: cardView.center.y)
         trayViewController.didMoveToParentViewController(self)
         homeViewController.didMoveToParentViewController(self)
         
-        //print(trayViewController.setupHandlers())
-       
+        self.cardView.center.y += 300
+    }
+    
+    func foodPicker(vc: TrayVC, foodType: String) {
+        print("WE'RE IN HERE")
+        cardView.alpha = 1
+        //set up card attributes here
+        cardViewController.cardOneLabel.text = foodType
+        self.cardView.center.y += 100
         
-        // this is from a pull request – Alvin
-        // this is pull/push from Mudit
+        UIView.animateWithDuration(0.75) { () -> Void in
+            self.cardView.center = self.cardViewOriginalCenter
+            print(self.cardView.center)
+        }
+        
+        print(foodType)
         
     }
     
-//    func sample (){
-//         print(TrayVC().setupHandlers())
-//    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
 }
