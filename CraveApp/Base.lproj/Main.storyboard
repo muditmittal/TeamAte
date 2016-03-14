@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="17l-rO-lTs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="SiN-mJ-uTR">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -17,20 +17,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="415"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aRF-8U-ckh">
-                                        <rect key="frame" x="26" y="80" width="46" height="84"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="75"/>
-                                        <color key="textColor" red="0.22352941176470589" green="0.22352941176470589" blue="0.22352941176470589" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CRAVE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OaI-Ka-cup">
-                                        <rect key="frame" x="26" y="127" width="274" height="169"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="75"/>
-                                        <color key="textColor" red="0.22352941176470589" green="0.22352941176470589" blue="0.22352941176470589" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" id="WH6-Dn-qlF" userLabel="foodTextBox">
                                         <rect key="frame" x="28" y="321" width="272" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -41,17 +27,17 @@
                                             <outletCollection property="gestureRecognizers" destination="Gd8-zG-cc9" appends="YES" id="pcr-kU-tn0"/>
                                         </connections>
                                     </textField>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="Underline" id="dpS-N4-6sd">
-                                        <rect key="frame" x="28" y="354" width="272" height="8"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kdr-Lf-RYB">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kdr-Lf-RYB">
                                         <rect key="frame" x="99" y="22" width="128" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo" id="8oo-Bg-VJ9">
+                                        <rect key="frame" x="34" y="145" width="260" height="126"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -68,93 +54,69 @@
             <objects>
                 <viewController storyboardIdentifier="TrayVC" id="JuX-wt-cFr" userLabel="Tray View Controller" customClass="TrayVC" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uZW-Dl-unx" userLabel="trayView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="154"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fooditem1" id="1FQ-S0-TFf" userLabel="1">
-                                <rect key="frame" x="14" y="27" width="50" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Kvi-Ye-I5l" userLabel="foodItem2Button">
+                                <rect key="frame" x="79" y="-1" width="82" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fooditem2" id="Dsg-Er-ufd" userLabel="2">
-                                <rect key="frame" x="91" y="27" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fooditem5" id="xFw-Ob-Cib" userLabel="5">
-                                <rect key="frame" x="14" y="94" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fooditem6" id="hWS-kT-Q7f" userLabel="6">
-                                <rect key="frame" x="91" y="94" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fooditem7" id="KFa-Yj-tbx" userLabel="7">
-                                <rect key="frame" x="177" y="94" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fooditem8" id="gia-Xj-LN6" userLabel="8">
-                                <rect key="frame" x="262" y="94" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fooditem4" id="TPu-DO-dpa">
-                                <rect key="frame" x="262" y="27" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fooditem3" id="NY0-dx-bZ6">
-                                <rect key="frame" x="177" y="27" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kvi-Ye-I5l" userLabel="foodItem2Button">
-                                <rect key="frame" x="93" y="27" width="46" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="item2"/>
                                 <connections>
                                     <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="cig-Nf-bbr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4ie-h2-MRH" userLabel="foodItem3Button">
-                                <rect key="frame" x="177" y="27" width="46" height="47"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4ie-h2-MRH" userLabel="foodItem3Button">
+                                <rect key="frame" x="159" y="-1" width="82" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="item3"/>
                                 <connections>
                                     <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="HyF-0g-Kpd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SdJ-c2-Rad" userLabel="foodItem4Button">
-                                <rect key="frame" x="264" y="27" width="46" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SdJ-c2-Rad" userLabel="foodItem4Button">
+                                <rect key="frame" x="239" y="-1" width="82" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="item4"/>
                                 <connections>
                                     <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="3eX-O7-kV8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9Z4-qO-7q7" userLabel="foodItem5Button">
-                                <rect key="frame" x="14" y="95" width="46" height="46"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9Z4-qO-7q7" userLabel="foodItem5Button">
+                                <rect key="frame" x="-1" y="79" width="82" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="item5"/>
                                 <connections>
                                     <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="YRY-r8-ikT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Ac-qr-UFQ" userLabel="foodItem6Button">
-                                <rect key="frame" x="93" y="94" width="46" height="49"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Ac-qr-UFQ" userLabel="foodItem6Button">
+                                <rect key="frame" x="79" y="79" width="82" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="item6"/>
                                 <connections>
                                     <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="Vpt-HO-zpK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oNQ-qV-igz" userLabel="foodItem7Button">
-                                <rect key="frame" x="179" y="95" width="46" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oNQ-qV-igz" userLabel="foodItem7Button">
+                                <rect key="frame" x="159" y="79" width="82" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="item7"/>
                                 <connections>
                                     <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="ECA-MY-UcK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="daN-sA-ZJv" userLabel="foodItem8Button">
-                                <rect key="frame" x="264" y="95" width="46" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="daN-sA-ZJv" userLabel="foodItem8Button">
+                                <rect key="frame" x="239" y="79" width="82" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="item8"/>
                                 <connections>
                                     <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="ueW-Dl-Kqq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HWu-Hz-GmB" userLabel="foodItem1Button">
-                                <rect key="frame" x="16" y="28" width="46" height="49"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HWu-Hz-GmB" userLabel="foodItem1Button">
+                                <rect key="frame" x="-1" y="-1" width="82" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="item1"/>
                                 <connections>
                                     <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="kuT-nw-GH2"/>
                                 </connections>
@@ -167,7 +129,7 @@
                         </connections>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="154"/>
+                    <size key="freeformSize" width="320" height="160"/>
                     <connections>
                         <outlet property="foodItem1Button" destination="HWu-Hz-GmB" id="WSF-D5-sgq"/>
                         <outlet property="foodItem2Button" destination="Kvi-Ye-I5l" id="2bn-Bn-yvF"/>
@@ -677,21 +639,22 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Underline" width="314" height="10"/>
         <image name="backbutton" width="15" height="11"/>
         <image name="background" width="320" height="568"/>
         <image name="coverphoto" width="300" height="180"/>
         <image name="delivery" width="230" height="45"/>
         <image name="direction" width="230" height="45"/>
         <image name="fooditem1" width="50" height="44"/>
-        <image name="fooditem2" width="63" height="55"/>
-        <image name="fooditem3" width="66" height="38"/>
-        <image name="fooditem4" width="34" height="39"/>
-        <image name="fooditem5" width="51" height="61"/>
-        <image name="fooditem6" width="61" height="41"/>
-        <image name="fooditem7" width="54" height="48"/>
-        <image name="fooditem8" width="45" height="47"/>
         <image name="heart copy" width="14" height="12"/>
+        <image name="item1" width="81" height="82"/>
+        <image name="item2" width="82" height="82"/>
+        <image name="item3" width="82" height="82"/>
+        <image name="item4" width="81" height="82"/>
+        <image name="item5" width="81" height="80"/>
+        <image name="item6" width="82" height="80"/>
+        <image name="item7" width="82" height="80"/>
+        <image name="item8" width="81" height="80"/>
+        <image name="logo" width="184" height="89"/>
         <image name="menubutton" width="230" height="45"/>
     </resources>
 </document>
