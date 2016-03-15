@@ -39,8 +39,9 @@ class TrayVC: UIViewController {
         trayOriginalCenter = CGPoint(x: trayView.center.x, y: trayView.center.y)
         
         //setting tray up and down positions
-        trayDown = CGPoint(x: 160, y: 77)
-        trayUp = CGPoint(x: 160, y: 137)
+        trayDown = CGPoint(x: 160, y: 364)
+        trayUp = CGPoint(x: 160, y: 284)
+        print(trayView.center)
     }
     
     
@@ -105,8 +106,8 @@ class TrayVC: UIViewController {
     
     
     func onCustomPan(sender: UIPanGestureRecognizer) {
-        let point = sender.locationInView(view)
-        //let velocity = sender.velocityInView(view)
+        //let point = sender.locationInView(view)
+        let velocity = sender.velocityInView(view)
         //let translation = sender.translationInView(view)
         
         if sender.state == UIGestureRecognizerState.Began {
@@ -120,17 +121,19 @@ class TrayVC: UIViewController {
         } else if sender.state == UIGestureRecognizerState.Ended {
             //print("Gesture ended at: \(point)")
             
-            if point.y > 0 {
+            if velocity.y < 0 {
                 UIView.animateWithDuration(0.3, animations: { () -> Void in
                     //if panning up, then set tray to up position
                     self.trayView.center = self.trayUp
+                    //print(self.trayUp)
+                    print("trayup \(velocity.y)")
                 })
             }
-            if point.y < 0 {
+            if velocity.y > 0 {
                 UIView.animateWithDuration(0.3, animations: { () -> Void in
                     //if panning down, then set tray to down position
                     self.trayView.center = self.trayDown
-                    
+                    print("traydown \(velocity.y)")
                 })
             }
             
