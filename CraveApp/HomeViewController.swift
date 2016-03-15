@@ -10,14 +10,22 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet var currentLocation: UILabel!
-       
+    @IBOutlet weak var settingsView: UIView!
+    @IBOutlet weak var maskView: UIView!
+    @IBOutlet weak var locationBar: UIView!
+    @IBOutlet weak var backBar: UIView!
+    @IBOutlet weak var userLocation: UILabel!
+    @IBOutlet weak var resultLocation: UILabel!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        maskView.alpha = 0
+
         //setting of original trayView coordinates
-        
         //var currentLocation = {{Phone Location}}
     }
+
 
 //    @IBAction func onTapFood(sender: AnyObject) {
 //        print("on tap")
@@ -29,6 +37,7 @@ class HomeViewController: UIViewController {
 //            }, completion: nil)
 //    }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

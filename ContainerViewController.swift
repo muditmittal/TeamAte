@@ -10,12 +10,14 @@ import UIKit
 
 class ContainerViewController: UIViewController, TrayVCDelegate {
     
-    var trayViewController: TrayVC!
-    var homeViewController: HomeViewController!
-    var cardViewController: CardViewController!
     @IBOutlet var trayView: UIView!
     @IBOutlet var homeView: UIView!
     @IBOutlet var cardView: UIView!
+
+
+    var trayViewController: TrayVC!
+    var homeViewController: HomeViewController!
+    var cardViewController: CardViewController!
     var cardViewOriginalCenter: CGPoint!
     
     override func viewDidLoad() {
@@ -63,7 +65,8 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
         cardViewController.resultName.text = foodType
         self.cardView.center.y += self.cardView.frame.height
         
-        UIView.animateWithDuration(0.75) { () -> Void in
+        
+        UIView.animateWithDuration(0.4) { () -> Void in
             self.cardView.center = self.cardViewOriginalCenter
             //animated tray down upon click
             self.trayView.center.y += 80

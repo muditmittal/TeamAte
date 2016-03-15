@@ -60,7 +60,7 @@ class TrayVC: UIViewController {
             delegate?.foodPicker(self, foodType: "Hamburger")
         case foodItem2Button:
             //print("pizza")
-            //handleButtonClicked("Pizza")
+            handleButtonClicked("Pizza")
             delegate?.foodPicker(self, foodType: "Pizza")
         case foodItem3Button:
             print("sushi")
