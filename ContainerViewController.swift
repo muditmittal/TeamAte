@@ -65,6 +65,8 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
         
         UIView.animateWithDuration(0.75) { () -> Void in
             self.cardView.center = self.cardViewOriginalCenter
+            //animated tray down upon click
+            self.trayView.center.y += 80
             print(self.cardView.center)
         }
         
