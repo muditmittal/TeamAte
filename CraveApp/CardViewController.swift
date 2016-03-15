@@ -9,8 +9,23 @@
 import UIKit
 
 class CardViewController: UIViewController, UIScrollViewDelegate {
+
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var resultPhoto: UIImageView!
+    @IBOutlet weak var resultName: UILabel!
+    @IBOutlet weak var resultRating: UIView!
+    @IBOutlet weak var resultPrice: UILabel!
+    @IBOutlet weak var resultDistance: UILabel!
+    @IBOutlet weak var resultDescription: UILabel!
     
-    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet weak var resultMenu: UIView!
+    @IBOutlet weak var menuItem1: UILabel!
+    @IBOutlet weak var menuItem2: UILabel!
+    @IBOutlet weak var menuItem3: UILabel!
+
+    
+    
+    
     @IBOutlet var trayView: UIView!
     var trayViewController: UIViewController!
     var trayViewOriginalCenter: CGPoint!
@@ -23,11 +38,11 @@ class CardViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
-        scrollView.contentSize = CGSize(width: 960, height: 568)
-        
+        scrollView.contentSize = CGSizeMake(300, 700)
         
     }
     
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

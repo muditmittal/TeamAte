@@ -60,7 +60,7 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
         print("WE'RE IN HERE")
         cardView.alpha = 1
         //set up card attributes here
-        cardViewController.cardOneLabel.text = foodType
+        cardViewController.resultName.text = foodType
         self.cardView.center.y += 100
         
         UIView.animateWithDuration(0.75) { () -> Void in
