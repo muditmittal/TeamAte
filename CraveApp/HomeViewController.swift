@@ -10,11 +10,13 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet var currentLocation: UILabel!
        
     override func viewDidLoad() {
         super.viewDidLoad()
         //setting of original trayView coordinates
         
+        //var currentLocation = {{Phone Location}}
     }
 
 //    @IBAction func onTapFood(sender: AnyObject) {

@@ -43,6 +43,9 @@
                             </view>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="currentLocation" destination="Kdr-Lf-RYB" id="d3C-Eu-8hV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Gd8-zG-cc9"/>
