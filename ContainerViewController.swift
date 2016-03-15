@@ -61,7 +61,7 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
         cardView.alpha = 1
         //set up card attributes here
         cardViewController.resultName.text = foodType
-        self.cardView.center.y += 100
+        self.cardView.center.y += self.cardView.frame.height
         
         UIView.animateWithDuration(0.75) { () -> Void in
             self.cardView.center = self.cardViewOriginalCenter
