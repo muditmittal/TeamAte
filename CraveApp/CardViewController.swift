@@ -8,8 +8,11 @@
 
 import UIKit
 
-class CardViewController: UIViewController, UIScrollViewDelegate {
+var fadeTransition: FadeTransition!
 
+class CardViewController: UIViewController, UIScrollViewDelegate {
+    
+    @IBOutlet var fullCardView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var resultPhoto: UIImageView!
     @IBOutlet weak var resultName: UILabel!
@@ -27,7 +30,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var trayView: UIView!
     var trayViewController: UIViewController!
     var trayViewOriginalCenter: CGPoint!
-    
+    var viewOriginalCenter:CGPoint!
     @IBOutlet var cardOne: UIView!
     @IBOutlet var cardOneLabel: UILabel!
     
@@ -35,7 +38,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         scrollView.delegate = self
         scrollView.contentSize = CGSizeMake(300, 700)
-        
+        viewOriginalCenter = CGPoint(x: self.fullCardView.center.x, y: self.fullCardView.center.y)
     }
     
 
@@ -49,12 +52,18 @@ class CardViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        
-    }
+            }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView,
         willDecelerate decelerate: Bool) {
             // This method is called right as the user lifts their finger
+            if scrollView.contentOffset.y <= -100 {
+                print(scrollView.contentOffset.y)
+                UIView.animateWithDuration(0.2, animations: { () -> Void in
+                    self.fullCardView.center.y += self.fullCardView.frame.height
+                    self.view.alpha = 0
+                })
+            }
     }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
@@ -65,5 +74,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate {
     func handleLabels(restaurantName: String){
         resultName.text = restaurantName
     }
-    
+    func resetCardView(){
+        fullCardView.center = viewOriginalCenter
+        print ("reset")
+    }
 }

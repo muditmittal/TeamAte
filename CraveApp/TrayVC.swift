@@ -61,7 +61,7 @@ class TrayVC: UIViewController {
 
             case foodItem3Button:
                 handleButtonClicked(searchQueries[2])
-                delegate?.foodPicker(self, searchQuery: searchQueries[0])
+                delegate?.foodPicker(self, searchQuery: searchQueries[2])
 
             case foodItem4Button:
                 handleButtonClicked(searchQueries[3])
