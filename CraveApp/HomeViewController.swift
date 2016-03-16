@@ -17,30 +17,27 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var userLocation: UILabel!
     @IBOutlet weak var resultLocation: UILabel!
     
+    //var currentLocation = we can update this very frequently
+    //var displayLocation = we can update this based on app logic
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        maskView.alpha = 0
+        initializeHomeView()
 
-        //setting of original trayView coordinates
-        //var currentLocation = {{Phone Location}}
     }
 
+    func initializeHomeView() {
+        UIView.animateWithDuration(0.4, delay: 0, options: [], animations: { () -> Void in
+            
+            self.maskView.alpha = 0
+            //self.displayLocation = currentLocation
+            //self.userLocation = currentLocation
 
-//    @IBAction func onTapFood(sender: AnyObject) {
-//        print("on tap")
-//        self.trayView.alpha = 1
-//        
-//        UIView.animateWithDuration(0.4, delay: 0, options: [], animations: { () -> Void in
-//            self.trayView.center.y = self.trayViewOriginalCenter.y
-//            print("on animate")
-//            }, completion: nil)
-//    }
-
+            }, completion: nil)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 

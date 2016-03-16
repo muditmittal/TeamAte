@@ -7,5 +7,5 @@
 //
 
 protocol TrayVCDelegate: class {
-    func foodPicker(vc: TrayVC, foodType: String)
+    func foodPicker(vc: TrayVC, searchQuery: String)
 }
