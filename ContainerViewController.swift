@@ -14,11 +14,15 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
     @IBOutlet var homeView: UIView!
     @IBOutlet var cardView: UIView!
 
+    @IBOutlet var panGestureRecognizer: UIView!
 
     var trayViewController: TrayVC!
     var homeViewController: HomeViewController!
     var cardViewController: CardViewController!
     var cardViewOriginalCenter: CGPoint!
+    var trayViewOriginalCenter: CGPoint!
+    var trayDown: CGPoint!
+    var trayUp: CGPoint!
     
     override func viewDidLoad() {
         
@@ -32,6 +36,20 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
         cardViewController = storyboard.instantiateViewControllerWithIdentifier("CardViewController") as! CardViewController
         
         trayViewController.delegate = self
+       
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "onCustomPan:")
+        
+        trayView.userInteractionEnabled = true
+        
+        trayView.addGestureRecognizer(panGestureRecognizer)
+        trayViewOriginalCenter = CGPoint(x: trayView.center.x, y: trayView.center.y)
+        
+        //setting tray up and down positions
+        trayDown = CGPoint(x: 160.0, y: 568.0)
+        trayUp = CGPoint(x: 160, y: 488)
+        print(trayView.center)
+        print("trayup \(self.trayView.frame.height)")
+
         
         //setting up the frame, idk if i need this??
         //        let homeFrame = CGRect(x: 0, y: 0, width: homeView.frame.size.width, height: homeView.frame.size.height)
@@ -56,6 +74,7 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
         homeViewController.didMoveToParentViewController(self)
         
         self.cardView.center.y += 300
+        trayViewOriginalCenter = CGPoint(x:trayView.center.x, y: trayView.center.y)
     }
     
     func foodPicker(vc: TrayVC, foodType: String) {
@@ -64,19 +83,59 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
         //set up card attributes here
         cardViewController.resultName.text = foodType
         self.cardView.center.y += self.cardView.frame.height
-        
+        print("in foodpicker load \(self.trayView.center.y)")
+        //self.trayView.center = trayViewOriginalCenter
         
         UIView.animateWithDuration(0.4) { () -> Void in
             self.cardView.center = self.cardViewOriginalCenter
             //animated tray down upon click
-            self.trayView.center.y += 80
-            print(self.cardView.center)
+            if self.trayView.center.y != 568 {
+                self.trayView.center.y = self.trayDown.y
+                print("in foodpicker \(self.trayView.frame.height)")
+            }
+            //print(self.cardView.center)
         }
         
         print(foodType)
         
     }
     
+    func onCustomPan(sender: UIPanGestureRecognizer) {
+        let point = sender.locationInView(view)
+        let velocity = sender.velocityInView(view)
+        //let translation = sender.translationInView(view)
+        
+        if sender.state == UIGestureRecognizerState.Began {
+            
+            print("Gesture began at: \(point)")
+            
+            //trayViewOriginalCenter = trayView.center
+            //trayView.center = CGPoint(x: trayViewOriginalCenter.x, y: trayViewOriginalCenter.y)
+        } else if sender.state == UIGestureRecognizerState.Changed {
+            print("Gesture changed at: \(point)")
+        } else if sender.state == UIGestureRecognizerState.Ended {
+            //print("Gesture ended at: \(point)")
+            
+            if velocity.y < 0 {
+                UIView.animateWithDuration(0.3, animations: { () -> Void in
+                    //if panning up, then set tray to up position
+                    self.trayView.center.y = self.trayUp.y
+                    //print(self.trayUp)
+                    print("trayup \(self.trayView.center)")
+                    print("trayup \(self.trayUp)")
+                    //print("trayup \(self.trayView.frame.height)")
+                })
+            }
+            if velocity.y > 0 && self.trayView.frame.height != 568 {
+                UIView.animateWithDuration(0.3, animations: { () -> Void in
+                    //if panning down, then set tray to down position
+                    self.trayView.center = self.trayDown
+                    print("traydown \(self.trayView.frame.height)")
+                })
+            }
+            
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

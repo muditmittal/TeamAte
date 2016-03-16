@@ -161,9 +161,6 @@
                             </button>
                         </subviews>
                         <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="pCA-yP-MpF" appends="YES" id="I5N-TK-40V"/>
-                        </connections>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="160"/>
@@ -180,7 +177,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="esf-Uc-ZNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="pCA-yP-MpF"/>
             </objects>
             <point key="canvasLocation" x="251" y="1432"/>
         </scene>
@@ -193,7 +189,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="6W5-KZ-swV" userLabel="listingScrollView">
-                                <rect key="frame" x="10" y="0.0" width="300" height="508"/>
+                                <rect key="frame" x="10" y="0.0" width="300" height="477"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="peX-qZ-8HF" userLabel="listingInfo">
@@ -328,6 +324,12 @@
                                     </imageView>
                                 </subviews>
                             </scrollView>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" id="GAl-4t-ffC" userLabel="trayView">
+                                <rect key="frame" x="0.0" y="480" width="320" height="160"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -350,7 +352,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97c-W6-yIq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="251" y="912"/>
+            <point key="canvasLocation" x="251" y="953"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="jnP-Eh-CMC">
@@ -366,7 +368,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="yTj-lQ-Bhc" userLabel="cardView">
-                                <rect key="frame" x="0.0" y="40" width="320" height="528"/>
+                                <rect key="frame" x="0.0" y="40" width="320" height="448"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -374,6 +376,10 @@
                                 <rect key="frame" x="0.0" y="408" width="320" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="sgE-uX-bQX" appends="YES" id="vD9-3Y-AfL"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -387,16 +393,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0kk-AL-TwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="9b5-ld-r11" userLabel="trayView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="154"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.039215686270000001" green="0.30588235289999999" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
-                <view contentMode="scaleToFill" id="sej-4W-Wa5" userLabel="trayView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="154"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.039215686270000001" green="0.30588235289999999" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="sgE-uX-bQX"/>
             </objects>
             <point key="canvasLocation" x="-122" y="912"/>
         </scene>
