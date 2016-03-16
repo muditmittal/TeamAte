@@ -24,15 +24,11 @@ class CardViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var menuItem3: UILabel!
 
     
-    
-    
     @IBOutlet var trayView: UIView!
     var trayViewController: UIViewController!
     var trayViewOriginalCenter: CGPoint!
     
     @IBOutlet var cardOne: UIView!
-    @IBOutlet var cardTwo: UIView!
-    @IBOutlet var cardThree: UIView!
     @IBOutlet var cardOneLabel: UILabel!
     
     override func viewDidLoad() {
@@ -64,6 +60,10 @@ class CardViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         // This method is called when the scrollview finally stops scrolling.
         
+    }
+    
+    func handleLabels(restaurantName: String){
+        resultName.text = restaurantName
     }
     
 }

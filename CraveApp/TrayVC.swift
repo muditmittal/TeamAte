@@ -58,32 +58,32 @@ class TrayVC: UIViewController {
         case foodItem1Button:
             //print("hamburger")
             handleButtonClicked("Hamburger")
-            delegate?.foodPicker(self, foodType: "Hamburger")
+            delegate?.foodPicker(self, foodType: "Ramen")
         case foodItem2Button:
             //print("pizza")
             handleButtonClicked("Pizza")
-            delegate?.foodPicker(self, foodType: "Pizza")
+            delegate?.foodPicker(self, foodType: "Burger")
         case foodItem3Button:
             handleButtonClicked("Sushi")
-            delegate?.foodPicker(self, foodType: "Sushi")
+            delegate?.foodPicker(self, foodType: "Taco")
 
         case foodItem4Button:
             handleButtonClicked("Cupcake")
-            delegate?.foodPicker(self, foodType: "Cupcake")
+            delegate?.foodPicker(self, foodType: "Desserts")
         case foodItem5Button:
             //print("boba")
             handleButtonClicked("Boba")
-            delegate?.foodPicker(self, foodType: "Boba")
+            delegate?.foodPicker(self, foodType: "Sushi")
         case foodItem6Button:
             //print("spaghetti")
             handleButtonClicked("Spaghetti")
-            delegate?.foodPicker(self, foodType: "Spaghetti")
+            delegate?.foodPicker(self, foodType: "Pizza")
         case foodItem7Button:
             handleButtonClicked("Popcorn")
-            delegate?.foodPicker(self, foodType: "Popcorn")
+            delegate?.foodPicker(self, foodType: "Drinks")
         case foodItem8Button:
             handleButtonClicked("Ice Cream")
-            delegate?.foodPicker(self, foodType: "Ice Cream")
+            delegate?.foodPicker(self, foodType: "Local")
         default:
             handleButtonClicked("Local")
             delegate?.foodPicker(self, foodType: "Local")
