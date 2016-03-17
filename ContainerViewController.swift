@@ -8,9 +8,14 @@
 
 import UIKit
 
+var trayViewController: TrayVC!
+var homeViewController: HomeViewController!
+var cardViewController: CardViewController!
+
 let screenSize: CGRect = UIScreen.mainScreen().bounds
 let screenWidth = screenSize.width
 let screenHeight = screenSize.height
+var cardInView = 0
 
 class ContainerViewController: UIViewController, TrayVCDelegate {
     
@@ -18,72 +23,108 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
     @IBOutlet var homeView: UIView!
     @IBOutlet var cardView: UIView!
     
-    var trayViewController: TrayVC!
-    var homeViewController: HomeViewController!
-    var cardViewController: CardViewController!
-    
     var cardViewOriginalCenter: CGPoint!
     var trayViewOriginalCenter: CGPoint!
     var trayDown: CGPoint!
     var trayUp: CGPoint!
     
     
-    
+    //Called on each button tap
     func foodPicker(vc: TrayVC, searchQuery: String) {
-        self.cardViewController.view.alpha = 1
-        self.cardViewController.resetCardView()
+            //cardViewController.view.alpha = 1
+            //cardViewController.resetCardView()
         
-        //Step 1: Initiate search
-        //searchQuery(foodType, homeViewController.resultLocation, radius)
-        
+        //1: Update location
+        //2: Initiate search (foodtype, location, radius)
+        //3: Call card entry or card swap function
+            if cardInView == 0 {
+                prepareContainerForCardEntry(searchQuery)
+            } else if cardInView == 1 {
+                prepareContainerForCardSwap(searchQuery)
+            }
+        //4: Update app state
+            cardInView = 1
+    }
+    
+
+    
+    func prepareContainerForCardEntry(searchQuery: String) {
+
+        //1: Hide settingsView & Show maskView
+            UIView.animateWithDuration(0.2, animations: {
+                homeViewController.settingsView.alpha = 0
+                homeViewController.maskView.alpha = 1
+                }, completion: { (Bool) -> Void in
+            })
+        //2: Check if we are ready to show result?
+        //3: Show a loader
+        //4: Check if we have result
+        //5A: Slide-up No Result Found
+
+        //5B: Slide-up Result Card
+            cardViewController.handleLabels(searchQuery)
+            UIView.animateWithDuration(0.4) { () -> Void in
+                self.cardView.center = self.cardViewOriginalCenter
+                
+        //6: Slide-down food tray
+                if self.trayView.center.y != self.trayDown.y {
+                    self.trayView.center.y = self.trayDown.y
+                }
+        //7: Show selected button
+            }
+    }
+
+    
+    
+    
+    func prepareContainerForCardSwap(searchQuery: String) {
+
+        //0: Update location
+        //1: Slide-down current card
         UIView.animateWithDuration(0.4, delay: 0, options: [], animations: {
-            
-            //Step 2: Slide-down current card
             self.cardView.center.y = self.cardViewOriginalCenter.y + screenHeight
-            
             }, completion: { (Bool) -> Void in
+        //2: Check if we are ready to show result?
                 
-                //Step 3: Show a loader (to do later)
-                //showLoader()
+        //3: Show a loader
+            //self.tempActivityIndicator.startAnimating()
                 
-                //Step 4: Check if we should display error or result
-                //if result {
+        //4: Check if we have result, dismiss loader
+        //5A: Slide-up No Result Found
                 
-                //Step 5A: Populate New Result
-                
-                self.cardViewController.handleLabels(searchQuery)
-                
-                //dismissLoader()
-                
-                //} else {
-                
-                //Step 5B: Show No Result
-                
-                //}
-                
+        //5B: Slide-up New Result Card
+                cardViewController.handleLabels(searchQuery)
                 UIView.animateWithDuration(0.4) { () -> Void in
-                    
-                    //Step 6: Slide-up new card
                     self.cardView.center = self.cardViewOriginalCenter
-                    
-                    //Step 7: Slide-down food tray
+
+        //6: Slide-down food tray
                     if self.trayView.center.y != self.trayDown.y {
                         self.trayView.center.y = self.trayDown.y
                     }
+        //7: Show selected button
                 }
+
         })
-        
     }
+
     
-    func prepareContainerForCardEntry() {
-        
-    }
     
-    func prepareContainerForCardSwap() {
-        
-    }
     
     func prepareContainerForCardExit() {
+        //1: Update location
+        //2: Hide maskView, show settingsView
+        UIView.animateWithDuration(0.2, animations: {
+            homeViewController.maskView.alpha = 0
+            homeViewController.settingsView.alpha = 1
+            }, completion: { (Bool) -> Void in
+        })
+        
+        //3: Slide-down card
+        
+        //4: Slide-up food tray
+        //5: Deselect all buttons
+        //6: Change app state
+        cardInView = 0
         
     }
     
@@ -165,6 +206,11 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
             
         }
     }
+    
+    lazy private var tempActivityIndicator : CustomActivityIndicatorView = {
+        let image : UIImage = UIImage(named: "fooditem1")!
+        return CustomActivityIndicatorView(image: image)
+    }()
     
     
     override func didReceiveMemoryWarning() {

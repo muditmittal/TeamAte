@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3EE961421C9A6D5A009B229A /* CustomActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE961411C9A6D5A009B229A /* CustomActivityIndicatorView.swift */; };
 		83ACDA3B73D1E022B974EA4C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED034128126406A02FEC90F9 /* libPods.a */; };
 		AE0EA3F81C9280E300067CBE /* TrayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0EA3F71C9280E300067CBE /* TrayVC.swift */; };
 		AE0EA3FB1C92846C00067CBE /* BaseTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0EA3F91C92846C00067CBE /* BaseTransition.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		17A6C320C2003BEE26603B9A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		206D0AE2E5267CFCCAAD3E20 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		3EE961411C9A6D5A009B229A /* CustomActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicatorView.swift; sourceTree = "<group>"; };
 		AE0EA3F71C9280E300067CBE /* TrayVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrayVC.swift; sourceTree = "<group>"; };
 		AE0EA3F91C92846C00067CBE /* BaseTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTransition.swift; sourceTree = "<group>"; };
 		AE0EA3FA1C92846C00067CBE /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				AE0EA3F71C9280E300067CBE /* TrayVC.swift */,
 				AE4506671C90C56C005B3138 /* ContainerViewController.swift */,
 				AE2FCB4F1C878F7D00BF6632 /* HomeViewController.swift */,
+				3EE961411C9A6D5A009B229A /* CustomActivityIndicatorView.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				AE0EA3FB1C92846C00067CBE /* BaseTransition.swift in Sources */,
 				AE2FCB501C878F7D00BF6632 /* HomeViewController.swift in Sources */,
 				AE0EA3FF1C92862900067CBE /* CardViewController.swift in Sources */,
+				3EE961421C9A6D5A009B229A /* CustomActivityIndicatorView.swift in Sources */,
 				AE0EA3F81C9280E300067CBE /* TrayVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
