@@ -8,10 +8,9 @@
 
 import UIKit
 
-var fadeTransition: FadeTransition!
-
 class CardViewController: UIViewController, UIScrollViewDelegate {
     
+    weak var delegate: CardVCDelegate?
     @IBOutlet var fullCardView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var resultPhoto: UIImageView!
@@ -55,11 +54,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate {
         willDecelerate decelerate: Bool) {
             // This method is called right as the user lifts their finger
             if scrollView.contentOffset.y <= -100 {
-                print(scrollView.contentOffset.y)
-                UIView.animateWithDuration(0.2, animations: { () -> Void in
-                    self.fullCardView.center.y += self.fullCardView.frame.height
-                    self.view.alpha = 0
-                })
+                delegate?.finishedDragCard(self, finished: true)
+                print ("finished dragging")
+                
             }
     }
     

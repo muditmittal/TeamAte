@@ -17,7 +17,7 @@ let screenWidth = screenSize.width
 let screenHeight = screenSize.height
 var cardInView = 0
 
-class ContainerViewController: UIViewController, TrayVCDelegate {
+class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate {
     
     @IBOutlet var trayView: UIView!
     @IBOutlet var homeView: UIView!
@@ -28,6 +28,50 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
     var trayDown: CGPoint!
     var trayUp: CGPoint!
     
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        //homeViewController
+        homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+        homeView.addSubview(homeViewController.view)
+        homeViewController.didMoveToParentViewController(self)
+        
+        
+        //trayViewController
+        trayViewController = storyboard.instantiateViewControllerWithIdentifier("TrayVC") as! TrayVC
+        trayView.addSubview(trayViewController.view)
+        trayViewController.didMoveToParentViewController(self)
+        
+        //cardViewController
+        cardViewController = storyboard.instantiateViewControllerWithIdentifier("CardViewController") as! CardViewController
+        cardView.addSubview(cardViewController.view)
+        cardViewController.didMoveToParentViewController(self)
+        
+        //add pan gesture
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "onCustomPan:")
+        trayView.userInteractionEnabled = true
+        trayView.addGestureRecognizer(panGestureRecognizer)
+        
+        //position settings
+        let trayHeight = trayView.frame.height
+        trayViewOriginalCenter = trayView.center
+        trayDown = CGPoint(x: screenWidth/2, y: screenHeight)
+        trayUp = CGPoint(x: screenWidth/2, y: screenHeight - trayHeight/2)
+        
+        //set up delegates
+        trayViewController.delegate = self
+        cardViewController.delegate = self
+        
+        //cardView Settings
+        cardViewOriginalCenter = cardView.center
+        //move cardView outside the container
+        cardView.center.y = cardViewOriginalCenter.y + screenHeight
+        
+    }
     
     //Called on each button tap
     func foodPicker(vc: TrayVC, searchQuery: String) {
@@ -46,7 +90,6 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
             cardInView = 1
     }
     
-
     
     func prepareContainerForCardEntry(searchQuery: String) {
 
@@ -81,7 +124,7 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
     
     
     func prepareContainerForCardSwap(searchQuery: String) {
-
+        
         //0: Update location
         //1: Slide-down current card
         UIView.animateWithDuration(0.4, delay: 0, options: [], animations: {
@@ -110,7 +153,9 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
         })
     }
 
-    
+    func finishedDragCard(vc: CardViewController, finished: Bool) {
+        prepareContainerForCardExit()
+    }
     
     
     func prepareContainerForCardExit() {
@@ -123,6 +168,7 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
         })
         
         //3: Slide-down card
+        self.cardView.center.y = self.cardViewOriginalCenter.y + screenHeight
         
         //4: Slide-up food tray
         //5: Deselect all buttons
@@ -131,50 +177,6 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
         
     }
     
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        //homeViewController
-        homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
-        homeView.addSubview(homeViewController.view)
-        homeViewController.didMoveToParentViewController(self)
-        
-        
-        //trayViewController
-        trayViewController = storyboard.instantiateViewControllerWithIdentifier("TrayVC") as! TrayVC
-        trayView.addSubview(trayViewController.view)
-        trayViewController.didMoveToParentViewController(self)
-        
-        //set up delegate
-        trayViewController.delegate = self
-        
-        //add pan gesture
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "onCustomPan:")
-        trayView.userInteractionEnabled = true
-        trayView.addGestureRecognizer(panGestureRecognizer)
-        
-        //position settings
-        let trayHeight = trayView.frame.height
-        trayViewOriginalCenter = trayView.center
-        trayDown = CGPoint(x: screenWidth/2, y: screenHeight)
-        trayUp = CGPoint(x: screenWidth/2, y: screenHeight - trayHeight/2)
-        
-        
-        //cardViewController
-        cardViewController = storyboard.instantiateViewControllerWithIdentifier("CardViewController") as! CardViewController
-        cardView.addSubview(cardViewController.view)
-        cardViewController.didMoveToParentViewController(self)
-        
-        //cardView Settings
-        cardViewOriginalCenter = cardView.center
-        //move cardView outside the container
-        cardView.center.y = cardViewOriginalCenter.y + screenHeight
-        
-    }
     
     
     func onCustomPan(sender: UIPanGestureRecognizer) {
