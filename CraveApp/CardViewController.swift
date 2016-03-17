@@ -27,12 +27,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var menuItem3: UILabel!
 
     
-    @IBOutlet var trayView: UIView!
     var trayViewController: UIViewController!
     var trayViewOriginalCenter: CGPoint!
     var viewOriginalCenter:CGPoint!
-    @IBOutlet var cardOne: UIView!
-    @IBOutlet var cardOneLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

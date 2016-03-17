@@ -16,6 +16,9 @@ class TrayVC: UIViewController {
     
     weak var delegate: TrayVCDelegate?
     
+    @IBOutlet weak var firstRow: UIView!
+    @IBOutlet weak var secondRow: UIView!
+    
     @IBOutlet var foodItem1Button: UIButton!
     @IBOutlet var foodItem2Button: UIButton!
     @IBOutlet var foodItem3Button: UIButton!
@@ -49,49 +52,68 @@ class TrayVC: UIViewController {
     
     
     @IBAction func foodClicked(button: UIButton) {
+        deselectAllButtons()
         switch button {
 
             case foodItem1Button:
-                handleButtonClicked(searchQueries[0])
+                foodItem1Button.selected = true
                 delegate?.foodPicker(self, searchQuery: searchQueries[0])
+                handleButtonClicked(searchQueries[0])
 
             case foodItem2Button:
-                handleButtonClicked(searchQueries[1])
+                foodItem2Button.selected = true
                 delegate?.foodPicker(self, searchQuery: searchQueries[1])
+                handleButtonClicked(searchQueries[1])
 
             case foodItem3Button:
-                handleButtonClicked(searchQueries[2])
+                foodItem3Button.selected = true
                 delegate?.foodPicker(self, searchQuery: searchQueries[2])
+                handleButtonClicked(searchQueries[2])
 
             case foodItem4Button:
-                handleButtonClicked(searchQueries[3])
+                foodItem4Button.selected = true
                 delegate?.foodPicker(self, searchQuery: searchQueries[3])
+                handleButtonClicked(searchQueries[3])
 
             case foodItem5Button:
-                handleButtonClicked(searchQueries[4])
+                foodItem5Button.selected = true
                 delegate?.foodPicker(self, searchQuery: searchQueries[4])
+                handleButtonClicked(searchQueries[4])
             
             case foodItem6Button:
-                handleButtonClicked(searchQueries[5])
+                foodItem6Button.selected = true
                 delegate?.foodPicker(self, searchQuery: searchQueries[5])
+                handleButtonClicked(searchQueries[5])
 
             case foodItem7Button:
-                handleButtonClicked(searchQueries[6])
+                foodItem7Button.selected = true
                 delegate?.foodPicker(self, searchQuery: searchQueries[6])
+                handleButtonClicked(searchQueries[6])
             
             case foodItem8Button:
-                handleButtonClicked(searchQueries[7])
+                foodItem8Button.selected = true
                 delegate?.foodPicker(self, searchQuery: searchQueries[7])
+                handleButtonClicked(searchQueries[7])
             
             default:
-                handleButtonClicked("Local")
                 delegate?.foodPicker(self, searchQuery: "Local")
-                
+                handleButtonClicked("Local")
+            
         }
         
     }
     
-    
+    func deselectAllButtons() {
+        foodItem1Button.selected = false
+        foodItem2Button.selected = false
+        foodItem3Button.selected = false
+        foodItem4Button.selected = false
+        foodItem5Button.selected = false
+        foodItem6Button.selected = false
+        foodItem7Button.selected = false
+        foodItem8Button.selected = false
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

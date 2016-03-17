@@ -51,14 +51,17 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
     func prepareContainerForCardEntry(searchQuery: String) {
 
         //1: Hide settingsView & Show maskView
-            UIView.animateWithDuration(0.2, animations: {
+            UIView.animateWithDuration(0.4, animations: {
                 homeViewController.settingsView.alpha = 0
                 homeViewController.maskView.alpha = 1
+                homeViewController.currentLocation.textColor = UIColor.whiteColor()
+                homeViewController.currentLocation.font = homeViewController.currentLocation.font.fontWithSize(12)
+                homeViewController.closeButton.alpha = 1
                 }, completion: { (Bool) -> Void in
             })
         //2: Check if we are ready to show result?
         //3: Show a loader
-        //4: Check if we have result
+        //4: Check if we have result, dismiss loader
         //5A: Slide-up No Result Found
 
         //5B: Slide-up Result Card
@@ -87,7 +90,7 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
         //2: Check if we are ready to show result?
                 
         //3: Show a loader
-            //self.tempActivityIndicator.startAnimating()
+            self.tempActivityIndicator.startAnimating()
                 
         //4: Check if we have result, dismiss loader
         //5A: Slide-up No Result Found
