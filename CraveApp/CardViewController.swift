@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//import NVActivityIndicatorView
 
 class CardViewController: UIViewController, UIScrollViewDelegate {
     

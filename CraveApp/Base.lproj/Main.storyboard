@@ -383,6 +383,10 @@
                                 <rect key="frame" x="0.0" y="40" width="320" height="448"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
+                            <view contentMode="scaleToFill" id="qiH-Ux-nPr" userLabel="loaderView">
+                                <rect key="frame" x="125" y="223" width="75" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" id="FhQ-h5-DLr" userLabel="trayView">
                                 <rect key="frame" x="0.0" y="408" width="320" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -399,6 +403,7 @@
                     <connections>
                         <outlet property="cardView" destination="yTj-lQ-Bhc" id="8vb-k3-IB4"/>
                         <outlet property="homeView" destination="vHe-QF-Si4" id="k1k-i3-v42"/>
+                        <outlet property="loaderView" destination="qiH-Ux-nPr" id="GvR-5P-G7X"/>
                         <outlet property="trayView" destination="FhQ-h5-DLr" id="QFb-Fv-2Hq"/>
                     </connections>
                 </viewController>

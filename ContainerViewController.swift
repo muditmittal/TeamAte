@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 var trayViewController: TrayVC!
 var homeViewController: HomeViewController!
@@ -22,6 +23,7 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate 
     @IBOutlet var trayView: UIView!
     @IBOutlet var homeView: UIView!
     @IBOutlet var cardView: UIView!
+    @IBOutlet var loaderView: UIView!
     
     var cardViewOriginalCenter: CGPoint!
     var trayViewOriginalCenter: CGPoint!
@@ -75,84 +77,92 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate 
     
     //Called on each button tap
     func foodPicker(vc: TrayVC, searchQuery: String) {
-            //cardViewController.view.alpha = 1
-            //cardViewController.resetCardView()
+        //cardViewController.view.alpha = 1
+        //cardViewController.resetCardView()
         
         //1: Update location
         //2: Initiate search (foodtype, location, radius)
         //3: Call card entry or card swap function
-            if cardInView == 0 {
-                prepareContainerForCardEntry(searchQuery)
-            } else if cardInView == 1 {
-                prepareContainerForCardSwap(searchQuery)
-            }
+        if cardInView == 0 {
+            prepareContainerForCardEntry(searchQuery)
+        } else if cardInView == 1 {
+            prepareContainerForCardSwap(searchQuery)
+        }
         //4: Update app state
-            cardInView = 1
+        cardInView = 1
     }
     
     
     func prepareContainerForCardEntry(searchQuery: String) {
-
+        
         //1: Hide settingsView & Show maskView
-            UIView.animateWithDuration(0.4, animations: {
-                homeViewController.settingsView.alpha = 0
-                homeViewController.maskView.alpha = 1
-                homeViewController.currentLocation.textColor = UIColor.whiteColor()
-                homeViewController.currentLocation.font = homeViewController.currentLocation.font.fontWithSize(12)
-                homeViewController.closeButton.alpha = 1
-                }, completion: { (Bool) -> Void in
-            })
+        UIView.animateWithDuration(0.4, animations: {
+            homeViewController.settingsView.alpha = 0
+            homeViewController.maskView.alpha = 1
+            homeViewController.currentLocation.textColor = UIColor.whiteColor()
+            homeViewController.currentLocation.font = homeViewController.currentLocation.font.fontWithSize(12)
+            homeViewController.closeButton.alpha = 1
+            }, completion: { (Bool) -> Void in
+        })
         //2: Check if we are ready to show result?
         //3: Show a loader
+        
+        
         //4: Check if we have result, dismiss loader
         //5A: Slide-up No Result Found
-
+        
         //5B: Slide-up Result Card
-            cardViewController.handleLabels(searchQuery)
-            UIView.animateWithDuration(0.4) { () -> Void in
-                self.cardView.center = self.cardViewOriginalCenter
-                
-        //6: Slide-down food tray
-                if self.trayView.center.y != self.trayDown.y {
-                    self.trayView.center.y = self.trayDown.y
-                }
-        //7: Show selected button
+        cardViewController.handleLabels(searchQuery)
+        UIView.animateWithDuration(0.4) { () -> Void in
+            self.cardView.center = self.cardViewOriginalCenter
+            
+            //6: Slide-down food tray
+            if self.trayView.center.y != self.trayDown.y {
+                self.trayView.center.y = self.trayDown.y
             }
+            //7: Show selected button
+        }
     }
-
+    
     
     
     
     func prepareContainerForCardSwap(searchQuery: String) {
+        let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
+            type: .LineScalePulseOut, color: UIColor(red:0.55, green:0.88, blue:0.44, alpha:1.0)
+        )
+        
+        self.view.addSubview(activityIndicatorView)
         
         //0: Update location
         //1: Slide-down current card
         UIView.animateWithDuration(0.4, delay: 0, options: [], animations: {
             self.cardView.center.y = self.cardViewOriginalCenter.y + screenHeight
             }, completion: { (Bool) -> Void in
-        //2: Check if we are ready to show result?
+                //2: Check if we are ready to show result?
                 
-        //3: Show a loader
-            self.tempActivityIndicator.startAnimating()
+                //3: Show a loader
                 
-        //4: Check if we have result, dismiss loader
-        //5A: Slide-up No Result Found
+                activityIndicatorView.startAnimation()
                 
-        //5B: Slide-up New Result Card
+                //4: Check if we have result, dismiss loader
+                //5A: Slide-up No Result Found
+                
+                //5B: Slide-up New Result Card
                 cardViewController.handleLabels(searchQuery)
                 UIView.animateWithDuration(0.4) { () -> Void in
                     self.cardView.center = self.cardViewOriginalCenter
-
-        //6: Slide-down food tray
+                    
+                    //6: Slide-down food tray
                     if self.trayView.center.y != self.trayDown.y {
                         self.trayView.center.y = self.trayDown.y
                     }
-        //7: Show selected button
+                    //7: Show selected button
                 }
-
+                
         })
     }
-
+    
     func finishedDragCard(vc: CardViewController, finished: Bool) {
         prepareContainerForCardExit()
     }
