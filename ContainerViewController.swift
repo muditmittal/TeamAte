@@ -33,8 +33,6 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
         self.cardViewController.view.alpha = 1
         self.cardViewController.resetCardView()
         
-        cardViewController.resultName.text = searchQuery
-        
         //Step 1: Initiate search
         //searchQuery(foodType, homeViewController.resultLocation, radius)
         
@@ -52,7 +50,9 @@ class ContainerViewController: UIViewController, TrayVCDelegate {
                 //if result {
                 
                 //Step 5A: Populate New Result
+                
                 self.cardViewController.handleLabels(searchQuery)
+                
                 //dismissLoader()
                 
                 //} else {
