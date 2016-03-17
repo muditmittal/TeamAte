@@ -94,6 +94,11 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate 
     
     
     func prepareContainerForCardEntry(searchQuery: String) {
+        let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
+            type: .LineScalePulseOut, color: UIColor(red:0.55, green:0.88, blue:0.44, alpha:1.0)
+        )
+        
+        self.view.addSubview(activityIndicatorView)
         
         //1: Hide settingsView & Show maskView
         UIView.animateWithDuration(0.4, animations: {
@@ -107,6 +112,14 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate 
         //2: Check if we are ready to show result?
         //3: Show a loader
         
+        activityIndicatorView.startAnimation()
+        
+        let delay = 1 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            activityIndicatorView.stopAnimation()
+        }
+
         
         //4: Check if we have result, dismiss loader
         //5A: Slide-up No Result Found
@@ -144,6 +157,13 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate 
                 //3: Show a loader
                 
                 activityIndicatorView.startAnimation()
+                
+                //temporary delay to dismiss loader
+                let delay = 1.5 * Double(NSEC_PER_SEC)
+                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                dispatch_after(time, dispatch_get_main_queue()) {
+                    activityIndicatorView.stopAnimation()
+                }
                 
                 //4: Check if we have result, dismiss loader
                 //5A: Slide-up No Result Found
