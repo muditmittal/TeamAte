@@ -30,7 +30,6 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
     var trayDown: CGPoint!
     var trayUp: CGPoint!
     
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
