@@ -18,7 +18,7 @@ let screenWidth = screenSize.width
 let screenHeight = screenSize.height
 var cardInView = 0
 
-class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate {
+class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate, HomeVCDelegate {
     
     @IBOutlet var trayView: UIView!
     @IBOutlet var homeView: UIView!
@@ -67,6 +67,7 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate 
         //set up delegates
         trayViewController.delegate = self
         cardViewController.delegate = self
+        homeViewController.delegate = self
         
         //cardView Settings
         cardViewOriginalCenter = cardView.center
@@ -184,6 +185,10 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate 
     }
     
     func finishedDragCard(vc: CardViewController, finished: Bool) {
+        prepareContainerForCardExit()
+    }
+    
+    func clickedCloseButton(vc: HomeViewController, clicked: Bool) {
         prepareContainerForCardExit()
     }
     
