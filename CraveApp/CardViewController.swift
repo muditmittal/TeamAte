@@ -34,7 +34,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
-        scrollView.contentSize = CGSizeMake(300, 700)
+        scrollView.contentSize = CGSizeMake(300, 770)
         viewOriginalCenter = CGPoint(x: self.fullCardView.center.x, y: self.fullCardView.center.y)
     }
     

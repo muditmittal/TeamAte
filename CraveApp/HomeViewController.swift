@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
 
     func initializeHomeView() {
         UIView.animateWithDuration(0.4, delay: 0, options: [], animations: { () -> Void in
-            self.maskView.alpha = 0
+            //self.maskView.alpha = 0
             self.closeButton.alpha = 0
             self.currentLocation.textColor = UIColor.blackColor()
             self.currentLocation.font = self.currentLocation.font.fontWithSize(14)
