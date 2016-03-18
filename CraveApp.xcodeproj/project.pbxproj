@@ -15,7 +15,7 @@
 		AE0EA3FF1C92862900067CBE /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0EA3FE1C92862900067CBE /* CardViewController.swift */; };
 		AE0EA4011C96229E00067CBE /* TrayVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0EA4001C96229E00067CBE /* TrayVCDelegate.swift */; };
 		AE0EA4321C9B1F6E00067CBE /* CardVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0EA4311C9B1F6E00067CBE /* CardVCDelegate.swift */; };
-		AE0EA4341C9B276700067CBE /* NVActivityIndicatorView in Resources */ = {isa = PBXBuildFile; fileRef = AE0EA4331C9B276700067CBE /* NVActivityIndicatorView */; };
+		AE0EA4381C9BC81100067CBE /* NVActivityIndicatorView in Resources */ = {isa = PBXBuildFile; fileRef = AE0EA4371C9BC81100067CBE /* NVActivityIndicatorView */; };
 		AE2FCB501C878F7D00BF6632 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2FCB4F1C878F7D00BF6632 /* HomeViewController.swift */; };
 		AE2FCB521C87C97800BF6632 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE56BFE21C86DEB300A5AFCB /* Main.storyboard */; };
 		AE4506681C90C56C005B3138 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4506671C90C56C005B3138 /* ContainerViewController.swift */; };
@@ -36,7 +36,7 @@
 		AE0EA3FE1C92862900067CBE /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		AE0EA4001C96229E00067CBE /* TrayVCDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrayVCDelegate.swift; sourceTree = "<group>"; };
 		AE0EA4311C9B1F6E00067CBE /* CardVCDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardVCDelegate.swift; sourceTree = "<group>"; };
-		AE0EA4331C9B276700067CBE /* NVActivityIndicatorView */ = {isa = PBXFileReference; lastKnownFileType = folder; name = NVActivityIndicatorView; path = "../../../../Downloads/NVActivityIndicatorView-master/NVActivityIndicatorView"; sourceTree = "<group>"; };
+		AE0EA4371C9BC81100067CBE /* NVActivityIndicatorView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NVActivityIndicatorView; sourceTree = "<group>"; };
 		AE2FCB4F1C878F7D00BF6632 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		AE4506671C90C56C005B3138 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerViewController.swift; path = ../ContainerViewController.swift; sourceTree = "<group>"; };
 		AE56BFDB1C86DEB200A5AFCB /* CraveApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CraveApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +119,7 @@
 		AE56BFDD1C86DEB200A5AFCB /* CraveApp */ = {
 			isa = PBXGroup;
 			children = (
-				AE0EA4331C9B276700067CBE /* NVActivityIndicatorView */,
+				AE0EA4371C9BC81100067CBE /* NVActivityIndicatorView */,
 				AE56BFDE1C86DEB200A5AFCB /* AppDelegate.swift */,
 				AE56BFE01C86DEB300A5AFCB /* ViewController.swift */,
 				AE56BFE21C86DEB300A5AFCB /* Main.storyboard */,
@@ -196,7 +196,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE0EA4341C9B276700067CBE /* NVActivityIndicatorView in Resources */,
+				AE0EA4381C9BC81100067CBE /* NVActivityIndicatorView in Resources */,
 				AE2FCB521C87C97800BF6632 /* Main.storyboard in Resources */,
 				AE56BFE91C86DEB300A5AFCB /* LaunchScreen.storyboard in Resources */,
 				AE56BFE61C86DEB300A5AFCB /* Assets.xcassets in Resources */,
