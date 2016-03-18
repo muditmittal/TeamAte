@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4983B7AC8A8B50DF277DCA93BEE5298DBA8651E2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4D1B44678AD688E27915D43630CF1FCDE0AE976C" : 0,
+    "4983B7AC8A8B50DF277DCA93BEE5298DBA8651E2" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "AAB3193D-E9F5-4E9C-8CDC-99107EC72383",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4D1B44678AD688E27915D43630CF1FCDE0AE976C" : "TeamAte\/DTIActivityIndicatorView-Swift\/",
+    "4983B7AC8A8B50DF277DCA93BEE5298DBA8651E2" : "TeamAte\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CraveApp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CraveApp.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/muditmittal\/TeamAte.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4983B7AC8A8B50DF277DCA93BEE5298DBA8651E2"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/dtissera\/DTIActivityIndicatorView-Swift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4D1B44678AD688E27915D43630CF1FCDE0AE976C"
+    }
+  ]
+}

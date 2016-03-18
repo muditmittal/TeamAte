@@ -20,11 +20,14 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - NVActivityIndicatorView (2.3)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
+  - NVActivityIndicatorView
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  NVActivityIndicatorView: c7ef25ef527ab5e51b00322cb1ddd58681bcf2a3
 
 COCOAPODS: 0.39.0

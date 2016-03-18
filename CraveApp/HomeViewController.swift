@@ -10,42 +10,36 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet var trayView: UIView!
-    @IBOutlet var aboveKeyboardView: UIView!
-    
- 
-    
+    weak var delegate: HomeVCDelegate?
+    @IBOutlet weak var settingsView: UIView!
+    @IBOutlet weak var maskView: UIView!
+    @IBOutlet weak var backBar: UIView!
+    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var currentLocation: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setting of original trayView coordinates
-        
+        initializeHomeView()
     }
 
-//    @IBAction func onTapFood(sender: AnyObject) {
-//        print("on tap")
-//        self.trayView.alpha = 1
-//        
-//        UIView.animateWithDuration(0.4, delay: 0, options: [], animations: { () -> Void in
-//            self.trayView.center.y = self.trayViewOriginalCenter.y
-//            print("on animate")
-//            }, completion: nil)
-//    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func onCloseButton(sender: AnyObject) {
+        //prepareContainerforCardExit()
+        print("onCLoseButton")
+        delegate?.clickedCloseButton(self, clicked: true)
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func initializeHomeView() {
+        UIView.animateWithDuration(0.4, delay: 0, options: [], animations: { () -> Void in
+            //self.maskView.alpha = 0
+            self.closeButton.alpha = 0
+            self.currentLocation.textColor = UIColor.blackColor()
+            self.currentLocation.font = self.currentLocation.font.fontWithSize(14)
+            }, completion: nil)
     }
-    */
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
 
 }

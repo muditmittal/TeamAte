@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		83ACDA3B73D1E022B974EA4C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED034128126406A02FEC90F9 /* libPods.a */; };
+		051A3534F7AEC4FBF37BC89D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DDF917D217B27BB996449C6 /* Pods.framework */; };
+		3EE961421C9A6D5A009B229A /* CustomActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE961411C9A6D5A009B229A /* CustomActivityIndicatorView.swift */; };
 		AE0EA3F81C9280E300067CBE /* TrayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0EA3F71C9280E300067CBE /* TrayVC.swift */; };
 		AE0EA3FB1C92846C00067CBE /* BaseTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0EA3F91C92846C00067CBE /* BaseTransition.swift */; };
 		AE0EA3FC1C92846C00067CBE /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0EA3FA1C92846C00067CBE /* FadeTransition.swift */; };
 		AE0EA3FF1C92862900067CBE /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0EA3FE1C92862900067CBE /* CardViewController.swift */; };
+		AE0EA4011C96229E00067CBE /* TrayVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0EA4001C96229E00067CBE /* TrayVCDelegate.swift */; };
+		AE0EA4321C9B1F6E00067CBE /* CardVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0EA4311C9B1F6E00067CBE /* CardVCDelegate.swift */; };
+		AE0EA4381C9BC81100067CBE /* NVActivityIndicatorView in Resources */ = {isa = PBXBuildFile; fileRef = AE0EA4371C9BC81100067CBE /* NVActivityIndicatorView */; };
+		AE0EA43A1C9BCEE200067CBE /* HomeVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0EA4391C9BCEE200067CBE /* HomeVCDelegate.swift */; };
 		AE2FCB501C878F7D00BF6632 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2FCB4F1C878F7D00BF6632 /* HomeViewController.swift */; };
 		AE2FCB521C87C97800BF6632 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE56BFE21C86DEB300A5AFCB /* Main.storyboard */; };
 		AE4506681C90C56C005B3138 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4506671C90C56C005B3138 /* ContainerViewController.swift */; };
-		AE45066C1C90CA3B005B3138 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE45066B1C90CA3B005B3138 /* CustomCell.swift */; };
 		AE56BFDF1C86DEB200A5AFCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE56BFDE1C86DEB200A5AFCB /* AppDelegate.swift */; };
 		AE56BFE11C86DEB300A5AFCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE56BFE01C86DEB300A5AFCB /* ViewController.swift */; };
 		AE56BFE61C86DEB300A5AFCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE56BFE51C86DEB300A5AFCB /* Assets.xcassets */; };
@@ -25,13 +29,18 @@
 /* Begin PBXFileReference section */
 		17A6C320C2003BEE26603B9A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		206D0AE2E5267CFCCAAD3E20 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		3EE961411C9A6D5A009B229A /* CustomActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicatorView.swift; sourceTree = "<group>"; };
+		6DDF917D217B27BB996449C6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE0EA3F71C9280E300067CBE /* TrayVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrayVC.swift; sourceTree = "<group>"; };
 		AE0EA3F91C92846C00067CBE /* BaseTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTransition.swift; sourceTree = "<group>"; };
 		AE0EA3FA1C92846C00067CBE /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		AE0EA3FE1C92862900067CBE /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		AE0EA4001C96229E00067CBE /* TrayVCDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrayVCDelegate.swift; sourceTree = "<group>"; };
+		AE0EA4311C9B1F6E00067CBE /* CardVCDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardVCDelegate.swift; sourceTree = "<group>"; };
+		AE0EA4371C9BC81100067CBE /* NVActivityIndicatorView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NVActivityIndicatorView; sourceTree = "<group>"; };
+		AE0EA4391C9BCEE200067CBE /* HomeVCDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVCDelegate.swift; sourceTree = "<group>"; };
 		AE2FCB4F1C878F7D00BF6632 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		AE4506671C90C56C005B3138 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerViewController.swift; path = ../ContainerViewController.swift; sourceTree = "<group>"; };
-		AE45066B1C90CA3B005B3138 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		AE56BFDB1C86DEB200A5AFCB /* CraveApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CraveApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE56BFDE1C86DEB200A5AFCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE56BFE01C86DEB300A5AFCB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,7 +48,6 @@
 		AE56BFE51C86DEB300A5AFCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE56BFE81C86DEB300A5AFCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE56BFEA1C86DEB300A5AFCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ED034128126406A02FEC90F9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83ACDA3B73D1E022B974EA4C /* libPods.a in Frameworks */,
+				051A3534F7AEC4FBF37BC89D /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,7 +65,7 @@
 		631202211C94E678DB867EAE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ED034128126406A02FEC90F9 /* libPods.a */,
+				6DDF917D217B27BB996449C6 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -85,9 +93,9 @@
 			children = (
 				AE0EA3FE1C92862900067CBE /* CardViewController.swift */,
 				AE0EA3F71C9280E300067CBE /* TrayVC.swift */,
-				AE45066B1C90CA3B005B3138 /* CustomCell.swift */,
 				AE4506671C90C56C005B3138 /* ContainerViewController.swift */,
 				AE2FCB4F1C878F7D00BF6632 /* HomeViewController.swift */,
+				3EE961411C9A6D5A009B229A /* CustomActivityIndicatorView.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -113,6 +121,7 @@
 		AE56BFDD1C86DEB200A5AFCB /* CraveApp */ = {
 			isa = PBXGroup;
 			children = (
+				AE0EA4371C9BC81100067CBE /* NVActivityIndicatorView */,
 				AE56BFDE1C86DEB200A5AFCB /* AppDelegate.swift */,
 				AE56BFE01C86DEB300A5AFCB /* ViewController.swift */,
 				AE56BFE21C86DEB300A5AFCB /* Main.storyboard */,
@@ -121,6 +130,9 @@
 				AE56BFE51C86DEB300A5AFCB /* Assets.xcassets */,
 				AE56BFE71C86DEB300A5AFCB /* LaunchScreen.storyboard */,
 				AE56BFEA1C86DEB300A5AFCB /* Info.plist */,
+				AE0EA4001C96229E00067CBE /* TrayVCDelegate.swift */,
+				AE0EA4391C9BCEE200067CBE /* HomeVCDelegate.swift */,
+				AE0EA4311C9B1F6E00067CBE /* CardVCDelegate.swift */,
 			);
 			path = CraveApp;
 			sourceTree = "<group>";
@@ -187,6 +199,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE0EA4381C9BC81100067CBE /* NVActivityIndicatorView in Resources */,
 				AE2FCB521C87C97800BF6632 /* Main.storyboard in Resources */,
 				AE56BFE91C86DEB300A5AFCB /* LaunchScreen.storyboard in Resources */,
 				AE56BFE61C86DEB300A5AFCB /* Assets.xcassets in Resources */,
@@ -252,10 +265,13 @@
 				AE0EA3FC1C92846C00067CBE /* FadeTransition.swift in Sources */,
 				AE56BFDF1C86DEB200A5AFCB /* AppDelegate.swift in Sources */,
 				AE4506681C90C56C005B3138 /* ContainerViewController.swift in Sources */,
-				AE45066C1C90CA3B005B3138 /* CustomCell.swift in Sources */,
+				AE0EA4011C96229E00067CBE /* TrayVCDelegate.swift in Sources */,
 				AE0EA3FB1C92846C00067CBE /* BaseTransition.swift in Sources */,
 				AE2FCB501C878F7D00BF6632 /* HomeViewController.swift in Sources */,
+				AE0EA4321C9B1F6E00067CBE /* CardVCDelegate.swift in Sources */,
+				AE0EA43A1C9BCEE200067CBE /* HomeVCDelegate.swift in Sources */,
 				AE0EA3FF1C92862900067CBE /* CardViewController.swift in Sources */,
+				3EE961421C9A6D5A009B229A /* CustomActivityIndicatorView.swift in Sources */,
 				AE0EA3F81C9280E300067CBE /* TrayVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

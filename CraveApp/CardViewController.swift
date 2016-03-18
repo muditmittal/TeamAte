@@ -7,33 +7,38 @@
 //
 
 import UIKit
+//import NVActivityIndicatorView
 
 class CardViewController: UIViewController, UIScrollViewDelegate {
     
-    @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var trayView: UIView!
+    weak var delegate: CardVCDelegate?
+    @IBOutlet var fullCardView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var resultPhoto: UIImageView!
+    @IBOutlet weak var resultName: UILabel!
+    @IBOutlet weak var resultRating: UIView!
+    @IBOutlet weak var resultPrice: UILabel!
+    @IBOutlet weak var resultDistance: UILabel!
+    @IBOutlet weak var resultDescription: UILabel!
+    
+    @IBOutlet weak var resultMenu: UIView!
+    @IBOutlet weak var menuItem1: UILabel!
+    @IBOutlet weak var menuItem2: UILabel!
+    @IBOutlet weak var menuItem3: UILabel!
+
+    
     var trayViewController: UIViewController!
     var trayViewOriginalCenter: CGPoint!
-    
-    @IBOutlet var trayView2: UIView!
-    @IBOutlet var trayView3: UIView!
+    var viewOriginalCenter:CGPoint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
-        scrollView.contentSize = CGSize(width: 960, height: 568)
-        
-        trayViewController = storyboard!.instantiateViewControllerWithIdentifier("TrayVC") as! TrayVC
-        let trayFrame = CGRect(x: 0, y: 0, width: trayView.frame.size.width, height: 154)
-        
-        trayViewController.view.frame = trayFrame
-        trayViewController.view.frame = trayView.bounds
-        
-        trayView.addSubview(trayViewController.view)
-        trayView.center.y += 65
-        
+        scrollView.contentSize = CGSizeMake(300, 770)
+        viewOriginalCenter = CGPoint(x: self.fullCardView.center.x, y: self.fullCardView.center.y)
     }
     
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -41,44 +46,17 @@ class CardViewController: UIViewController, UIScrollViewDelegate {
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         // This method is called as the user scrolls
-        //if we scroll to second page
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        
-    }
+            }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView,
         willDecelerate decelerate: Bool) {
             // This method is called right as the user lifts their finger
-            let page : Int = Int(round(scrollView.contentOffset.x / 320))
-            
-            if page == 0 {
-                print("im on card 1")
-                trayView.removeFromSuperview()
-                trayView.addSubview(trayViewController.view)
-                //                trayViewOriginalCenter.y = trayView.center.y
-                //                if trayView.center.y == trayViewOriginalCenter.y {
-                //                    trayView.center.y += 65
-                //                }
-                
-            }
-            if page == 1 {
-                print("im on card 2")
-                trayView.removeFromSuperview()
-                trayView2.addSubview(trayViewController.view)
-                //                if trayView2.center.y == trayViewOriginalCenter.y {
-                //                    trayView2.center.y += 65
-                //                }
-            }
-            
-            if page == 2 {
-                print("im on card 3")
-                trayView2.removeFromSuperview()
-                trayView3.addSubview(trayViewController.view)
-                //                if trayView3.center.y == trayViewOriginalCenter.y {
-                //                    trayView3.center.y += 65
-                //                }
+            if scrollView.contentOffset.y <= -100 {
+                delegate?.finishedDragCard(self, finished: true)
+                print ("finished dragging")
                 
             }
     }
@@ -88,4 +66,11 @@ class CardViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
+    func handleLabels(restaurantName: String){
+        resultName.text = restaurantName
+    }
+    func resetCardView(){
+        fullCardView.center = viewOriginalCenter
+        print ("reset")
+    }
 }
