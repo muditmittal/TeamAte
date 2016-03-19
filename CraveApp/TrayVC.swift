@@ -11,7 +11,7 @@ import MapKit
 
 //protocol here?
 
-var searchQueries: [String] = ["Ramen", "Burger", "Taco", "Desserts", "Sushi", "Pizza", "Drinks", "Local"]
+var searchQueries: [String] = ["ramen", "burger", "taco", "desserts", "sushi", "pizza", "drinks", "local"]
 
 class TrayVC: UIViewController, CLLocationManagerDelegate {
     
@@ -29,7 +29,7 @@ class TrayVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet var foodItem7Button: UIButton!
     @IBOutlet var foodItem8Button: UIButton!
     @IBOutlet var trayView: UIView!
-
+    
     var trayOriginalCenter: CGPoint!
     var trayDown: CGPoint!
     var trayUp: CGPoint!
@@ -51,9 +51,9 @@ class TrayVC: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
-
+    
     func handleButtonClicked (food: String) {
         print (food)
         
@@ -63,7 +63,7 @@ class TrayVC: UIViewController, CLLocationManagerDelegate {
         //someone clicks on button, send api request of respective button
         //
         
-        fetchVenues(food)
+        //fetchVenues(food)
         
     }
     
@@ -71,50 +71,50 @@ class TrayVC: UIViewController, CLLocationManagerDelegate {
     @IBAction func foodClicked(button: UIButton) {
         deselectAllButtons()
         switch button {
-
-            case foodItem1Button:
-                foodItem1Button.selected = true
-                delegate?.foodPicker(self, searchQuery: searchQueries[0])
-                handleButtonClicked(searchQueries[0])
-
-            case foodItem2Button:
-                foodItem2Button.selected = true
-                delegate?.foodPicker(self, searchQuery: searchQueries[1])
-                handleButtonClicked(searchQueries[1])
-
-            case foodItem3Button:
-                foodItem3Button.selected = true
-                delegate?.foodPicker(self, searchQuery: searchQueries[2])
-                handleButtonClicked(searchQueries[2])
-
-            case foodItem4Button:
-                foodItem4Button.selected = true
-                delegate?.foodPicker(self, searchQuery: searchQueries[3])
-                handleButtonClicked(searchQueries[3])
-
-            case foodItem5Button:
-                foodItem5Button.selected = true
-                delegate?.foodPicker(self, searchQuery: searchQueries[4])
-                handleButtonClicked(searchQueries[4])
             
-            case foodItem6Button:
-                foodItem6Button.selected = true
-                delegate?.foodPicker(self, searchQuery: searchQueries[5])
-                handleButtonClicked(searchQueries[5])
-
-            case foodItem7Button:
-                foodItem7Button.selected = true
-                delegate?.foodPicker(self, searchQuery: searchQueries[6])
-                handleButtonClicked(searchQueries[6])
+        case foodItem1Button:
+            foodItem1Button.selected = true
+            delegate?.foodPicker(self, searchQuery: searchQueries[0])
+            handleButtonClicked(searchQueries[0])
             
-            case foodItem8Button:
-                foodItem8Button.selected = true
-                delegate?.foodPicker(self, searchQuery: searchQueries[7])
-                handleButtonClicked(searchQueries[7])
+        case foodItem2Button:
+            foodItem2Button.selected = true
+            delegate?.foodPicker(self, searchQuery: searchQueries[1])
+            handleButtonClicked(searchQueries[1])
             
-            default:
-                delegate?.foodPicker(self, searchQuery: "Local")
-                handleButtonClicked("Local")
+        case foodItem3Button:
+            foodItem3Button.selected = true
+            delegate?.foodPicker(self, searchQuery: searchQueries[2])
+            handleButtonClicked(searchQueries[2])
+            
+        case foodItem4Button:
+            foodItem4Button.selected = true
+            delegate?.foodPicker(self, searchQuery: searchQueries[3])
+            handleButtonClicked(searchQueries[3])
+            
+        case foodItem5Button:
+            foodItem5Button.selected = true
+            delegate?.foodPicker(self, searchQuery: searchQueries[4])
+            handleButtonClicked(searchQueries[4])
+            
+        case foodItem6Button:
+            foodItem6Button.selected = true
+            delegate?.foodPicker(self, searchQuery: searchQueries[5])
+            handleButtonClicked(searchQueries[5])
+            
+        case foodItem7Button:
+            foodItem7Button.selected = true
+            delegate?.foodPicker(self, searchQuery: searchQueries[6])
+            handleButtonClicked(searchQueries[6])
+            
+        case foodItem8Button:
+            foodItem8Button.selected = true
+            delegate?.foodPicker(self, searchQuery: searchQueries[7])
+            handleButtonClicked(searchQueries[7])
+            
+        default:
+            delegate?.foodPicker(self, searchQuery: "Local")
+            handleButtonClicked("Local")
             
         }
         
@@ -136,6 +136,7 @@ class TrayVC: UIViewController, CLLocationManagerDelegate {
         print("query:", searchQuery)
         lat = 37.763284
         long = -122.467662
+        
         // venue information
         let venueUrl = NSURL(string:"https://api.foursquare.com/v2/venues/search?ll=37.763284,-122.467662&query=\(searchQuery)&client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
         
@@ -152,7 +153,7 @@ class TrayVC: UIViewController, CLLocationManagerDelegate {
             
             
             // store the venueIds, venueLocations, and venueNames from the search API request
-            print (response)
+            //print (response)
             self.data = venueJson.valueForKeyPath("response.venues") as! [NSDictionary]
             let venueIds = venueJson.valueForKeyPath("response.venues.id") as! [String]
             let venueNames = venueJson.valueForKeyPath("response.venues.name") as! [String]
@@ -224,10 +225,7 @@ class TrayVC: UIViewController, CLLocationManagerDelegate {
                             }
                             
                             //                                print (itemName)
-                            
-                            if searchQuery == "" {
-                                print("yummy poop")
-                            }
+                            print(itemString)
                             // string match itemString for the query string
                             if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
                                 print ("menu0 query item: ", itemName, itemDescription)
@@ -282,24 +280,23 @@ class TrayVC: UIViewController, CLLocationManagerDelegate {
                             }
                             
                             //                                print (itemName)
-                            print(itemString)
-                            if searchQuery == "" {
-                                print("poopy butts")
-                            }
+                            //print(itemString)
+
                             
                             // string match itemString for the query string
+
                             if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
-                                print ("menu1 query item: ", itemName, itemDescription)
+                                print ("menu1 query item: ", itemName)
                             }
                         }
                     }
                 }
             }
-
+            
         }
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

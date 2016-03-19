@@ -51,10 +51,6 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         
 //        lat = location.coordinate.latitude
 //        long = location.coordinate.longitude
-        lat = 37.763284
-        long = -122.467662
-
-        
         print("lat:", location.coordinate.latitude)
         print("long:", location.coordinate.longitude)
         
@@ -64,9 +60,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     }
     
     
-    func handleLabels(searchQuery: String){
-        resultName.text = searchQuery
-    }
+//    func handleLabels(searchQuery: String){
+//        resultName.text = searchQuery
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
@@ -99,18 +95,19 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         // venue information
         lat = 37.763284
         long = -122.467662
+        
         let venueUrl = NSURL(string:"https://api.foursquare.com/v2/venues/search?ll=\(lat),\(long)&query=\(searchQuery)&client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
         
         
         let venueRequest = NSURLRequest(URL: venueUrl!)
         
-        print (venueUrl)
+        //print (venueUrl)
         
         NSURLConnection.sendAsynchronousRequest(venueRequest, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
             
             let venueJson = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
             
-                            print(venueJson)
+            //print("RESPONSE \(venueJson.valueForKeyPath("response.venues") as! [NSDictionary])")
             
             
             // store the venueIds, venueLocations, and venueNames from the search API request
@@ -119,6 +116,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             let venueIds = venueJson.valueForKeyPath("response.venues.id") as! [String]
             let venueNames = venueJson.valueForKeyPath("response.venues.name") as! [String]
             let venueLocations = venueJson.valueForKeyPath("response.venues.location") as! [NSDictionary]
+            
+            
             
             // store venueIds
             let venueId0 = venueIds[0]
@@ -136,6 +135,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             let venueName4 = venueNames[4]
             let venueName5 = venueNames[5]
             
+            print(venueName0)
+            self.resultName.text = venueName0
             // fetch 6 menus, if count > 0, then store data
             // parse through menu items in menu; for menuItem in [menuItems] by string match
             
@@ -145,7 +146,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             let menuUrl0 = NSURL(string:"https://api.foursquare.com/v2/venues/\(venueId0)/menu?client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
             let menuRequest0 = NSURLRequest(URL: menuUrl0!)
             
-            //                print (menuUrl0)
+            //print (menuUrl0)
             
             NSURLConnection.sendAsynchronousRequest(menuRequest0, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
                 
@@ -156,9 +157,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 // check if there is a menu object in JSON response
                 
                 let menuCount0 = menuJson0.valueForKeyPath("response.menu.menus.count") as! Int
-                
+                print(menuCount0)
                 if menuCount0 > 0 {
-                    
+                    print("IN MENUCOUNT")
                     // if there is a menu, store the items in an array
                     
                     let menuItems = menuJson0.valueForKeyPath("response.menu.menus.items.entries.items.entries.items") as! NSArray
@@ -178,7 +179,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                             // concatenate item name and item description stirng
                             if itemDictionary.valueForKeyPath("description") != nil {
                                 itemDescription = itemDictionary.valueForKeyPath("description") as! String
-                                itemString = itemName + itemDescription
+                                //itemString = itemName + " " + itemDescription
+                                itemString = itemName
                             }
                                 
                             else {
@@ -189,10 +191,13 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                             
                             // string match itemString for the query string
                             if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
-                                print ("menu0 query item: ", itemName, itemDescription)
+                                print ("menu0 query item: ", itemName)
                             }
                         }
                     }
+                }
+                else {
+                    // show error card or pass something up to container to show error card
                 }
             }
             
@@ -209,8 +214,6 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         // This method is called as the user scrolls
-        
-        print ("query:", searchString)
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
