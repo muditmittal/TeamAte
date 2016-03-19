@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 //import NVActivityIndicatorView
 
-class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate  {
+class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate, ContainerVCDelegate  {
     
     weak var delegate: CardVCDelegate?
     @IBOutlet var fullCardView: UIView!
@@ -54,10 +54,14 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         
         print("lat:", location.coordinate.latitude)
         print("long:", location.coordinate.longitude)
-
-        fetchVenues()
+        
+        fetchVenues()        
         
         locationManager.stopUpdatingLocation()
+    }
+    
+    func setSearchString(var searchQuery: String) {
+        searchQuery = searchString
     }
     
     override func viewDidLoad() {
@@ -68,7 +72,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         
         data = []
         
-        query = "ramen"
+        query = searchString
+        
+        print ("query:", searchString)
         
         // use location data
         
@@ -480,6 +486,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         // This method is called as the user scrolls
+        
+        print ("query:", searchString)        
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {

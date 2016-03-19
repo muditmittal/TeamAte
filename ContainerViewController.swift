@@ -18,6 +18,8 @@ let screenWidth = screenSize.width
 let screenHeight = screenSize.height
 var cardInView = 0
 
+var searchString = ""
+
 class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate, HomeVCDelegate {
     
     @IBOutlet var trayView: UIView!
@@ -90,8 +92,10 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
         }
         //4: Update app state
         cardInView = 1
+        
+        searchString = searchQuery
+        
     }
-    
     
     func prepareContainerForCardEntry(searchQuery: String) {
         let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
