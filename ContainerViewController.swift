@@ -93,7 +93,9 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
         //4: Update app state
         cardInView = 1
         
-        searchString = searchQuery
+        //searchString = searchQuery
+        cardViewController.fetchVenues(searchQuery)
+        //trayViewController.fetchVenues(searchQuery)
         
     }
     
@@ -129,7 +131,8 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
         //5A: Slide-up No Result Found
         
         //5B: Slide-up Result Card
-        cardViewController.handleLabels(searchQuery)
+        //cardViewController.handleLabels(searchQuery)
+        
         UIView.animateWithDuration(0.4) { () -> Void in
             self.cardView.center = self.cardViewOriginalCenter
             
@@ -173,7 +176,7 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
                 //5A: Slide-up No Result Found
                 
                 //5B: Slide-up New Result Card
-                cardViewController.handleLabels(searchQuery)
+                //cardViewController.handleLabels(searchQuery)
                 UIView.animateWithDuration(0.4) { () -> Void in
                     self.cardView.center = self.cardViewOriginalCenter
                     
@@ -249,13 +252,7 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
             
         }
     }
-    
-    lazy private var tempActivityIndicator : CustomActivityIndicatorView = {
-        let image : UIImage = UIImage(named: "fooditem1")!
-        return CustomActivityIndicatorView(image: image)
-    }()
-    
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
