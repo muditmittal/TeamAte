@@ -233,6 +233,158 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                    
                 }
                     
+                    
+                    
+                else {
+                    // show error card or pass something up to container to show error card
+                }
+            }
+            
+            // menu information 1
+            let menuUrl1 = NSURL(string:"https://api.foursquare.com/v2/venues/\(venueId1)/menu?client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
+            let menuRequest1 = NSURLRequest(URL: menuUrl1!)
+            
+            //print (menuUrl1)
+            
+            NSURLConnection.sendAsynchronousRequest(menuRequest1, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+                
+                let menuJson1 = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+                
+                //                    print (menuJson1)
+                
+                // check if there is a menu object in JSON response
+                
+                let menuCount1 = menuJson1.valueForKeyPath("response.menu.menus.count") as! Int
+                //print(menuJson0)
+                if menuCount1 > 0 {
+                    print("IN MENUCOUNT")
+                    // if there is a menu, store the items in an array
+                    
+                    let menuItems = menuJson1.valueForKeyPath("response.menu.menus.items.entries.items.entries.items") as! NSArray
+                    
+                    // the outer array is [0] for some reason
+                    
+                    for var j = 0; j < menuItems[0].count; ++j {
+                        
+                        for var i = 0; i < menuItems[0][j].count; ++i {
+                            
+                            let itemDictionary = menuItems[0][j][i] as! NSDictionary
+                            let itemName = itemDictionary.valueForKeyPath("name") as! String
+                            var itemDescription = ""
+                            
+                            var itemString = ""
+                            
+                            // concatenate item name and item description stirng
+                            if itemDictionary.valueForKeyPath("description") != nil {
+                                itemDescription = itemDictionary.valueForKeyPath("description") as! String
+                                //itemString = itemName + " " + itemDescription
+                                itemString = itemName
+                            }
+                            
+                            
+                            // print (itemName)
+                            
+                            // string match itemString for the query string
+                            if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
+                                print ("menu1 query item: ", itemName)
+                                self.matchedMenuItems.append(itemName)
+                                self.matchedMenuDescriptions.append(itemDescription)
+                            }
+                        }
+                    }
+                    if self.matchedMenuItems.count != 0 {
+                        
+                        if self.matchedMenuItems.count == 3 {
+                            self.menuItem1.text = self.matchedMenuItems[0]
+                            self.menuItem2.text = self.matchedMenuItems[1]
+                            self.menuItem3.text = self.matchedMenuItems[2]
+                        } else if self.matchedMenuItems.count == 2 {
+                            self.menuItem1.text = self.matchedMenuItems[0]
+                            self.menuItem2.text = self.matchedMenuItems[1]
+                        } else {
+                            self.menuItem1.text = self.matchedMenuItems[0]
+                        }
+                    }
+                    
+                }
+                    
+                    
+                    
+                else {
+                    // show error card or pass something up to container to show error card
+                }
+            }
+            
+            // menu information 2
+            let menuUrl2 = NSURL(string:"https://api.foursquare.com/v2/venues/\(venueId2)/menu?client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
+            let menuRequest2 = NSURLRequest(URL: menuUrl2!)
+            
+            //print (menuUrl2)
+            
+            NSURLConnection.sendAsynchronousRequest(menuRequest2, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+                
+                let menuJson2 = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+                
+                //                    print (menuJson2)
+                
+                // check if there is a menu object in JSON response
+                
+                let menuCount2 = menuJson2.valueForKeyPath("response.menu.menus.count") as! Int
+                //print(menuJson0)
+                if menuCount2 > 0 {
+                    print("IN MENUCOUNT")
+                    // if there is a menu, store the items in an array
+                    
+                    let menuItems = menuJson2.valueForKeyPath("response.menu.menus.items.entries.items.entries.items") as! NSArray
+                    
+                    // the outer array is [0] for some reason
+                    
+                    for var j = 0; j < menuItems[0].count; ++j {
+                        
+                        for var i = 0; i < menuItems[0][j].count; ++i {
+                            
+                            let itemDictionary = menuItems[0][j][i] as! NSDictionary
+                            let itemName = itemDictionary.valueForKeyPath("name") as! String
+                            var itemDescription = ""
+                            
+                            var itemString = ""
+                            
+                            // concatenate item name and item description stirng
+                            if itemDictionary.valueForKeyPath("description") != nil {
+                                itemDescription = itemDictionary.valueForKeyPath("description") as! String
+                                //itemString = itemName + " " + itemDescription
+                                itemString = itemName
+                            }
+                            
+                            
+                            // print (itemName)
+                            
+                            // string match itemString for the query string
+                            if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
+                                print ("menu2 query item: ", itemName)
+                                self.matchedMenuItems.append(itemName)
+                                self.matchedMenuDescriptions.append(itemDescription)
+                            }
+                        }
+                    }
+                    if self.matchedMenuItems.count != 0 {
+                        
+                        if self.matchedMenuItems.count == 3 {
+                            self.menuItem1.text = self.matchedMenuItems[0]
+                            self.menuItem2.text = self.matchedMenuItems[1]
+                            self.menuItem3.text = self.matchedMenuItems[2]
+                        } else if self.matchedMenuItems.count == 2 {
+                            self.menuItem1.text = self.matchedMenuItems[0]
+                            self.menuItem2.text = self.matchedMenuItems[1]
+                        } else {
+                            self.menuItem1.text = self.matchedMenuItems[0]
+                        }
+                    }
+                    
+                }
+                    
+                    
+                    
                 else {
                     // show error card or pass something up to container to show error card
                 }
