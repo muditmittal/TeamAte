@@ -42,12 +42,6 @@ class TrayVC: UIViewController, CLLocationManagerDelegate {
     var lat: Double!
     var long: Double!
     
-    // query string
-    var query: String!
-    
-    // data array
-    var data: [NSDictionary]!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

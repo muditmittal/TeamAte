@@ -93,12 +93,19 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             self.locationManager!.distanceFilter = 50
             self.locationManager!.startUpdatingLocation()
         }
+        
+       
     }
     
     func fetchVenues(searchQuery: String) {
         // venue information
         lat = 37.755308
         long = -122.420972
+        
+        //reset menu items
+        self.menuItem1.text = "N/A"
+        self.menuItem2.text = "N/A"
+        self.menuItem3.text = "N/A"
         
         matchedMenuItems = []
         matchedMenuDescriptions = []
@@ -188,12 +195,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                                 //itemString = itemName + " " + itemDescription
                                 itemString = itemName
                             }
-                                
-                            else {
-                                itemString = itemName
-                            }
+
                             
-                            //                                print (itemName)
+                            // print (itemName)
                             
                             // string match itemString for the query string
                             if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
@@ -204,9 +208,16 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                         }
                     }
                     if self.matchedMenuItems.count != 0 {
-                        self.menuItem1.text = self.matchedMenuItems[0]
-                        self.menuItem2.text = self.matchedMenuItems[1]
-                        self.menuItem3.text = self.matchedMenuItems[2]
+                        if self.matchedMenuItems.count == 3 {
+                            self.menuItem1.text = self.matchedMenuItems[0]
+                            self.menuItem2.text = self.matchedMenuItems[1]
+                            self.menuItem3.text = self.matchedMenuItems[2]
+                        } else if self.matchedMenuItems.count == 2 {
+                            self.menuItem1.text = self.matchedMenuItems[0]
+                            self.menuItem2.text = self.matchedMenuItems[1]
+                        } else {
+                            self.menuItem1.text = self.matchedMenuItems[0]
+                        }
                     }
                    
                 }
