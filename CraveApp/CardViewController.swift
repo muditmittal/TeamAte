@@ -129,7 +129,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             let venueIds = venueJson.valueForKeyPath("response.venues.id") as! [String]
             let venueNames = venueJson.valueForKeyPath("response.venues.name") as! [String]
             let venueLocations = venueJson.valueForKeyPath("response.venues.location") as! [NSDictionary]
+            let venueDistances = venueJson.valueForKeyPath("response.venues.location.distance") as! NSArray
             
+//            print (self.data)
             
             
             // store venueIds
@@ -150,6 +152,14 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             
             print(venueName0)
             self.resultName.text = venueName0
+            
+            print (venueDistances[0])
+            
+            let distanceInMeters = venueDistances[0] as! Double
+            var distanceInMiles = (distanceInMeters / 1609.34)
+            distanceInMiles = Double(round(10*distanceInMiles)/10)
+            let distanceString = String(distanceInMiles)
+            self.resultDistance.text = distanceString + " mi"
             // fetch 6 menus, if count > 0, then store data
             // parse through menu items in menu; for menuItem in [menuItems] by string match
             
@@ -208,6 +218,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                         }
                     }
                     if self.matchedMenuItems.count != 0 {
+                        
                         if self.matchedMenuItems.count == 3 {
                             self.menuItem1.text = self.matchedMenuItems[0]
                             self.menuItem2.text = self.matchedMenuItems[1]
