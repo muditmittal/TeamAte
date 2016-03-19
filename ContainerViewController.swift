@@ -95,7 +95,7 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
         
         //searchString = searchQuery
         cardViewController.fetchVenues(searchQuery)
-        trayViewController.fetchVenues(searchQuery)
+        //trayViewController.fetchVenues(searchQuery)
         
     }
     
@@ -252,13 +252,7 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
             
         }
     }
-    
-    lazy private var tempActivityIndicator : CustomActivityIndicatorView = {
-        let image : UIImage = UIImage(named: "fooditem1")!
-        return CustomActivityIndicatorView(image: image)
-    }()
-    
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

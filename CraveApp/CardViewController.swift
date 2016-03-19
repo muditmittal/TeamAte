@@ -39,6 +39,10 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     var lat: Double!
     var long: Double!
     
+    //menu array
+    var matchedMenuItems: [String]!
+    var matchedMenuDescriptions: [String]!
+    
     // query string
     var query: String!
     
@@ -93,9 +97,11 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     
     func fetchVenues(searchQuery: String) {
         // venue information
-        lat = 37.763284
-        long = -122.467662
+        lat = 37.755308
+        long = -122.420972
         
+        matchedMenuItems = []
+        matchedMenuDescriptions = []
         let venueUrl = NSURL(string:"https://api.foursquare.com/v2/venues/search?ll=\(lat),\(long)&query=\(searchQuery)&client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
         
         
@@ -157,7 +163,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 // check if there is a menu object in JSON response
                 
                 let menuCount0 = menuJson0.valueForKeyPath("response.menu.menus.count") as! Int
-                print(menuCount0)
+                //print(menuJson0)
                 if menuCount0 > 0 {
                     print("IN MENUCOUNT")
                     // if there is a menu, store the items in an array
@@ -192,10 +198,19 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                             // string match itemString for the query string
                             if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
                                 print ("menu0 query item: ", itemName)
+                                self.matchedMenuItems.append(itemName)
+                                self.matchedMenuDescriptions.append(itemDescription)
                             }
                         }
                     }
+                    if self.matchedMenuItems.count != 0 {
+                        self.menuItem1.text = self.matchedMenuItems[0]
+                        self.menuItem2.text = self.matchedMenuItems[1]
+                        self.menuItem3.text = self.matchedMenuItems[2]
+                    }
+                   
                 }
+                    
                 else {
                     // show error card or pass something up to container to show error card
                 }
@@ -203,6 +218,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             
 
         }
+        
     }
     
     
