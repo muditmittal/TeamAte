@@ -93,7 +93,8 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
         //4: Update app state
         cardInView = 1
         
-        searchString = searchQuery
+        //searchString = searchQuery
+        
         
     }
     
@@ -129,7 +130,9 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
         //5A: Slide-up No Result Found
         
         //5B: Slide-up Result Card
-        cardViewController.handleLabels(searchQuery)
+        //cardViewController.handleLabels(searchQuery)
+        cardViewController.fetchVenues(searchQuery)
+        trayViewController.fetchVenues(searchQuery)
         UIView.animateWithDuration(0.4) { () -> Void in
             self.cardView.center = self.cardViewOriginalCenter
             
