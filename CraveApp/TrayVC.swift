@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import MapKit
+//import MapKit
 
 //protocol here?
 
 var searchQueries: [String] = ["ramen", "burger", "taco", "desserts", "sushi", "pizza", "drinks", "local"]
 
-class TrayVC: UIViewController, CLLocationManagerDelegate {
+class TrayVC: UIViewController { // CLLocationManagerDelegate
     
     weak var delegate: TrayVCDelegate?
     
@@ -36,11 +36,11 @@ class TrayVC: UIViewController, CLLocationManagerDelegate {
     
     // location variables
     // location variables
-    var locationManager: CLLocationManager!
-    let distanceSpan:Double = 500
-    var locations: [CLLocation]!
-    var lat: Double!
-    var long: Double!
+//    var locationManager: CLLocationManager!
+//    let distanceSpan:Double = 500
+//    var locations: [CLLocation]!
+//    var lat: Double!
+//    var long: Double!
     
     
     override func viewDidLoad() {

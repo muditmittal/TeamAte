@@ -53,8 +53,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         var location = locations[0] as! CLLocation
         
-//        lat = location.coordinate.latitude
-//        long = location.coordinate.longitude
+        lat = location.coordinate.latitude
+        long = location.coordinate.longitude
         print("lat:", location.coordinate.latitude)
         print("long:", location.coordinate.longitude)
         
@@ -99,8 +99,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     
     func fetchVenues(searchQuery: String) {
         // venue information
-        lat = 37.755308
-        long = -122.420972
+//        lat = 37.755308
+//        long = -122.420972
         
         //reset menu items
         self.menuItem1.text = "N/A"
