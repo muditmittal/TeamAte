@@ -1,71 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="SiN-mJ-uTR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="fQI-fa-yui">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="BYZ-38-t0r" customClass="HomeViewController" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" id="gmz-dD-TNJ" userLabel="settingsView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" id="8HM-am-l5k" userLabel="maskView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.12527171500000001" green="0.16339734119999999" blue="0.22417043740000001" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" id="zmH-Q4-KeL" userLabel="backBar">
-                                <rect key="frame" x="10" y="14" width="300" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="krl-VP-6yn">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="backbutton"/>
-                                        <connections>
-                                            <action selector="onCloseButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3lw-Kd-DZa"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Near Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EH2-Py-Mhp">
-                                        <rect key="frame" x="97" y="4" width="107" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                    </view>
-                    <connections>
-                        <outlet property="backBar" destination="zmH-Q4-KeL" id="udl-k6-CBS"/>
-                        <outlet property="closeButton" destination="krl-VP-6yn" id="uoc-ib-dsx"/>
-                        <outlet property="currentLocation" destination="EH2-Py-Mhp" id="4US-BC-GeP"/>
-                        <outlet property="maskView" destination="8HM-am-l5k" id="JrN-ph-6Ul"/>
-                        <outlet property="settingsView" destination="gmz-dD-TNJ" id="Bzn-Q7-Grb"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Gd8-zG-cc9"/>
-            </objects>
-            <point key="canvasLocation" x="515" y="912"/>
-        </scene>
-        <!--Card View Controller-->
+        <!--CarViewController-->
         <scene sceneID="sdx-zT-bck">
             <objects>
-                <viewController storyboardIdentifier="CardViewController" id="gR7-o5-0Ae" customClass="CardViewController" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CardViewController" title="CarViewController" id="gR7-o5-0Ae" customClass="CardViewController" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="StQ-eG-f7q">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="740"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="eWa-Uo-BhV" userLabel="fullCardView">
@@ -73,11 +18,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="6W5-KZ-swV" userLabel="listingScrollView">
-                                        <rect key="frame" x="10" y="0.0" width="300" height="537"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                        <rect key="frame" x="10" y="0.0" width="300" height="641"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" id="peX-qZ-8HF" userLabel="listingInfo">
-                                                <rect key="frame" x="1" y="180" width="300" height="555"/>
+                                                <rect key="frame" x="0.0" y="180" width="300" height="560"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sVI-66-tZB" userLabel="listingName">
@@ -206,6 +151,8 @@
                         </subviews>
                     </view>
                     <navigationItem key="navigationItem" id="WxW-xI-ZDd"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="740"/>
                     <connections>
                         <outlet property="fullCardView" destination="eWa-Uo-BhV" id="ZQt-nJ-5hw"/>
                         <outlet property="menuItem1" destination="h9f-T5-TuW" id="iM0-gR-t72"/>
@@ -222,12 +169,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97c-W6-yIq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="185" y="912"/>
+            <point key="canvasLocation" x="-105" y="948"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="jnP-Eh-CMC">
             <objects>
-                <viewController id="SiN-mJ-uTR" userLabel="Container View Controller" customClass="ContainerViewController" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ContainerViewController" id="SiN-mJ-uTR" userLabel="Container View Controller" customClass="ContainerViewController" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yXU-ks-BNq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,22 +182,45 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" id="vHe-QF-Si4" userLabel="homeView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="569"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="60Z-Zm-nSu" userLabel="backBar">
+                                <rect key="frame" x="10" y="10" width="300" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BD7-6H-0V7" userLabel="closeButton">
+                                        <rect key="frame" x="260" y="5" width="40" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="closebutton"/>
+                                        <connections>
+                                            <action selector="onCloseButtonTap:" destination="SiN-mJ-uTR" eventType="touchUpInside" id="MN4-e0-TtW"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Near Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="K3f-9f-4wq">
+                                        <rect key="frame" x="97" y="14" width="107" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="qiH-Ux-nPr" userLabel="loaderView">
-                                <rect key="frame" x="100" y="200" width="120" height="60"/>
+                                <rect key="frame" x="120" y="249" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
                             <view contentMode="scaleToFill" id="yTj-lQ-Bhc" userLabel="cardView">
-                                <rect key="frame" x="0.0" y="40" width="320" height="528"/>
+                                <rect key="frame" x="0.0" y="55" width="320" height="513"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" id="UCf-Jy-mJu" userLabel="menuView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oed-qK-7qj" userLabel="menuButton">
+                                <rect key="frame" x="129" y="486" width="62" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                            </view>
+                                <connections>
+                                    <action selector="onCancelButtonTap:" destination="fQI-fa-yui" eventType="touchUpInside" id="tLk-46-Ai1"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -259,7 +229,6 @@
                         <outlet property="cardView" destination="yTj-lQ-Bhc" id="8vb-k3-IB4"/>
                         <outlet property="homeView" destination="vHe-QF-Si4" id="k1k-i3-v42"/>
                         <outlet property="loaderView" destination="qiH-Ux-nPr" id="GvR-5P-G7X"/>
-                        <outlet property="menuView" destination="UCf-Jy-mJu" id="9vW-hT-qri"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0kk-AL-TwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -267,10 +236,10 @@
             </objects>
             <point key="canvasLocation" x="-478" y="912"/>
         </scene>
-        <!--Menu View Controller-->
+        <!--MenuViewController-->
         <scene sceneID="YGg-6E-Kr2">
             <objects>
-                <viewController storyboardIdentifier="MenuViewController" id="fQI-fa-yui" customClass="MenuViewController" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuViewController" title="MenuViewController" id="fQI-fa-yui" customClass="MenuViewController" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sbk-wf-cIX" userLabel="menuView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -457,18 +426,19 @@
                         <outlet property="craveLogo" destination="j78-p5-h6m" id="k2I-WV-uWK"/>
                         <outlet property="menuBackground" destination="1Qc-sH-cOb" id="M1X-s3-GbJ"/>
                         <outlet property="menuView" destination="sbk-wf-cIX" id="fWy-9Q-efG"/>
+                        <segue destination="SiN-mJ-uTR" kind="modal" identifier="menuSegue" animates="NO" id="TW2-Vf-1cC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zzj-8r-5nu" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-146" y="912"/>
+            <point key="canvasLocation" x="-878" y="912"/>
         </scene>
     </scenes>
     <resources>
         <image name="Crave" width="53" height="20"/>
-        <image name="backbutton" width="15" height="11"/>
         <image name="background" width="320" height="568"/>
         <image name="cancelbutton" width="62" height="62"/>
+        <image name="closebutton" width="29" height="29"/>
         <image name="coverphoto" width="300" height="180"/>
         <image name="delivery" width="230" height="45"/>
         <image name="direction" width="230" height="45"/>

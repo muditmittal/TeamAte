@@ -1,14 +1,12 @@
 //
-//  FadeTransition.swift
-//  transitionDemo
+//  MenuTransition.swift
 //
-//  Created by Timothy Lee on 11/4/14.
-//  Copyright (c) 2014 Timothy Lee. All rights reserved.
+//  Created by Mudit Mittal on 03/20/2016.
 //
 
 import UIKit
 
-class FadeTransition: BaseTransition {
+class MenuTransition: BaseTransition {
     
     override func presentTransition(containerView: UIView, fromViewController: UIViewController, toViewController: UIViewController) {
         

@@ -8,10 +8,12 @@
 
 import UIKit
 var searchQueries: [String] = ["tea", "coffee", "beer", "taco", "dessert", "sushi", "pizza", "ramen", "burger"]
+var searchQuery: String!
 
 class MenuViewController: UIViewController {
 
-    weak var delegate: MenuVCDelegate?
+//    weak var delegate: MenuVCDelegate?
+    
     var duration = 0.4
 
     var homeposition: CGPoint!
@@ -47,6 +49,9 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var Label8: UILabel!
     @IBOutlet weak var Label9: UILabel!
 
+    var selectedMenuItem: UIImageView!
+    var menuTransition: MenuTransition!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,7 +131,7 @@ class MenuViewController: UIViewController {
                 self.cancelButton.alpha = 1
             }, completion: nil)
         }
-            //close menu
+        //close menu
         else if sender.center != self.homeposition {
             for index in 0...8 {
                 UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
@@ -140,7 +145,8 @@ class MenuViewController: UIViewController {
                     if index == sender.tag {
                         self.buttons[index].alpha = 1
                         self.buttons[index].selected = true
-                        self.delegate?.searchFor(self, searchQuery: searchQueries[index])
+                        searchQuery = searchQueries[index]
+//                        self.delegate?.searchFor(self, searchQuery: searchQueries[index])
                     } else {
                         self.buttons[index].alpha = 0
                         self.buttons[index].selected = false
@@ -159,6 +165,8 @@ class MenuViewController: UIViewController {
                 self.cancelButton.transform = CGAffineTransformMakeScale(0.001, 0.001)
                 self.cancelButton.alpha = 0
             }, completion: nil)
+            
+            performSegueWithIdentifier("menuSegue", sender: nil)
         }
         
     }
@@ -197,6 +205,15 @@ class MenuViewController: UIViewController {
         
     }
     
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        var containerViewController = segue.destinationViewController as! ContainerViewController
+        containerViewController.view.layoutIfNeeded()
+        containerViewController.initiateSearch(searchQuery)
+        
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
