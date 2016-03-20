@@ -66,6 +66,10 @@ class MenuViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         
+        let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurredView.frame = menuBackground.bounds
+        menuBackground.addSubview(blurredView)
+
         craveLogo.alpha = 0
         menuBackground.alpha = 0
         cancelButton.center = homeposition
@@ -75,9 +79,6 @@ class MenuViewController: UIViewController {
             labels[index].center = homeposition
             labels[index].alpha = 0
         }
-        let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
-        blurredView.frame = self.menuBackground.bounds
-        self.menuBackground.addSubview(blurredView)
 
     }
     
