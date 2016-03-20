@@ -10,6 +10,7 @@ import UIKit
 import NVActivityIndicatorView
 
 var trayViewController: TrayVC!
+var menuViewController: MenuViewController!
 var homeViewController: HomeViewController!
 var cardViewController: CardViewController!
 
@@ -20,12 +21,14 @@ var cardInView = 0
 
 var searchString = ""
 
-class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate, HomeVCDelegate {
+class ContainerViewController: UIViewController, TrayVCDelegate, MenuVCDelegate, CardVCDelegate, HomeVCDelegate {
     
     @IBOutlet var trayView: UIView!
     @IBOutlet var homeView: UIView!
     @IBOutlet var cardView: UIView!
     @IBOutlet var loaderView: UIView!
+    @IBOutlet weak var menuView: UIView!
+    
     
     var cardViewOriginalCenter: CGPoint!
     var trayViewOriginalCenter: CGPoint!
@@ -44,6 +47,11 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
         homeViewController.didMoveToParentViewController(self)
         
         
+        //trayViewController
+        menuViewController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
+        menuView.addSubview(menuViewController.view)
+        menuViewController.didMoveToParentViewController(self)
+
         //trayViewController
         trayViewController = storyboard.instantiateViewControllerWithIdentifier("TrayVC") as! TrayVC
         trayView.addSubview(trayViewController.view)
@@ -69,6 +77,7 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
         trayViewController.delegate = self
         cardViewController.delegate = self
         homeViewController.delegate = self
+        menuViewController.delegate = self
         
         //cardView Settings
         cardViewOriginalCenter = cardView.center
@@ -76,14 +85,30 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
         cardView.center.y = cardViewOriginalCenter.y + screenHeight
         
     }
+
+    func menuPicker(vc: MenuViewController, searchQuery: String) {
+        print("hi")
+        
+        //Protocol:
+        //1: Update location
+        //2: Initiate search (foodtype, location, radius)
+        //3: Call card entry or card swap function
+        //4: Update app state
+        
+    }
+
     
     //Called on each button tap
     func foodPicker(vc: TrayVC, searchQuery: String) {
-        //cardViewController.view.alpha = 1
-        //cardViewController.resetCardView()
         
+        //Protocol:
         //1: Update location
         //2: Initiate search (foodtype, location, radius)
+        //3: Call card entry or card swap function
+        //4: Update app state
+
+
+        
         //3: Call card entry or card swap function
         if cardInView == 0 {
             prepareContainerForCardEntry(searchQuery)
@@ -100,13 +125,20 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
     }
     
     func prepareContainerForCardEntry(searchQuery: String) {
-        let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
-            type: .LineScalePulseOut, color: UIColor(red:0.55, green:0.88, blue:0.44, alpha:1.0)
-        )
         
-        self.view.addSubview(activityIndicatorView)
+        //Protocol:
+        //1: Toggle settingsView & maskView
+        //2: Check if we have results to show already
+        //3: If not, show a loader
+        //4: Check if we have result, if yes, dismiss loader
+        //5: If NO results, Slide-up noresultView
+        //6: Slide-up result cardView
+        //7: Slide-down food tray
+        //8: Show selected button
+
         
-        //1: Hide settingsView & Show maskView
+        
+        //1: Toggle settingsView & maskView
         UIView.animateWithDuration(0.4, animations: {
             homeViewController.settingsView.alpha = 0
             homeViewController.maskView.alpha = 1
@@ -115,24 +147,20 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
             homeViewController.closeButton.alpha = 1
             }, completion: { (Bool) -> Void in
         })
-        //2: Check if we are ready to show result?
-        //3: Show a loader
-        
+
+        //3: If not, show a loader
+        let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
+            type: .LineScalePulseOut, color: UIColor(red:0.55, green:0.88, blue:0.44, alpha:1.0)
+        )
+        self.view.addSubview(activityIndicatorView)
         activityIndicatorView.startAnimation()
-        
         let delay = 1 * Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue()) {
             activityIndicatorView.stopAnimation()
         }
-
         
-        //4: Check if we have result, dismiss loader
-        //5A: Slide-up No Result Found
-        
-        //5B: Slide-up Result Card
         //cardViewController.handleLabels(searchQuery)
-        
         UIView.animateWithDuration(0.4) { () -> Void in
             self.cardView.center = self.cardViewOriginalCenter
             
@@ -140,7 +168,6 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
             if self.trayView.center.y != self.trayDown.y {
                 self.trayView.center.y = self.trayDown.y
             }
-            //7: Show selected button
         }
     }
     
@@ -148,23 +175,29 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
     
     
     func prepareContainerForCardSwap(searchQuery: String) {
-        let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
-            type: .LineScalePulseOut, color: UIColor(red:0.55, green:0.88, blue:0.44, alpha:1.0)
-        )
+
+        //Protocol:
+        //1: Update location
+        //2: Slide-down current cardView
+        //3: Check if we have results to show already, if no, show loader
+        //4: Check if we have result, if yes, dismiss loader
+        //5: If NO results, Slide-up noresultView
+        //6: Slide-up new cardView
+        //7: Slide-down food tray
+        //8: Show selected button
         
-        self.view.addSubview(activityIndicatorView)
         
-        //0: Update location
-        //1: Slide-down current card
+        //2: Slide-down current cardView
         UIView.animateWithDuration(0.4, delay: 0, options: [], animations: {
             self.cardView.center.y = self.cardViewOriginalCenter.y + screenHeight
             }, completion: { (Bool) -> Void in
-                //2: Check if we are ready to show result?
                 
-                //3: Show a loader
-                
+                //3: Check if we have results to show already, if no, show loader
+                let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
+                    type: .LineScalePulseOut, color: UIColor(red:0.55, green:0.88, blue:0.44, alpha:1.0)
+                )
+                self.view.addSubview(activityIndicatorView)
                 activityIndicatorView.startAnimation()
-                
                 //temporary delay to dismiss loader
                 let delay = 1.5 * Double(NSEC_PER_SEC)
                 let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
@@ -172,19 +205,16 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
                     activityIndicatorView.stopAnimation()
                 }
                 
-                //4: Check if we have result, dismiss loader
-                //5A: Slide-up No Result Found
-                
-                //5B: Slide-up New Result Card
                 //cardViewController.handleLabels(searchQuery)
                 UIView.animateWithDuration(0.4) { () -> Void in
+
+                    //6: Slide-up new cardView
                     self.cardView.center = self.cardViewOriginalCenter
                     
-                    //6: Slide-down food tray
+                    //7: Slide-down food tray
                     if self.trayView.center.y != self.trayDown.y {
                         self.trayView.center.y = self.trayDown.y
                     }
-                    //7: Show selected button
                 }
                 
         })
@@ -200,19 +230,26 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
     
     
     func prepareContainerForCardExit() {
+
+        //Protocol:
         //1: Update location
+        //2: Hide maskView, show settingsView
+        //3: Slide-down cardView
+        //4: Slide-up food tray
+        //5: Deselect all buttons
+        //6: Change app state
+
+        
         //2: Hide maskView, show settingsView
         UIView.animateWithDuration(0.2, animations: {
             homeViewController.maskView.alpha = 0
             homeViewController.settingsView.alpha = 1
             }, completion: { (Bool) -> Void in
         })
-        
-        //3: Slide-down card
+
+        //3: Slide-down cardView
         self.cardView.center.y = self.cardViewOriginalCenter.y + screenHeight
-        
-        //4: Slide-up food tray
-        //5: Deselect all buttons
+
         //6: Change app state
         cardInView = 0
         
@@ -220,38 +257,38 @@ class ContainerViewController: UIViewController, TrayVCDelegate, CardVCDelegate,
     
     
     
-    func onCustomPan(sender: UIPanGestureRecognizer) {
-        let velocity = sender.velocityInView(view)
-        let translation = sender.translationInView(view)
-        
-        if sender.state == UIGestureRecognizerState.Began {
-            
-        } else if sender.state == UIGestureRecognizerState.Changed {
-            
-            //tray
-            if velocity.y > 0 && trayView.frame.origin.y < trayUp.y {
-                trayView.center = CGPoint (x: trayViewOriginalCenter.x, y: trayViewOriginalCenter.y + translation.y)
-            } else if velocity.y < 0 && trayView.frame.origin.y > screenHeight - trayView.frame.height {
-                trayView.center = CGPoint (x: trayViewOriginalCenter.x, y: trayViewOriginalCenter.y + translation.y)
-            }
-            
-        } else if sender.state == UIGestureRecognizerState.Ended {
-            
-            if velocity.y < 0 {
-                UIView.animateWithDuration(0.3, animations: { () -> Void in
-                    //if panning up, then set tray to up position
-                    self.trayView.center.y = self.trayUp.y
-                })
-            }
-            if velocity.y > 0 && self.trayView.frame.height != 568 {
-                UIView.animateWithDuration(0.3, animations: { () -> Void in
-                    //if panning down, then set tray to down position
-                    self.trayView.center = self.trayDown
-                })
-            }
-            
-        }
-    }
+//    func onCustomPan(sender: UIPanGestureRecognizer) {
+//        let velocity = sender.velocityInView(view)
+//        let translation = sender.translationInView(view)
+//        
+//        if sender.state == UIGestureRecognizerState.Began {
+//            
+//        } else if sender.state == UIGestureRecognizerState.Changed {
+//            
+//            //tray
+//            if velocity.y > 0 && trayView.frame.origin.y < trayUp.y {
+//                trayView.center = CGPoint (x: trayViewOriginalCenter.x, y: trayViewOriginalCenter.y + translation.y)
+//            } else if velocity.y < 0 && trayView.frame.origin.y > screenHeight - trayView.frame.height {
+//                trayView.center = CGPoint (x: trayViewOriginalCenter.x, y: trayViewOriginalCenter.y + translation.y)
+//            }
+//            
+//        } else if sender.state == UIGestureRecognizerState.Ended {
+//            
+//            if velocity.y < 0 {
+//                UIView.animateWithDuration(0.3, animations: { () -> Void in
+//                    //if panning up, then set tray to up position
+//                    self.trayView.center.y = self.trayUp.y
+//                })
+//            }
+//            if velocity.y > 0 && self.trayView.frame.height != 568 {
+//                UIView.animateWithDuration(0.3, animations: { () -> Void in
+//                    //if panning down, then set tray to down position
+//                    self.trayView.center = self.trayDown
+//                })
+//            }
+//            
+//        }
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

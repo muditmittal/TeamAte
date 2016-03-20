@@ -11,7 +11,7 @@ import UIKit
 
 //protocol here?
 
-var searchQueries: [String] = ["ramen", "burger", "taco", "desserts", "sushi", "pizza", "drinks", "local"]
+//var searchQueries: [String] = ["ramen", "burger", "taco", "desserts", "sushi", "pizza", "drinks", "local"]
 
 class TrayVC: UIViewController { // CLLocationManagerDelegate
     

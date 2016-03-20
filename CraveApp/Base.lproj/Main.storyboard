@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="SiN-mJ-uTR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="SiN-mJ-uTR">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -192,7 +192,7 @@
             <objects>
                 <viewController storyboardIdentifier="CardViewController" id="gR7-o5-0Ae" customClass="CardViewController" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="StQ-eG-f7q">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="eWa-Uo-BhV" userLabel="fullCardView">
@@ -333,8 +333,6 @@
                         </subviews>
                     </view>
                     <navigationItem key="navigationItem" id="WxW-xI-ZDd"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="736"/>
                     <connections>
                         <outlet property="fullCardView" destination="eWa-Uo-BhV" id="ZQt-nJ-5hw"/>
                         <outlet property="menuItem1" destination="h9f-T5-TuW" id="iM0-gR-t72"/>
@@ -383,6 +381,12 @@
                                     <outletCollection property="gestureRecognizers" destination="sgE-uX-bQX" appends="YES" id="vD9-3Y-AfL"/>
                                 </connections>
                             </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" id="UCf-Jy-mJu" userLabel="menuView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                            </view>
                         </subviews>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -391,6 +395,7 @@
                         <outlet property="cardView" destination="yTj-lQ-Bhc" id="8vb-k3-IB4"/>
                         <outlet property="homeView" destination="vHe-QF-Si4" id="k1k-i3-v42"/>
                         <outlet property="loaderView" destination="qiH-Ux-nPr" id="GvR-5P-G7X"/>
+                        <outlet property="menuView" destination="UCf-Jy-mJu" id="9vW-hT-qri"/>
                         <outlet property="trayView" destination="FhQ-h5-DLr" id="QFb-Fv-2Hq"/>
                     </connections>
                 </viewController>
@@ -399,12 +404,213 @@
             </objects>
             <point key="canvasLocation" x="-122" y="912"/>
         </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="YGg-6E-Kr2">
+            <objects>
+                <viewController storyboardIdentifier="MenuViewController" id="fQI-fa-yui" customClass="MenuViewController" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sbk-wf-cIX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="background" id="1Qc-sH-cOb">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tea" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BX9-98-sSd">
+                                <rect key="frame" x="34" y="218" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coffee" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="y2k-Gj-6YD">
+                                <rect key="frame" x="134" y="218" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ic3-ms-aSM">
+                                <rect key="frame" x="234" y="218" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taco" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6w8-Sh-qa7">
+                                <rect key="frame" x="34" y="329" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dessert" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="A6q-fU-5GU">
+                                <rect key="frame" x="134" y="329" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sushi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zWb-Nt-ORy">
+                                <rect key="frame" x="234" y="329" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pizza" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7k1-C1-2Nr">
+                                <rect key="frame" x="34" y="441" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ramen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cwo-L2-gpF">
+                                <rect key="frame" x="134" y="441" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Burger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c1V-dB-38U">
+                                <rect key="frame" x="234" y="441" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="Crave" id="j78-p5-h6m">
+                                <rect key="frame" x="135" y="75" width="53" height="20"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rr4-fD-yc9" userLabel="Button0">
+                                <rect key="frame" x="129" y="486" width="62" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="cancelbutton"/>
+                                <connections>
+                                    <action selector="onCancelButtonTap:" destination="fQI-fa-yui" eventType="touchUpInside" id="Yfd-vy-Nov"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="z0y-41-q8v" userLabel="Button1">
+                                <rect key="frame" x="19" y="137" width="82" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="food1"/>
+                                <connections>
+                                    <action selector="onMenuButtonTap:" destination="fQI-fa-yui" eventType="touchUpInside" id="gfk-bx-Exl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="f1d-m8-pxk" userLabel="Button2">
+                                <rect key="frame" x="119" y="137" width="82" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="food2"/>
+                                <connections>
+                                    <action selector="onMenuButtonTap:" destination="fQI-fa-yui" eventType="touchUpInside" id="haV-yA-2os"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OO1-jv-p3e" userLabel="Button3">
+                                <rect key="frame" x="219" y="137" width="82" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="food3"/>
+                                <connections>
+                                    <action selector="onMenuButtonTap:" destination="fQI-fa-yui" eventType="touchUpInside" id="IuG-Y8-Msb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eUT-Sf-sFy" userLabel="Button4">
+                                <rect key="frame" x="19" y="248" width="82" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="food4"/>
+                                <connections>
+                                    <action selector="onMenuButtonTap:" destination="fQI-fa-yui" eventType="touchUpInside" id="r2g-TR-g6s"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5sE-eo-G0K" userLabel="Button5">
+                                <rect key="frame" x="119" y="248" width="82" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="food5"/>
+                                <connections>
+                                    <action selector="onMenuButtonTap:" destination="fQI-fa-yui" eventType="touchUpInside" id="Y4Z-AS-nqL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wK8-WK-Gh7" userLabel="Button6">
+                                <rect key="frame" x="219" y="248" width="82" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="food6"/>
+                                <connections>
+                                    <action selector="onMenuButtonTap:" destination="fQI-fa-yui" eventType="touchUpInside" id="99P-Vg-nA7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wAc-KF-giE" userLabel="Button7">
+                                <rect key="frame" x="19" y="359" width="82" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="food7"/>
+                                <connections>
+                                    <action selector="onMenuButtonTap:" destination="fQI-fa-yui" eventType="touchUpInside" id="Xdm-na-8CB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="R8D-xl-fmh" userLabel="Button8">
+                                <rect key="frame" x="119" y="359" width="82" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="food8"/>
+                                <connections>
+                                    <action selector="onMenuButtonTap:" destination="fQI-fa-yui" eventType="touchUpInside" id="r6I-Xw-T0Z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ko2-6H-xiZ" userLabel="Button9">
+                                <rect key="frame" x="219" y="359" width="82" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="food9"/>
+                                <connections>
+                                    <action selector="onMenuButtonTap:" destination="fQI-fa-yui" eventType="touchUpInside" id="rQ2-RY-0gx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="Button1" destination="z0y-41-q8v" id="iHy-vy-VN9"/>
+                        <outlet property="Button2" destination="f1d-m8-pxk" id="q47-iu-WU0"/>
+                        <outlet property="Button3" destination="OO1-jv-p3e" id="pPQ-SL-Bqi"/>
+                        <outlet property="Button4" destination="eUT-Sf-sFy" id="yby-Ai-UR9"/>
+                        <outlet property="Button5" destination="5sE-eo-G0K" id="5HE-ge-dzQ"/>
+                        <outlet property="Button6" destination="wK8-WK-Gh7" id="vzf-uD-g09"/>
+                        <outlet property="Button7" destination="wAc-KF-giE" id="6Wc-Qy-5QF"/>
+                        <outlet property="Button8" destination="R8D-xl-fmh" id="Veg-C3-OXM"/>
+                        <outlet property="Button9" destination="Ko2-6H-xiZ" id="tHD-NW-179"/>
+                        <outlet property="Label1" destination="BX9-98-sSd" id="XDN-eW-oHD"/>
+                        <outlet property="Label2" destination="y2k-Gj-6YD" id="UbX-uS-M8I"/>
+                        <outlet property="Label3" destination="ic3-ms-aSM" id="u4m-fa-aLK"/>
+                        <outlet property="Label4" destination="6w8-Sh-qa7" id="prD-d1-lIM"/>
+                        <outlet property="Label5" destination="A6q-fU-5GU" id="enx-bz-vPE"/>
+                        <outlet property="Label6" destination="zWb-Nt-ORy" id="ssq-ch-roo"/>
+                        <outlet property="Label7" destination="7k1-C1-2Nr" id="Yob-f7-QWN"/>
+                        <outlet property="Label8" destination="Cwo-L2-gpF" id="fiS-Ut-QTE"/>
+                        <outlet property="Label9" destination="c1V-dB-38U" id="WpH-5j-Qow"/>
+                        <outlet property="cancelButton" destination="Rr4-fD-yc9" id="5sp-qu-2Rv"/>
+                        <outlet property="craveLogo" destination="j78-p5-h6m" id="k2I-WV-uWK"/>
+                        <outlet property="menuBackground" destination="1Qc-sH-cOb" id="M1X-s3-GbJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zzj-8r-5nu" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-122" y="289"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Crave" width="53" height="20"/>
         <image name="backbutton" width="15" height="11"/>
+        <image name="background" width="320" height="568"/>
+        <image name="cancelbutton" width="62" height="62"/>
         <image name="coverphoto" width="300" height="180"/>
         <image name="delivery" width="230" height="45"/>
         <image name="direction" width="230" height="45"/>
+        <image name="food1" width="82" height="82"/>
+        <image name="food2" width="82" height="82"/>
+        <image name="food3" width="82" height="82"/>
+        <image name="food4" width="82" height="82"/>
+        <image name="food5" width="82" height="82"/>
+        <image name="food6" width="82" height="82"/>
+        <image name="food7" width="82" height="82"/>
+        <image name="food8" width="82" height="82"/>
+        <image name="food9" width="82" height="82"/>
         <image name="heart copy" width="14" height="12"/>
         <image name="item1" width="81" height="82"/>
         <image name="item1_selected" width="81" height="82"/>
