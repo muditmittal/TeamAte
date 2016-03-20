@@ -7,5 +7,5 @@
 //
 
 protocol MenuVCDelegate: class {
-    func menuPicker(vc: MenuViewController, searchQuery: String)
+    func searchFor(vc: MenuViewController, searchQuery: String)
 }

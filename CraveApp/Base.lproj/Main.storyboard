@@ -16,12 +16,6 @@
                             <view contentMode="scaleToFill" id="gmz-dD-TNJ" userLabel="settingsView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo" id="8oo-Bg-VJ9" userLabel="crave">
-                                        <rect key="frame" x="33" y="177" width="260" height="126"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </imageView>
-                                </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="8HM-am-l5k" userLabel="maskView">
@@ -365,7 +359,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="yTj-lQ-Bhc" userLabel="cardView">
-                                <rect key="frame" x="0.0" y="40" width="320" height="448"/>
+                                <rect key="frame" x="0.0" y="40" width="320" height="528"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
                             <view contentMode="scaleToFill" id="qiH-Ux-nPr" userLabel="loaderView">
@@ -629,7 +623,6 @@
         <image name="item7_selected" width="82" height="80"/>
         <image name="item8" width="81" height="80"/>
         <image name="item8_selected" width="81" height="80"/>
-        <image name="logo" width="184" height="89"/>
         <image name="menubutton" width="230" height="45"/>
     </resources>
 </document>

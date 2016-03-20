@@ -86,7 +86,7 @@ class ContainerViewController: UIViewController, TrayVCDelegate, MenuVCDelegate,
         
     }
 
-    func menuPicker(vc: MenuViewController, searchQuery: String) {
+    func searchFor(vc: MenuViewController, searchQuery: String) {
         print("hi")
         
         //Protocol:
@@ -94,6 +94,14 @@ class ContainerViewController: UIViewController, TrayVCDelegate, MenuVCDelegate,
         //2: Initiate search (foodtype, location, radius)
         //3: Call card entry or card swap function
         //4: Update app state
+
+        if cardInView == 0 {
+            prepareContainerForCardEntry(searchQuery)
+        } else if cardInView == 1 {
+            prepareContainerForCardSwap(searchQuery)
+        }
+        cardInView = 1
+        cardViewController.fetchVenues(searchQuery)
         
     }
 

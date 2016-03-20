@@ -7,7 +7,7 @@
 //
 
 import UIKit
-var searchQueries: [String] = ["ramen", "burger", "taco", "desserts", "sushi", "pizza", "drinks", "local"]
+var searchQueries: [String] = ["tea", "coffee", "beer", "taco", "dessert", "sushi", "pizza", "ramen", "burger"]
 
 class MenuViewController: UIViewController {
 
@@ -142,6 +142,7 @@ class MenuViewController: UIViewController {
                     if index == sender.tag {
                         self.buttons[index].alpha = 1
                         self.buttons[index].selected = true
+                        self.delegate?.searchFor(self, searchQuery: searchQueries[index])
                     } else {
                         self.buttons[index].alpha = 0
                         self.buttons[index].selected = false
