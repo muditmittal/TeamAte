@@ -14,7 +14,7 @@ class MenuViewController: UIViewController {
     weak var delegate: MenuVCDelegate?
 
     var duration: Double!
-    
+
     var homeposition: CGPoint!
     var buttonpositions: [CGPoint]!
     var labelpositions: [CGPoint]!
@@ -22,6 +22,8 @@ class MenuViewController: UIViewController {
     var buttons: [UIButton]!
     var labels: [UILabel]!
     
+    
+    @IBOutlet var menuView: UIView!
     @IBOutlet weak var craveLogo: UIImageView!
     @IBOutlet weak var menuBackground: UIImageView!
     @IBOutlet weak var cancelButton: UIButton!
@@ -73,22 +75,28 @@ class MenuViewController: UIViewController {
             labels[index].center = homeposition
             labels[index].alpha = 0
         }
+        let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurredView.frame = self.menuBackground.bounds
+        self.menuBackground.addSubview(blurredView)
+
     }
     
     
     override func viewDidAppear(animated: Bool) {
         
-        UIView.animateWithDuration(duration, animations: {
+        UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
             self.craveLogo.alpha = 1
             self.menuBackground.alpha = 1
-        })
+        }, completion: nil)
         for index in 0...8 {
-            UIView.animateWithDuration(duration, animations: {
+            UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
+                initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
                 self.buttons[index].center = self.buttonpositions[index]
                 self.buttons[index].transform = CGAffineTransformMakeScale(1, 1)
                 self.labels[index].center = self.labelpositions[index]
                 self.labels[index].alpha = 1
-            })
+            }, completion: nil)
         }
     }
     
@@ -98,7 +106,8 @@ class MenuViewController: UIViewController {
         //open menu
         if sender.center == self.homeposition {
             for index in 0...8 {
-                UIView.animateWithDuration(duration, animations: {
+                UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
+                    initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
                     
                     //move buttons to homeposition
                     self.buttons[index].alpha = 1
@@ -108,20 +117,22 @@ class MenuViewController: UIViewController {
                     //move labels to homeposition
                     self.labels[index].center = self.labelpositions[index]
                     self.labels[index].alpha = 1
-                })
+                }, completion: nil)
             }
             //hide logo and cancel button
-            UIView.animateWithDuration(duration, animations: {
+            UIView.animateWithDuration(duration*2/3, delay: 0.0, usingSpringWithDamping: 0.8,
+                initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
                 self.craveLogo.alpha = 1
                 self.menuBackground.alpha = 1
                 self.cancelButton.transform = CGAffineTransformMakeScale(1, 1)
                 self.cancelButton.alpha = 1
-            })
+            }, completion: nil)
         }
             //close menu
         else if sender.center != self.homeposition {
             for index in 0...8 {
-                UIView.animateWithDuration(duration, animations: {
+                UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
+                    initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
                     
                     //move all buttons to homeposition
                     self.buttons[index].center = self.homeposition
@@ -139,15 +150,16 @@ class MenuViewController: UIViewController {
                     //move labels to homeposition
                     self.labels[index].center = self.homeposition
                     self.labels[index].alpha = 0
-                })
+                }, completion: nil)
             }
             //hide logo and cancel button
-            UIView.animateWithDuration(duration*2/3, animations: {
+            UIView.animateWithDuration(duration*2/3, delay: 0.0, usingSpringWithDamping: 0.8,
+                initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
                 self.craveLogo.alpha = 0
                 self.menuBackground.alpha = 0
                 self.cancelButton.transform = CGAffineTransformMakeScale(0.001, 0.001)
                 self.cancelButton.alpha = 0
-            })
+            }, completion: nil)
         }
         
     }
@@ -156,7 +168,8 @@ class MenuViewController: UIViewController {
     @IBAction func onCancelButtonTap(sender: AnyObject) {
 
         for index in 0...8 {
-            UIView.animateWithDuration(duration, animations: {
+            UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
+                initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
                 
                 //move all buttons to homeposition
                 self.buttons[index].center = self.homeposition
@@ -172,18 +185,19 @@ class MenuViewController: UIViewController {
                 //move labels to homeposition
                 self.labels[index].center = self.homeposition
                 self.labels[index].alpha = 0
-            })
+            }, completion: nil)
         }
         //hide logo and cancel button
-        UIView.animateWithDuration(duration*2/3, animations: {
+        UIView.animateWithDuration(duration*2/3, delay: 0.0, usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
             self.craveLogo.alpha = 0
             self.menuBackground.alpha = 0
             self.cancelButton.transform = CGAffineTransformMakeScale(0.001, 0.001)
             self.cancelButton.alpha = 0
-        })
+        }, completion: nil)
         
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
