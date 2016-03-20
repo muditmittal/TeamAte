@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     weak var delegate: HomeVCDelegate?
+    
     @IBOutlet weak var settingsView: UIView!
     @IBOutlet weak var maskView: UIView!
     @IBOutlet weak var backBar: UIView!
@@ -19,24 +20,17 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initializeHomeView()
+        
+        self.maskView.alpha = 0
+        self.closeButton.alpha = 0
+        self.currentLocation.textColor = UIColor.blackColor()
+        self.currentLocation.font = self.currentLocation.font.fontWithSize(14)
     }
 
     @IBAction func onCloseButton(sender: AnyObject) {
         //prepareContainerforCardExit()
         print("onCLoseButton")
         delegate?.clickedCloseButton(self, clicked: true)
-    }
-    
-
-    func initializeHomeView() {
-        self.maskView.alpha = 0
-        UIView.animateWithDuration(0.4, delay: 0, options: [], animations: { () -> Void in
-            
-            self.closeButton.alpha = 0
-            self.currentLocation.textColor = UIColor.blackColor()
-            self.currentLocation.font = self.currentLocation.font.fontWithSize(14)
-            }, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

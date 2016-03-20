@@ -12,8 +12,7 @@ var searchQueries: [String] = ["tea", "coffee", "beer", "taco", "dessert", "sush
 class MenuViewController: UIViewController {
 
     weak var delegate: MenuVCDelegate?
-
-    var duration: Double!
+    var duration = 0.4
 
     var homeposition: CGPoint!
     var buttonpositions: [CGPoint]!
@@ -59,14 +58,12 @@ class MenuViewController: UIViewController {
         buttonpositions = [Button1.center, Button2.center, Button3.center, Button4.center, Button5.center, Button6.center, Button7.center, Button8.center, Button9.center]
         labelpositions = [Label1.center, Label2.center, Label3.center, Label4.center, Label5.center, Label6.center, Label7.center, Label8.center, Label9.center]
         
-        duration = 0.3
-        
     }
 
     
     override func viewWillAppear(animated: Bool) {
         
-        let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         blurredView.frame = menuBackground.bounds
         menuBackground.addSubview(blurredView)
 

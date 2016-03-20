@@ -58,128 +58,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Gd8-zG-cc9"/>
             </objects>
-            <point key="canvasLocation" x="251" y="289"/>
-        </scene>
-        <!--Tray View Controller-->
-        <scene sceneID="UV6-yC-BTv">
-            <objects>
-                <viewController storyboardIdentifier="TrayVC" id="JuX-wt-cFr" userLabel="Tray View Controller" customClass="TrayVC" customModule="CraveApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uZW-Dl-unx" userLabel="trayView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="O7N-R2-BRQ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" id="SGP-fl-adw" userLabel="firstRow">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HWu-Hz-GmB" userLabel="foodItem1Button">
-                                                <rect key="frame" x="-1" y="-1" width="82" height="82"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="item1"/>
-                                                <state key="selected" image="item1_selected"/>
-                                                <connections>
-                                                    <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="kuT-nw-GH2"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Kvi-Ye-I5l" userLabel="foodItem2Button">
-                                                <rect key="frame" x="79" y="-1" width="82" height="82"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="item2"/>
-                                                <state key="selected" image="item2_selected"/>
-                                                <connections>
-                                                    <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="cig-Nf-bbr"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4ie-h2-MRH" userLabel="foodItem3Button">
-                                                <rect key="frame" x="159" y="-1" width="82" height="82"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="item3"/>
-                                                <state key="selected" image="item3_selected"/>
-                                                <connections>
-                                                    <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="HyF-0g-Kpd"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SdJ-c2-Rad" userLabel="foodItem4Button">
-                                                <rect key="frame" x="239" y="-1" width="82" height="82"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="item4"/>
-                                                <state key="selected" image="item4_selected"/>
-                                                <connections>
-                                                    <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="3eX-O7-kV8"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </view>
-                                </subviews>
-                            </scrollView>
-                            <view contentMode="scaleToFill" id="1yE-YJ-8gM" userLabel="secondRow">
-                                <rect key="frame" x="0.0" y="80" width="320" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9Z4-qO-7q7" userLabel="foodItem5Button">
-                                        <rect key="frame" x="-1" y="-1" width="82" height="82"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="item5"/>
-                                        <state key="selected" image="item5_selected"/>
-                                        <connections>
-                                            <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="YRY-r8-ikT"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Ac-qr-UFQ" userLabel="foodItem6Button">
-                                        <rect key="frame" x="79" y="-1" width="82" height="82"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="item6"/>
-                                        <state key="selected" image="item6_selected"/>
-                                        <connections>
-                                            <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="Vpt-HO-zpK"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oNQ-qV-igz" userLabel="foodItem7Button">
-                                        <rect key="frame" x="159" y="-1" width="82" height="82"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="item7"/>
-                                        <state key="selected" image="item7_selected"/>
-                                        <connections>
-                                            <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="ECA-MY-UcK"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="daN-sA-ZJv" userLabel="foodItem8Button">
-                                        <rect key="frame" x="239" y="-1" width="82" height="82"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="item8"/>
-                                        <state key="selected" image="item8_selected"/>
-                                        <connections>
-                                            <action selector="foodClicked:" destination="JuX-wt-cFr" eventType="touchUpInside" id="ueW-Dl-Kqq"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </view>
-                        </subviews>
-                        <gestureRecognizers/>
-                    </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="160"/>
-                    <connections>
-                        <outlet property="firstRow" destination="SGP-fl-adw" id="56d-mR-Jbk"/>
-                        <outlet property="foodItem1Button" destination="HWu-Hz-GmB" id="WSF-D5-sgq"/>
-                        <outlet property="foodItem2Button" destination="Kvi-Ye-I5l" id="2bn-Bn-yvF"/>
-                        <outlet property="foodItem3Button" destination="4ie-h2-MRH" id="7UJ-tA-EsD"/>
-                        <outlet property="foodItem4Button" destination="SdJ-c2-Rad" id="Aqe-V6-tyI"/>
-                        <outlet property="foodItem5Button" destination="9Z4-qO-7q7" id="N6R-aw-ME4"/>
-                        <outlet property="foodItem6Button" destination="6Ac-qr-UFQ" id="vsT-Yf-yaw"/>
-                        <outlet property="foodItem7Button" destination="oNQ-qV-igz" id="bpV-HH-7LA"/>
-                        <outlet property="foodItem8Button" destination="daN-sA-ZJv" id="CaH-8d-dZy"/>
-                        <outlet property="secondRow" destination="1yE-YJ-8gM" id="dUo-0y-3OQ"/>
-                        <outlet property="trayView" destination="uZW-Dl-unx" id="JaK-yY-4Bw"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="esf-Uc-ZNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="243" y="1627"/>
+            <point key="canvasLocation" x="515" y="912"/>
         </scene>
         <!--Card View Controller-->
         <scene sceneID="sdx-zT-bck">
@@ -343,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97c-W6-yIq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243" y="1128"/>
+            <point key="canvasLocation" x="185" y="912"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="jnP-Eh-CMC">
@@ -362,22 +241,15 @@
                                 <rect key="frame" x="0.0" y="40" width="320" height="528"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
-                            <view contentMode="scaleToFill" id="qiH-Ux-nPr" userLabel="loaderView">
-                                <rect key="frame" x="125" y="223" width="75" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" id="FhQ-h5-DLr" userLabel="trayView">
-                                <rect key="frame" x="0.0" y="408" width="320" height="160"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="sgE-uX-bQX" appends="YES" id="vD9-3Y-AfL"/>
-                                </connections>
-                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" id="UCf-Jy-mJu" userLabel="menuView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="qiH-Ux-nPr" userLabel="loaderView">
+                                        <rect key="frame" x="100" y="172" width="120" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
@@ -390,13 +262,12 @@
                         <outlet property="homeView" destination="vHe-QF-Si4" id="k1k-i3-v42"/>
                         <outlet property="loaderView" destination="qiH-Ux-nPr" id="GvR-5P-G7X"/>
                         <outlet property="menuView" destination="UCf-Jy-mJu" id="9vW-hT-qri"/>
-                        <outlet property="trayView" destination="FhQ-h5-DLr" id="QFb-Fv-2Hq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0kk-AL-TwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="sgE-uX-bQX"/>
             </objects>
-            <point key="canvasLocation" x="-122" y="912"/>
+            <point key="canvasLocation" x="-478" y="912"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="YGg-6E-Kr2">
@@ -592,7 +463,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zzj-8r-5nu" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-122" y="289"/>
+            <point key="canvasLocation" x="-146" y="912"/>
         </scene>
     </scenes>
     <resources>
@@ -613,22 +484,6 @@
         <image name="food8" width="82" height="82"/>
         <image name="food9" width="82" height="82"/>
         <image name="heart copy" width="14" height="12"/>
-        <image name="item1" width="81" height="82"/>
-        <image name="item1_selected" width="81" height="82"/>
-        <image name="item2" width="82" height="82"/>
-        <image name="item2_selected" width="82" height="82"/>
-        <image name="item3" width="82" height="82"/>
-        <image name="item3_selected" width="82" height="82"/>
-        <image name="item4" width="81" height="82"/>
-        <image name="item4_selected" width="81" height="82"/>
-        <image name="item5" width="81" height="80"/>
-        <image name="item5_selected" width="81" height="80"/>
-        <image name="item6" width="82" height="80"/>
-        <image name="item6_selected" width="82" height="80"/>
-        <image name="item7" width="82" height="80"/>
-        <image name="item7_selected" width="82" height="80"/>
-        <image name="item8" width="81" height="80"/>
-        <image name="item8_selected" width="81" height="80"/>
         <image name="menubutton" width="230" height="45"/>
     </resources>
 </document>

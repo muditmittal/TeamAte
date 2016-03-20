@@ -28,8 +28,6 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     @IBOutlet weak var menuItem3: UILabel!
     
     
-    var trayViewController: UIViewController!
-    var trayViewOriginalCenter: CGPoint!
     var viewOriginalCenter:CGPoint!
     
     // location variables
@@ -59,14 +57,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
 //        print("long:", location.coordinate.longitude)
         
         //fetchVenues(searchQuery)
-        
         locationManager.stopUpdatingLocation()
     }
     
-    
-//    func handleLabels(searchQuery: String){
-//        resultName.text = searchQuery
-//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
@@ -77,9 +70,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         
         //SOMETHING HERE
         
-        //query = searchString
+        //query = searchQuery
         
-        //print ("query:", searchString)
+        //print ("query:", searchQuery)
         
         // use location data
         
@@ -113,8 +106,6 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         
         
         let venueRequest = NSURLRequest(URL: venueUrl!)
-        
-        //print (venueUrl)
         
         NSURLConnection.sendAsynchronousRequest(venueRequest, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
             
@@ -232,9 +223,6 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                     }
                    
                 }
-                    
-                    
-                    
                 else {
                     // show error card or pass something up to container to show error card
                 }
@@ -307,9 +295,6 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                     }
                     
                 }
-                    
-                    
-                    
                 else {
                     // show error card or pass something up to container to show error card
                 }
@@ -346,7 +331,6 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                             let itemDictionary = menuItems[0][j][i] as! NSDictionary
                             let itemName = itemDictionary.valueForKeyPath("name") as! String
                             var itemDescription = ""
-                            
                             var itemString = ""
                             
                             // concatenate item name and item description stirng
@@ -355,10 +339,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                                 //itemString = itemName + " " + itemDescription
                                 itemString = itemName
                             }
-                            
-                            
+
                             // print (itemName)
-                            
                             // string match itemString for the query string
                             if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
                                 print ("menu2 query item: ", itemName)
@@ -382,9 +364,6 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                     }
                     
                 }
-                    
-                    
-                    
                 else {
                     // show error card or pass something up to container to show error card
                 }
@@ -396,34 +375,22 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     }
     
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func scrollViewDidEndDragging(scrollView: UIScrollView,
+        willDecelerate decelerate: Bool) {
+        if scrollView.contentOffset.y <= -100 {
+
+            delegate?.finishedDragCard(self, finished: true)
+        }
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        // This method is called as the user scrolls
     }
-    
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
     }
-    
-    func scrollViewDidEndDragging(scrollView: UIScrollView,
-        willDecelerate decelerate: Bool) {
-            // This method is called right as the user lifts their finger
-            if scrollView.contentOffset.y <= -100 {
-                delegate?.finishedDragCard(self, finished: true)
-                print ("finished dragging")
-                
-            }
-    }
-    
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        // This method is called when the scrollview finally stops scrolling.
-        
     }
-    
-    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
     
 }
