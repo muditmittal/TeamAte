@@ -117,29 +117,28 @@ class ContainerViewController: UIViewController, MenuVCDelegate, CardVCDelegate,
             homeViewController.currentLocation.textColor = UIColor.whiteColor()
             homeViewController.currentLocation.font = homeViewController.currentLocation.font.fontWithSize(12)
             homeViewController.closeButton.alpha = 1
-            }, completion: { (Bool) -> Void in
-            UIView.animateWithDuration(duration, animations: {
 
-                //3: If not, show a loader
-                let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
-                    type: .BallScaleRippleMultiple, color: UIColor(red:1, green:1, blue:1, alpha:1.0)
-                )
-                self.view.addSubview(activityIndicatorView)
-                activityIndicatorView.startAnimation()
-                let delay = duration * Double(NSEC_PER_SEC)
-                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                dispatch_after(time, dispatch_get_main_queue()) {
-                    activityIndicatorView.stopAnimation()
-                }
+            //3: Show loader
+            let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
+                type: .BallScaleRippleMultiple, color: UIColor(red:1, green:1, blue:1, alpha:1.0)
+            )
+            self.view.addSubview(activityIndicatorView)
+            activityIndicatorView.startAnimation()
                 
-                }, completion: { (Bool) -> Void in
-                    UIView.animateWithDuration(duration, animations: {
+            //4: Dismiss loader
+            let delay = 1.2 * duration * Double(NSEC_PER_SEC)
+            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                activityIndicatorView.stopAnimation()
+            }
+                
+            }, completion: { (Bool) -> Void in
+                UIView.animateWithDuration(duration, delay: duration, options: [], animations: {
+                    
+                    //6: Slide-up result cardView
+                    self.cardView.center = self.cardViewOriginalCenter
+                    }, completion: { (Bool) -> Void in
                         
-                        //6: Slide-up result cardView
-                        self.cardView.center = self.cardViewOriginalCenter
-                        }, completion: { (Bool) -> Void in
-                            
-                })
             })
         })
     }
@@ -161,32 +160,29 @@ class ContainerViewController: UIViewController, MenuVCDelegate, CardVCDelegate,
 
             //1: Slide-down current cardView
             self.cardView.center.y = self.cardViewOriginalCenter.y + screenHeight
+            
+            //2: Show loader
+            let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
+                type: .BallScaleRippleMultiple, color: UIColor(red:1, green:1, blue:1, alpha:1.0)
+            )
+            self.view.addSubview(activityIndicatorView)
+            activityIndicatorView.startAnimation()
 
-            }, completion: { (Bool) -> Void in
-                UIView.animateWithDuration(duration, animations: {
+            //3: Dismiss loader
+            let delay = 1.2 * duration * Double(NSEC_PER_SEC)
+            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                activityIndicatorView.stopAnimation()
+            }
 
-                    //2: Show loader
-                    let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
-                        type: .BallScaleRippleMultiple, color: UIColor(red:1, green:1, blue:1, alpha:1.0)
-                    )
-                    self.view.addSubview(activityIndicatorView)
-                    activityIndicatorView.startAnimation()
-                    //temporary delay to dismiss loader
-                    let delay = duration * Double(NSEC_PER_SEC)
-                    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                    dispatch_after(time, dispatch_get_main_queue()) {
-                        activityIndicatorView.stopAnimation()
-                    }
+        }, completion: { (Bool) -> Void in
+            UIView.animateWithDuration(duration, delay: duration, options: [], animations: {
 
-                    }, completion: { (Bool) -> Void in
-                        UIView.animateWithDuration(duration, animations: {
-
-                            //5: Slide-up new cardView
-                            self.cardView.center = self.cardViewOriginalCenter
-                            }, completion: { (Bool) -> Void in
-                                
-                        })
-                })
+                //5: Slide-up new cardView
+                self.cardView.center = self.cardViewOriginalCenter
+                }, completion: { (Bool) -> Void in
+                    
+            })
         })
     }
     
