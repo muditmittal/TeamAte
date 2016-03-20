@@ -62,6 +62,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E9CA07D1C9F2D8C00FBC85A /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				AE56BFDE1C86DEB200A5AFCB /* AppDelegate.swift */,
+				3E9CA07B1C9E202400FBC85A /* MenuVCDelegate.swift */,
+				AE0EA4391C9BCEE200067CBE /* HomeVCDelegate.swift */,
+				AE0EA4311C9B1F6E00067CBE /* CardVCDelegate.swift */,
+				86C6F6451C9CAF0A000F2A6B /* ContainerVCDelegate.swift */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
 		631202211C94E678DB867EAE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,10 +103,11 @@
 		AE2FCB511C878F8400BF6632 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AE0EA3FE1C92862900067CBE /* CardViewController.swift */,
-				3E9CA0791C9E16B500FBC85A /* MenuViewController.swift */,
 				AE4506671C90C56C005B3138 /* ContainerViewController.swift */,
+				3E9CA0791C9E16B500FBC85A /* MenuViewController.swift */,
+				AE0EA3FE1C92862900067CBE /* CardViewController.swift */,
 				AE2FCB4F1C878F7D00BF6632 /* HomeViewController.swift */,
+				AE56BFE01C86DEB300A5AFCB /* ViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -120,19 +133,14 @@
 		AE56BFDD1C86DEB200A5AFCB /* CraveApp */ = {
 			isa = PBXGroup;
 			children = (
-				AE0EA4371C9BC81100067CBE /* NVActivityIndicatorView */,
-				AE56BFDE1C86DEB200A5AFCB /* AppDelegate.swift */,
-				AE56BFE01C86DEB300A5AFCB /* ViewController.swift */,
 				AE56BFE21C86DEB300A5AFCB /* Main.storyboard */,
 				AE2FCB511C878F8400BF6632 /* ViewControllers */,
 				AE0EA3FD1C92847300067CBE /* Transition Files */,
+				3E9CA07D1C9F2D8C00FBC85A /* Delegates */,
 				AE56BFE51C86DEB300A5AFCB /* Assets.xcassets */,
+				AE0EA4371C9BC81100067CBE /* NVActivityIndicatorView */,
 				AE56BFE71C86DEB300A5AFCB /* LaunchScreen.storyboard */,
 				AE56BFEA1C86DEB300A5AFCB /* Info.plist */,
-				3E9CA07B1C9E202400FBC85A /* MenuVCDelegate.swift */,
-				AE0EA4391C9BCEE200067CBE /* HomeVCDelegate.swift */,
-				AE0EA4311C9B1F6E00067CBE /* CardVCDelegate.swift */,
-				86C6F6451C9CAF0A000F2A6B /* ContainerVCDelegate.swift */,
 			);
 			path = CraveApp;
 			sourceTree = "<group>";
