@@ -175,7 +175,6 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             print (venueDistances[0])
             
             if venueMobileUrl.count != 0{
-                print(venueMobileUrl[0].description)
                 menuURL = venueMobileUrl[0].description
             }
             
@@ -468,12 +467,15 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             // let results = responseData["results"] as [String:AnyObject]
             // let imageURL = results["unescapedUrl"] as String
             let imageURL = imageJson.valueForKeyPath("data.images.standard_resolution.url") as! NSArray
-            
+            print(imageURL)
+            //if no image url, show default image
+            if imageURL.count != 0 {
             //print (imageURL[0].description)
-            let url = NSURL(string: imageURL[0].description)
-            let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
-            self.resultPhoto.image = UIImage(data: data!)
-            self.resultPhoto.contentMode = .ScaleAspectFill
+                let url = NSURL(string: imageURL[0].description)
+                let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
+                self.resultPhoto.image = UIImage(data: data!)
+                self.resultPhoto.contentMode = .ScaleAspectFill
+            }
         }
     }
     func scrollViewDidScroll(scrollView: UIScrollView) {
