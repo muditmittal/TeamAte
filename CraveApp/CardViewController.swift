@@ -467,7 +467,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             // let results = responseData["results"] as [String:AnyObject]
             // let imageURL = results["unescapedUrl"] as String
             let imageURL = imageJson.valueForKeyPath("data.images.standard_resolution.url") as! NSArray
-            print(imageURL)
+            
             //if no image url, show default image
             if imageURL.count != 0 {
             //print (imageURL[0].description)
