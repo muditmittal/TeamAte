@@ -14,7 +14,7 @@ var searchQueryIndex: Int!
 class MenuViewController: UIViewController {
     
     var duration = 0.4
-
+    
     var homeposition: CGPoint!
     var buttonpositions: [CGPoint]!
     var labelpositions: [CGPoint]!
@@ -28,7 +28,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var craveLogo: UIImageView!
     @IBOutlet weak var menuBackground: UIImageView!
     @IBOutlet weak var cancelButton: UIButton!
-
+    
     @IBOutlet weak var Button1: UIButton!
     @IBOutlet weak var Button2: UIButton!
     @IBOutlet weak var Button3: UIButton!
@@ -38,7 +38,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var Button7: UIButton!
     @IBOutlet weak var Button8: UIButton!
     @IBOutlet weak var Button9: UIButton!
-
+    
     @IBOutlet weak var Label1: UILabel!
     @IBOutlet weak var Label2: UILabel!
     @IBOutlet weak var Label3: UILabel!
@@ -48,13 +48,13 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var Label7: UILabel!
     @IBOutlet weak var Label8: UILabel!
     @IBOutlet weak var Label9: UILabel!
-
+    
     var selectedButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         buttons = [Button1, Button2, Button3, Button4, Button5, Button6, Button7, Button8, Button9]
         labels = [Label1, Label2, Label3, Label4, Label5, Label6, Label7, Label8, Label9]
         
@@ -69,14 +69,14 @@ class MenuViewController: UIViewController {
             button.superview!.bringSubviewToFront(button)
         }
     }
-
+    
     
     override func viewWillAppear(animated: Bool) {
         
         let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
         blurredView.frame = menuBackground.bounds
         menuBackground.addSubview(blurredView)
-
+        
         craveLogo.alpha = 0
         menuBackground.alpha = 0
         cancelButton.center = homeposition
@@ -86,24 +86,24 @@ class MenuViewController: UIViewController {
             labels[index].center = homeposition
             labels[index].alpha = 0
         }
-
+        
     }
     
     override func viewDidAppear(animated: Bool) {
         
         UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
             initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
-            self.craveLogo.alpha = 1
-            self.menuBackground.alpha = 1
-        }, completion: nil)
+                self.craveLogo.alpha = 1
+                self.menuBackground.alpha = 1
+            }, completion: nil)
         for index in 0...8 {
             UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
                 initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
-                self.buttons[index].center = self.buttonpositions[index]
-                self.buttons[index].transform = CGAffineTransformMakeScale(1, 1)
-                self.labels[index].center = self.labelpositions[index]
-                self.labels[index].alpha = 1
-            }, completion: nil)
+                    self.buttons[index].center = self.buttonpositions[index]
+                    self.buttons[index].transform = CGAffineTransformMakeScale(1, 1)
+                    self.labels[index].center = self.labelpositions[index]
+                    self.labels[index].alpha = 1
+                }, completion: nil)
         }
     }
     
@@ -125,10 +125,10 @@ class MenuViewController: UIViewController {
         dismissViewControllerAnimated(true, completion: nil)
         
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
 }
