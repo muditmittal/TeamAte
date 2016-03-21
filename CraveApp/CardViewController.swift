@@ -94,11 +94,11 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             self.locationManager!.distanceFilter = 50
             self.locationManager!.startUpdatingLocation()
         }
-        getImage()
         
     }
     
     func fetchVenues(searchQuery: String) {
+        
         // venue information
         lat = 37.755308
         long = -122.420972
@@ -112,7 +112,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         matchedMenuDescriptions = []
         let venueUrl = NSURL(string:"https://api.foursquare.com/v2/venues/search?ll=\(lat),\(long)&query=\(searchQuery)&client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
         
-        print(venueUrl)
+        //print(venueUrl)
         
         let venueRequest = NSURLRequest(URL: venueUrl!)
         
@@ -156,15 +156,20 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             print(venueId0)
             
             self.resultName.text = venueName0
+            //trimming whitespace of venue to pass it in as hashtag
+            let trimmedVenueName = venueName0.stringByReplacingOccurrencesOfString(" ", withString: "")
+            
+            //calling instagram api
+            self.getImage(trimmedVenueName)
             print (venueDistances[0])
             
             if venueMobileUrl.count != 0{
                 print(venueMobileUrl[0].description)
                 menuURL = venueMobileUrl[0].description
             }
+            
             //setting phone number
             self.resultPhone.text = venuePhoneNumber[0].description
-            
             
             let distanceInMeters = venueDistances[0] as! Double
             var distanceInMiles = (distanceInMeters / 1609.34)
@@ -409,9 +414,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 delegate?.finishedDragCard(self, finished: true)
             }
     }
-    func getImage() {
+    func getImage(hashtag: String) {
         var access_token = "184004514.1677ed0.04d3543160674f6b87a47393cfe270da"
-        var hashtag = "samovar"
         let instaUrl = NSURL(string: "https://api.instagram.com/v1/tags/\(hashtag)/media/recent?access_token=\(access_token)")
         let request = NSURLRequest(URL: instaUrl!)
         
