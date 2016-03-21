@@ -19,7 +19,7 @@
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="6W5-KZ-swV" userLabel="listingScrollView">
                                         <rect key="frame" x="10" y="0.0" width="300" height="641"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" id="peX-qZ-8HF" userLabel="listingInfo">
                                                 <rect key="frame" x="0.0" y="180" width="300" height="560"/>
@@ -38,23 +38,23 @@
                                                         <subviews>
                                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="heart copy" id="1VU-cA-YQp" userLabel="heart1">
                                                                 <rect key="frame" x="0.0" y="4" width="14" height="12"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             </imageView>
                                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="heart copy" id="Om0-tp-cYa" userLabel="heart2">
                                                                 <rect key="frame" x="17" y="4" width="14" height="12"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             </imageView>
                                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="heart copy" id="3vL-XT-1z5" userLabel="heart3">
                                                                 <rect key="frame" x="34" y="4" width="14" height="12"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             </imageView>
                                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="heart copy" id="sbw-2n-vhH" userLabel="heart4">
                                                                 <rect key="frame" x="51" y="4" width="14" height="12"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             </imageView>
                                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="heart copy" id="2bR-m9-PDh" userLabel="heart5">
                                                                 <rect key="frame" x="68" y="4" width="14" height="12"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -184,7 +184,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" id="60Z-Zm-nSu" userLabel="backBar">
+                            <view contentMode="scaleToFill" id="60Z-Zm-nSu" userLabel="locationBar">
                                 <rect key="frame" x="10" y="10" width="300" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -202,7 +202,7 @@
                                 <rect key="frame" x="120" y="249" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
-                            <view contentMode="scaleToFill" id="yTj-lQ-Bhc" userLabel="cardView">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" id="yTj-lQ-Bhc" userLabel="cardView">
                                 <rect key="frame" x="0.0" y="55" width="320" height="513"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
@@ -241,9 +241,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="907A2E33-4437-415B-82C2-7F974830D236" id="1Qc-sH-cOb">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="DADBEBDB-3C33-4BA7-BD48-26A44B3AF707" id="1Qc-sH-cOb">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" id="Fw3-eB-Jpa" userLabel="menuItems">
                                 <rect key="frame" x="0.0" y="55" width="320" height="513"/>
@@ -251,7 +251,7 @@
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="Crave" id="j78-p5-h6m">
                                         <rect key="frame" x="134" y="20" width="53" height="20"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tea" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BX9-98-sSd">
                                         <rect key="frame" x="34" y="163" width="52" height="21"/>
@@ -431,7 +431,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="907A2E33-4437-415B-82C2-7F974830D236" width="320" height="568">
+        <image name="Crave" width="53" height="20"/>
+        <image name="DADBEBDB-3C33-4BA7-BD48-26A44B3AF707" width="320" height="568">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -12621,7 +12622,6 @@ lAALJpkACyabAAsmnQALJqIACyaqAAsmrQALJrIACya6AAsmvQALJs8ACybSAAsm1wAAAAAAAAQBAAAA
 AAAAAD4AAAAAAAAAAAAAAAAACybZA
 </mutableData>
         </image>
-        <image name="Crave" width="53" height="20"/>
         <image name="cancelbutton" width="62" height="62"/>
         <image name="coverphoto" width="300" height="180"/>
         <image name="delivery" width="230" height="45"/>
