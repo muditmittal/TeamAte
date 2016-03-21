@@ -31,7 +31,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     @IBOutlet weak var menuItem3: UILabel!
     @IBOutlet var menuItemHeader: UILabel!
     @IBOutlet var menuButton: UIButton!
-    
+    @IBOutlet var buttonView: UIView!
     
     
     var viewOriginalCenter:CGPoint!
@@ -94,7 +94,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             self.locationManager!.distanceFilter = 50
             self.locationManager!.startUpdatingLocation()
         }
-        
+        getImage()
         
     }
     
@@ -153,7 +153,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             
             //store venueMobile URL
             print(venueMobileUrl[0])
-            
+            print(venueId0)
             
             self.resultName.text = venueName0
             print (venueDistances[0])
@@ -162,7 +162,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 print(venueMobileUrl[0].description)
                 menuURL = venueMobileUrl[0].description
             }
-            
+            //setting phone number
             self.resultPhone.text = venuePhoneNumber[0].description
             
             
@@ -244,6 +244,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 else {
                     // if there is no menu
                     self.menuItemHeader.alpha = 0
+                    //offsetting when favorites aren't available
+                    self.buttonView.center.y -= 142
+                    self.scrollView.contentSize = CGSizeMake(300, 628)
                 }
             }
             
@@ -397,8 +400,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         UIApplication.sharedApplication().openURL(NSURL(string: menuURL)!)
         print("in full menu")
     }
-
-
+    
     
     func scrollViewDidEndDragging(scrollView: UIScrollView,
         willDecelerate decelerate: Bool) {
@@ -407,7 +409,26 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 delegate?.finishedDragCard(self, finished: true)
             }
     }
-    
+    func getImage() {
+        var access_token = "184004514.1677ed0.04d3543160674f6b87a47393cfe270da"
+        var hashtag = "samovar"
+        let instaUrl = NSURL(string: "https://api.instagram.com/v1/tags/\(hashtag)/media/recent?access_token=\(access_token)")
+        let request = NSURLRequest(URL: instaUrl!)
+        
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()){ (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+            let imageJson = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+            
+            // let results = responseData["results"] as [String:AnyObject]
+            // let imageURL = results["unescapedUrl"] as String
+            let imageURL = imageJson.valueForKeyPath("data.images.standard_resolution.url") as! NSArray
+            
+            //print (imageURL[0].description)
+            let url = NSURL(string: imageURL[0].description)
+            let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
+            self.resultPhoto.image = UIImage(data: data!)
+            self.resultPhoto.contentMode = .ScaleAspectFill
+        }
+    }
     func scrollViewDidScroll(scrollView: UIScrollView) {
     }
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
