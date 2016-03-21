@@ -36,33 +36,6 @@
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" id="l3P-xm-nDY" userLabel="listingRating">
-                                                        <rect key="frame" x="105" y="77" width="130" height="20"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <subviews>
-                                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="heart copy" id="1VU-cA-YQp" userLabel="heart1">
-                                                                <rect key="frame" x="0.0" y="4" width="14" height="12"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                            </imageView>
-                                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="heart copy" id="Om0-tp-cYa" userLabel="heart2">
-                                                                <rect key="frame" x="17" y="4" width="14" height="12"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                            </imageView>
-                                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="heart copy" id="3vL-XT-1z5" userLabel="heart3">
-                                                                <rect key="frame" x="34" y="4" width="14" height="12"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                            </imageView>
-                                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="heart copy" id="sbw-2n-vhH" userLabel="heart4">
-                                                                <rect key="frame" x="51" y="4" width="14" height="12"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                            </imageView>
-                                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="heart copy" id="2bR-m9-PDh" userLabel="heart5">
-                                                                <rect key="frame" x="68" y="4" width="14" height="12"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                            </imageView>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </view>
                                                     <view contentMode="scaleToFill" id="BCn-RT-Sw9" userLabel="menu">
                                                         <rect key="frame" x="35" y="119" width="230" height="142"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -144,6 +117,13 @@
                                                             <action selector="onFullMenuButtonClick:" destination="gR7-o5-0Ae" eventType="touchUpInside" id="NWB-mC-64e"/>
                                                         </connections>
                                                     </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="111-111-1111" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kup-x7-Dqo">
+                                                        <rect key="frame" x="64" y="77" width="180" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </view>
@@ -166,9 +146,9 @@
                         <outlet property="resultDistance" destination="nnB-Ye-eQ7" id="8BL-W4-aiJ"/>
                         <outlet property="resultMenu" destination="BCn-RT-Sw9" id="NTy-5p-vOs"/>
                         <outlet property="resultName" destination="sVI-66-tZB" id="lJv-YG-neU"/>
+                        <outlet property="resultPhone" destination="Kup-x7-Dqo" id="1YE-U0-IMH"/>
                         <outlet property="resultPhoto" destination="1la-F7-lJF" id="Jg4-qu-izN"/>
                         <outlet property="resultPrice" destination="Bry-lQ-jaV" id="Xdc-Ho-e1E"/>
-                        <outlet property="resultRating" destination="l3P-xm-nDY" id="bm2-Y0-eAa"/>
                         <outlet property="scrollView" destination="6W5-KZ-swV" id="hGw-bi-EpQ"/>
                     </connections>
                 </viewController>
@@ -456,7 +436,6 @@
         <image name="food7" width="82" height="82"/>
         <image name="food8" width="82" height="82"/>
         <image name="food9" width="82" height="82"/>
-        <image name="heart copy" width="14" height="12"/>
         <image name="menubutton" width="230" height="45"/>
     </resources>
 </document>

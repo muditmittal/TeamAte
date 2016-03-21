@@ -23,6 +23,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     @IBOutlet weak var resultPrice: UILabel!
     @IBOutlet weak var resultDistance: UILabel!
     @IBOutlet weak var resultDescription: UILabel!
+    @IBOutlet var resultPhone: UILabel!
     
     @IBOutlet weak var resultMenu: UIView!
     @IBOutlet weak var menuItem1: UILabel!
@@ -130,7 +131,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             let venueLocations = venueJson.valueForKeyPath("response.venues.location") as! [NSDictionary]
             let venueDistances = venueJson.valueForKeyPath("response.venues.location.distance") as! NSArray
             let venueMobileUrl = venueJson.valueForKeyPath("response.venues.menu.mobileUrl") as! NSArray
-           
+            let venuePhoneNumber = venueJson.valueForKeyPath("response.venues.contact.formattedPhone") as! NSArray
             
             
             
@@ -161,6 +162,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 print(venueMobileUrl[0].description)
                 menuURL = venueMobileUrl[0].description
             }
+            
+            self.resultPhone.text = venuePhoneNumber[0].description
             
             
             let distanceInMeters = venueDistances[0] as! Double
