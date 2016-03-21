@@ -144,11 +144,12 @@ class MenuViewController: UIViewController {
                     //hide all buttons except the one that is pressed
                     if index == sender.tag {
                         self.buttons[index].alpha = 1
+                        
                         self.buttons[index].selected = true
                         searchQuery = searchQueries[index]
 //                        self.delegate?.searchFor(self, searchQuery: searchQueries[index])
                     } else {
-                        self.buttons[index].alpha = 0
+                        self.buttons[index].alpha = 1
                         self.buttons[index].selected = false
                     }
                     

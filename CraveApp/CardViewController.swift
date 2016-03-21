@@ -10,6 +10,8 @@ import UIKit
 import MapKit
 //import NVActivityIndicatorView
 
+var menuURL = ""
+
 class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate {
     
     weak var delegate: CardVCDelegate?
@@ -26,6 +28,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     @IBOutlet weak var menuItem1: UILabel!
     @IBOutlet weak var menuItem2: UILabel!
     @IBOutlet weak var menuItem3: UILabel!
+    @IBOutlet var menuItemHeader: UILabel!
+    @IBOutlet var menuButton: UIButton!
+    
     
     
     var viewOriginalCenter:CGPoint!
@@ -51,10 +56,10 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         var location = locations[0] as! CLLocation
         
-//        lat = location.coordinate.latitude
-//        long = location.coordinate.longitude
-//        print("lat:", location.coordinate.latitude)
-//        print("long:", location.coordinate.longitude)
+        //        lat = location.coordinate.latitude
+        //        long = location.coordinate.longitude
+        //        print("lat:", location.coordinate.latitude)
+        //        print("long:", location.coordinate.longitude)
         
         //fetchVenues(searchQuery)
         locationManager.stopUpdatingLocation()
@@ -62,6 +67,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //adding action to See Menu Button
+        menuButton.addTarget(self, action: "onFullMenuButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
         scrollView.delegate = self
         scrollView.contentSize = CGSizeMake(300, 770)
         viewOriginalCenter = CGPoint(x: self.fullCardView.center.x, y: self.fullCardView.center.y)
@@ -87,7 +94,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             self.locationManager!.startUpdatingLocation()
         }
         
-       
+        
     }
     
     func fetchVenues(searchQuery: String) {
@@ -96,14 +103,15 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         long = -122.420972
         
         //reset menu items
-        self.menuItem1.text = "N/A"
-        self.menuItem2.text = "N/A"
-        self.menuItem3.text = "N/A"
+        self.menuItem1.text = ""
+        self.menuItem2.text = ""
+        self.menuItem3.text = ""
         
         matchedMenuItems = []
         matchedMenuDescriptions = []
         let venueUrl = NSURL(string:"https://api.foursquare.com/v2/venues/search?ll=\(lat),\(long)&query=\(searchQuery)&client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
         
+        print(venueUrl)
         
         let venueRequest = NSURLRequest(URL: venueUrl!)
         
@@ -121,8 +129,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             let venueNames = venueJson.valueForKeyPath("response.venues.name") as! [String]
             let venueLocations = venueJson.valueForKeyPath("response.venues.location") as! [NSDictionary]
             let venueDistances = venueJson.valueForKeyPath("response.venues.location.distance") as! NSArray
+            let venueMobileUrl = venueJson.valueForKeyPath("response.venues.menu.mobileUrl") as! NSArray
+           
             
-//            print (self.data)
             
             
             // store venueIds
@@ -141,10 +150,18 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             let venueName4 = venueNames[4]
             let venueName5 = venueNames[5]
             
-            print(venueName0)
-            self.resultName.text = venueName0
+            //store venueMobile URL
+            print(venueMobileUrl[0])
             
+            
+            self.resultName.text = venueName0
             print (venueDistances[0])
+            
+            if venueMobileUrl.count != 0{
+                print(venueMobileUrl[0].description)
+                menuURL = venueMobileUrl[0].description
+            }
+            
             
             let distanceInMeters = venueDistances[0] as! Double
             var distanceInMiles = (distanceInMeters / 1609.34)
@@ -196,8 +213,6 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                                 //itemString = itemName + " " + itemDescription
                                 itemString = itemName
                             }
-
-                            
                             // print (itemName)
                             
                             // string match itemString for the query string
@@ -209,22 +224,23 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                         }
                     }
                     if self.matchedMenuItems.count != 0 {
-                        
-                        if self.matchedMenuItems.count == 3 {
+                        print(self.matchedMenuItems.count)
+                        if self.matchedMenuItems.count > 2 {
                             self.menuItem1.text = self.matchedMenuItems[0]
                             self.menuItem2.text = self.matchedMenuItems[1]
                             self.menuItem3.text = self.matchedMenuItems[2]
                         } else if self.matchedMenuItems.count == 2 {
                             self.menuItem1.text = self.matchedMenuItems[0]
                             self.menuItem2.text = self.matchedMenuItems[1]
-                        } else {
+                        } else if self.matchedMenuItems.count == 1 {
                             self.menuItem1.text = self.matchedMenuItems[0]
                         }
                     }
-                   
+                    
                 }
                 else {
-                    // show error card or pass something up to container to show error card
+                    // if there is no menu
+                    self.menuItemHeader.alpha = 0
                 }
             }
             
@@ -339,7 +355,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                                 //itemString = itemName + " " + itemDescription
                                 itemString = itemName
                             }
-
+                            
                             // print (itemName)
                             // string match itemString for the query string
                             if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
@@ -369,18 +385,24 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 }
             }
             
-
+            
         }
         
     }
     
+    @IBAction func onFullMenuButtonClick(sender: UIButton) {
+        UIApplication.sharedApplication().openURL(NSURL(string: menuURL)!)
+        print("in full menu")
+    }
+
+
     
     func scrollViewDidEndDragging(scrollView: UIScrollView,
         willDecelerate decelerate: Bool) {
-        if scrollView.contentOffset.y <= -100 {
-
-            delegate?.finishedDragCard(self, finished: true)
-        }
+            if scrollView.contentOffset.y <= -100 {
+                
+                delegate?.finishedDragCard(self, finished: true)
+            }
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
