@@ -32,6 +32,10 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     @IBOutlet var menuItemHeader: UILabel!
     @IBOutlet var menuButton: UIButton!
     @IBOutlet var buttonView: UIView!
+    var buttonView3objects: CGPoint!
+    var buttonView2objects: CGPoint!
+    var buttonView1object: CGPoint!
+    var buttonView0objects: CGPoint!
     
     
     var viewOriginalCenter:CGPoint!
@@ -71,16 +75,18 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         //adding action to See Menu Button
         menuButton.addTarget(self, action: "onFullMenuButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
         scrollView.delegate = self
-        scrollView.contentSize = CGSizeMake(300, 770)
+        scrollView.contentSize = CGSizeMake(300, 800)
         viewOriginalCenter = CGPoint(x: self.fullCardView.center.x, y: self.fullCardView.center.y)
         
+
         data = []
         
-        //SOMETHING HERE
-        
-        //query = searchQuery
-        
-        //print ("query:", searchQuery)
+        //setting button view offsets
+        buttonView3objects = CGPoint(x: buttonView.center.x, y: 365)
+        buttonView2objects = CGPoint(x: buttonView.center.x, y: 325)
+        buttonView1object = CGPoint(x: buttonView.center.x, y: 300)
+        buttonView0objects = CGPoint(x: buttonView.center.x, y: 220)
+        self.buttonView.center = self.buttonView3objects
         
         // use location data
         
@@ -152,12 +158,17 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             let venueName5 = venueNames[5]
             
             //store venueMobile URL
-            print(venueMobileUrl[0])
+            //print(venueMobileUrl[0])
             print(venueId0)
             
             self.resultName.text = venueName0
             //trimming whitespace of venue to pass it in as hashtag
-            let trimmedVenueName = venueName0.stringByReplacingOccurrencesOfString(" ", withString: "")
+            var charSet = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ").invertedSet
+
+            var takeoutnonalpha = venueName0.componentsSeparatedByCharactersInSet(charSet).joinWithSeparator("")
+            let trimmedVenueName = takeoutnonalpha.stringByReplacingOccurrencesOfString(" ", withString: "")
+            
+            print(trimmedVenueName)
             
             //calling instagram api
             self.getImage(trimmedVenueName)
@@ -197,8 +208,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 
                 let menuCount0 = menuJson0.valueForKeyPath("response.menu.menus.count") as! Int
                 //print(menuJson0)
+                
                 if menuCount0 > 0 {
-                    print("IN MENUCOUNT")
                     // if there is a menu, store the items in an array
                     
                     let menuItems = menuJson0.valueForKeyPath("response.menu.menus.items.entries.items.entries.items") as! NSArray
@@ -234,25 +245,36 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                     if self.matchedMenuItems.count != 0 {
                         print(self.matchedMenuItems.count)
                         if self.matchedMenuItems.count > 2 {
+                            self.menuItemHeader.alpha = 1
                             self.menuItem1.text = self.matchedMenuItems[0]
                             self.menuItem2.text = self.matchedMenuItems[1]
                             self.menuItem3.text = self.matchedMenuItems[2]
+                            self.buttonView.center = self.buttonView3objects
+                            print("3 \(self.buttonView.center)")
                         } else if self.matchedMenuItems.count == 2 {
                             self.menuItem1.text = self.matchedMenuItems[0]
                             self.menuItem2.text = self.matchedMenuItems[1]
+                            self.buttonView.center = self.buttonView2objects
                         } else if self.matchedMenuItems.count == 1 {
                             self.menuItem1.text = self.matchedMenuItems[0]
+                            self.buttonView.center = self.buttonView1object
+                            //self.scrollView.contentSize = CGSizeMake(300, 658)
                         }
                     }
                     
                 }
-                else {
+                else  {
+                    print("no menu")
                     // if there is no menu
-                    self.menuItemHeader.alpha = 0
+                    //self.menuItemHeader.alpha = 0
                     //offsetting when favorites aren't available
-                    self.buttonView.center.y -= 142
-                    self.scrollView.contentSize = CGSizeMake(300, 628)
+                    self.buttonView.center = self.buttonView0objects
+                    //self.scrollView.contentSize = CGSizeMake(300, 628)
+                    print("0 \(self.buttonView.center)")
+                    
                 }
+                print(menuCount0)
+                
             }
             
             // menu information 1
@@ -309,21 +331,31 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                     }
                     if self.matchedMenuItems.count != 0 {
                         
-                        if self.matchedMenuItems.count == 3 {
+                        if self.matchedMenuItems.count > 2 {
+                            self.menuItemHeader.alpha = 1
                             self.menuItem1.text = self.matchedMenuItems[0]
                             self.menuItem2.text = self.matchedMenuItems[1]
                             self.menuItem3.text = self.matchedMenuItems[2]
+                            self.buttonView.center = self.buttonView3objects
                         } else if self.matchedMenuItems.count == 2 {
                             self.menuItem1.text = self.matchedMenuItems[0]
                             self.menuItem2.text = self.matchedMenuItems[1]
-                        } else {
+                            self.buttonView.center = self.buttonView2objects
+                            
+                        } else if self.matchedMenuItems.count == 1 {
                             self.menuItem1.text = self.matchedMenuItems[0]
+                            self.buttonView.center = self.buttonView1object
+                            //self.scrollView.contentSize = CGSizeMake(300, 658)
                         }
                     }
                     
                 }
-                else {
-                    // show error card or pass something up to container to show error card
+                else if menuCount1 == 0 {
+                    // if there is no menu
+                    self.menuItemHeader.alpha = 0
+                    //offsetting when favorites aren't available
+                    self.buttonView.center = self.buttonView0objects
+                    //self.scrollView.contentSize = CGSizeMake(300, 628)
                 }
             }
             
@@ -344,7 +376,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 let menuCount2 = menuJson2.valueForKeyPath("response.menu.menus.count") as! Int
                 //print(menuJson0)
                 if menuCount2 > 0 {
-                    print("IN MENUCOUNT")
+                    print("IN MENUCOUNT2")
                     // if there is a menu, store the items in an array
                     
                     let menuItems = menuJson2.valueForKeyPath("response.menu.menus.items.entries.items.entries.items") as! NSArray
@@ -378,21 +410,32 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                     }
                     if self.matchedMenuItems.count != 0 {
                         
-                        if self.matchedMenuItems.count == 3 {
+                        if self.matchedMenuItems.count > 2 {
                             self.menuItem1.text = self.matchedMenuItems[0]
                             self.menuItem2.text = self.matchedMenuItems[1]
                             self.menuItem3.text = self.matchedMenuItems[2]
+                            self.buttonView.center = self.buttonView3objects
+                            self.menuItemHeader.alpha = 1
+                            
                         } else if self.matchedMenuItems.count == 2 {
+                            self.menuItemHeader.alpha = 1
                             self.menuItem1.text = self.matchedMenuItems[0]
                             self.menuItem2.text = self.matchedMenuItems[1]
-                        } else {
+                            self.buttonView.center = self.buttonView2objects
+                        } else if self.matchedMenuItems.count == 1 {
                             self.menuItem1.text = self.matchedMenuItems[0]
+                            self.buttonView.center = self.buttonView1object
+                            //self.scrollView.contentSize = CGSizeMake(300, 658)
                         }
                     }
                     
                 }
-                else {
-                    // show error card or pass something up to container to show error card
+                else if menuCount2 == 0 {
+                    // if there is no menu
+                    self.menuItemHeader.alpha = 0
+                    //offsetting when favorites aren't available
+                    self.buttonView.center = self.buttonView0objects
+                    //self.scrollView.contentSize = CGSizeMake(300, 628)
                 }
             }
             
