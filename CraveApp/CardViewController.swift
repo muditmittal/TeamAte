@@ -105,8 +105,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     func fetchVenues(searchQuery: String) {
         
         // venue information
-        lat = 37.755308
-        long = -122.420972
+//        lat = 37.755308
+//        long = -122.420972
 
         
         //reset menu items
