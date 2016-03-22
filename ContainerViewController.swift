@@ -100,19 +100,19 @@ class ContainerViewController: UIViewController, CardVCDelegate {
         UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
             initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
                 
-//                //2: Show loader
-//                let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
-//                    type: .BallScaleRippleMultiple, color: UIColor(red:1, green:1, blue:1, alpha:1.0)
-//                )
-//                self.view.addSubview(activityIndicatorView)
-//                activityIndicatorView.startAnimation()
-//                
-//                //3: Dismiss loader
-//                let delay = 1.2 * duration * Double(NSEC_PER_SEC)
-//                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-//                dispatch_after(time, dispatch_get_main_queue()) {
-//                    activityIndicatorView.stopAnimation()
-//                }
+                //2: Show loader
+                let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
+                    type: .BallScaleRippleMultiple, color: UIColor(red:1, green:1, blue:1, alpha:1.0)
+                )
+                self.view.addSubview(activityIndicatorView)
+                activityIndicatorView.startAnimation()
+                
+                //3: Dismiss loader
+                let delay = 1.2 * duration * Double(NSEC_PER_SEC)
+                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                dispatch_after(time, dispatch_get_main_queue()) {
+                    activityIndicatorView.stopAnimation()
+                }
                 
             }, completion: { (Bool) -> Void in
                 UIView.animateWithDuration(duration, delay: duration, options: [], animations: {
@@ -145,19 +145,19 @@ class ContainerViewController: UIViewController, CardVCDelegate {
                 //1: Slide-down current cardView
                 self.cardView.center.y = self.cardViewOriginalCenter.y + screenHeight
                 
-//                //3: Show loader
-//                let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
-//                    type: .BallScaleRippleMultiple, color: UIColor(red:1, green:1, blue:1, alpha:1.0)
-//                )
-//                self.view.addSubview(activityIndicatorView)
-//                activityIndicatorView.startAnimation()
-//                
-//                //4: Dismiss loader
-//                let delay = 1.2 * duration * Double(NSEC_PER_SEC)
-//                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-//                dispatch_after(time, dispatch_get_main_queue()) {
-//                    activityIndicatorView.stopAnimation()
-//                }
+                //3: Show loader
+                let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
+                    type: .BallScaleRippleMultiple, color: UIColor(red:1, green:1, blue:1, alpha:1.0)
+                )
+                self.view.addSubview(activityIndicatorView)
+                activityIndicatorView.startAnimation()
+                
+                //4: Dismiss loader
+                let delay = 1.2 * duration * Double(NSEC_PER_SEC)
+                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                dispatch_after(time, dispatch_get_main_queue()) {
+                    activityIndicatorView.stopAnimation()
+                }
                 
             }, completion: { (Bool) -> Void in
                 UIView.animateWithDuration(duration, delay: duration, options: [], animations: {
