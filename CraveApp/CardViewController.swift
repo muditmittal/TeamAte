@@ -61,10 +61,17 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         var location = locations[0] as! CLLocation
         
+<<<<<<< HEAD
                 lat = location.coordinate.latitude
                 long = location.coordinate.longitude
                 print("lat:", location.coordinate.latitude)
                 print("long:", location.coordinate.longitude)
+=======
+        lat = location.coordinate.latitude
+        long = location.coordinate.longitude
+        print("lat:", location.coordinate.latitude)
+        print("long:", location.coordinate.longitude)
+>>>>>>> 5f935b64ae48fe46caa7629fe9fb07935c307eb5
         
         locationManager.stopUpdatingLocation()
     }
@@ -107,7 +114,10 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         // venue information
 //        lat = 37.755308
 //        long = -122.420972
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5f935b64ae48fe46caa7629fe9fb07935c307eb5
         
         //reset menu items
         self.menuItem1.text = ""
