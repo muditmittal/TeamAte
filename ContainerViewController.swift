@@ -18,6 +18,8 @@ let screenHeight = screenSize.height
 var duration = 0.4      //animation duration
 var cardInView = 0      //manages state of app 0: no card visible, 1: a card is visible
 
+
+
 class ContainerViewController: UIViewController, CardVCDelegate {
     
     @IBOutlet weak var currentLocation: UILabel!
@@ -29,9 +31,13 @@ class ContainerViewController: UIViewController, CardVCDelegate {
     var menuTransition: MenuTransition!
     var cardViewOriginalCenter: CGPoint!
     
+    var activityIndicatorView: NVActivityIndicatorView!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        var delegate: ContainerVCDelegate?
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         cardViewController = storyboard.instantiateViewControllerWithIdentifier("CardViewController") as! CardViewController
@@ -51,19 +57,16 @@ class ContainerViewController: UIViewController, CardVCDelegate {
         performSegueWithIdentifier("unanimatedMenuSegue", sender: nil)
     }
 
-
+    
+    
     func initiateSearch(searchQuery: String) {
 
-        //Protocol For: *** Everytime a new menu item is selected ***
-        //1: Update location
-        //2: Initiate search
-        //3: Call card entry or swap function
-        //4: Update app state
-        //---------------------------------------------------
-
+        startLoader()
         updateLocation()
-        cardViewController.fetchVenues(searchQuery)
-        
+        cardViewController.fetchVenues(searchQuery, success: { () -> () in
+            self.stopLoader()
+        })
+
         if cardInView == 0 {
             
             prepareContainerForCardEntry(searchQuery)
@@ -77,42 +80,14 @@ class ContainerViewController: UIViewController, CardVCDelegate {
     
     
     func updateLocation() {
-        // ******************************************
-        // Add code for updating user location here
-        // ******************************************
     }
 
 
 
     func prepareContainerForCardEntry(searchQuery: String) {
         
-        //---------------------------------------------------
-        //When pulling first result
-        //---------------------------------------------------
-        //1: Check if we have results to show already
-        //2: If not, show loader
-        //3: If yes, dismiss loader
-        //4: If NO results, show noresultView
-        //5: Show result cardView
-        //---------------------------------------------------
-        
-        
         UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
             initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
-                
-                //2: Show loader
-                let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
-                    type: .BallScaleRippleMultiple, color: UIColor(red:1, green:1, blue:1, alpha:1.0)
-                )
-                self.view.addSubview(activityIndicatorView)
-                activityIndicatorView.startAnimation()
-                
-                //3: Dismiss loader
-                let delay = 1.2 * duration * Double(NSEC_PER_SEC)
-                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                dispatch_after(time, dispatch_get_main_queue()) {
-                    activityIndicatorView.stopAnimation()
-                }
                 
             }, completion: { (Bool) -> Void in
                 UIView.animateWithDuration(duration, delay: duration, options: [], animations: {
@@ -125,39 +100,25 @@ class ContainerViewController: UIViewController, CardVCDelegate {
         })
     }
     
+    func startLoader() {
+        activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
+            type: .BallScaleRippleMultiple, color: UIColor(red:1, green:1, blue:1, alpha:1.0)
+        )
+        self.view.addSubview(activityIndicatorView)
+        activityIndicatorView.startAnimation()
+    }
+    
+    func stopLoader() {
+        self.activityIndicatorView.stopAnimation()
+    }
     
     func prepareContainerForCardSwap(searchQuery: String) {
-        
-        //---------------------------------------------------
-        //When pulling subsequent results
-        //---------------------------------------------------
-        //1: Slide-down current cardView
-        //2: Check if we have results to show already,
-        //3: If no, show loader
-        //4: If yes, dismiss loader
-        //5: If NO results, show noresultView
-        //6: Show new cardView
-        //---------------------------------------------------
         
         UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
             initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
                 
                 //1: Slide-down current cardView
                 self.cardView.center.y = self.cardViewOriginalCenter.y + screenHeight
-                
-                //3: Show loader
-                let activityIndicatorView = NVActivityIndicatorView(frame: self.loaderView.frame,
-                    type: .BallScaleRippleMultiple, color: UIColor(red:1, green:1, blue:1, alpha:1.0)
-                )
-                self.view.addSubview(activityIndicatorView)
-                activityIndicatorView.startAnimation()
-                
-                //4: Dismiss loader
-                let delay = 1.2 * duration * Double(NSEC_PER_SEC)
-                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                dispatch_after(time, dispatch_get_main_queue()) {
-                    activityIndicatorView.stopAnimation()
-                }
                 
             }, completion: { (Bool) -> Void in
                 UIView.animateWithDuration(duration, delay: duration, options: [], animations: {
@@ -172,14 +133,6 @@ class ContainerViewController: UIViewController, CardVCDelegate {
     
     
     func finishedDragCard(vc: CardViewController, finished: Bool) {
-        
-        //---------------------------------------------------
-        //When user swipes the card down
-        //---------------------------------------------------
-        //1: Slide-down cardView
-        //2: Change app state
-        //3: Open menuView
-        //---------------------------------------------------
         
         //1: Slide-down cardView
         self.cardView.center.y = self.cardViewOriginalCenter.y + screenHeight

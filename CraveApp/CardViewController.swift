@@ -12,7 +12,7 @@ import MapKit
 
 var menuURL = ""
 
-class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate {
+class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate, ContainerVCDelegate {
     
     weak var delegate: CardVCDelegate?
     @IBOutlet var fullCardView: UIView!
@@ -69,6 +69,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         locationManager.stopUpdatingLocation()
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -102,7 +104,12 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         
     }
     
-    func fetchVenues(searchQuery: String) {
+    func setSearchString(searchQuery: String) {
+        
+    }
+
+    
+    func fetchVenues(searchQuery: String, success: () -> ()) {
         
         // venue information
 //        lat = 37.755308
@@ -124,6 +131,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         NSURLConnection.sendAsynchronousRequest(venueRequest, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
             
             let venueJson = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+            
             
             //print("RESPONSE \(venueJson.valueForKeyPath("response.venues") as! [NSDictionary])")
             
@@ -190,6 +198,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             
             // get menu information
             
+            
             // menu information 0
             let menuUrl0 = NSURL(string:"https://api.foursquare.com/v2/venues/\(venueId0)/menu?client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
             let menuRequest0 = NSURLRequest(URL: menuUrl0!)
@@ -199,6 +208,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             NSURLConnection.sendAsynchronousRequest(menuRequest0, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
                 
                 let menuJson0 = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+                
                 
                 //                    print (menuJson0)
                 
@@ -435,8 +445,10 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                     self.buttonView.center = self.buttonView0objects
                     //self.scrollView.contentSize = CGSizeMake(300, 628)
                 }
+                
             }
             
+            success()
             
         }
         
