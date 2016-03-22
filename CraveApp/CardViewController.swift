@@ -11,6 +11,8 @@ import MapKit
 //import NVActivityIndicatorView
 
 var menuURL = ""
+var venueLatitude: Double!
+var venueLongitude: Double!
 
 class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate, ContainerVCDelegate {
     
@@ -145,7 +147,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             let venueDistances = venueJson.valueForKeyPath("response.venues.location.distance") as! NSArray
             let venueMobileUrl = venueJson.valueForKeyPath("response.venues.menu.mobileUrl") as! NSArray
             let venuePhoneNumber = venueJson.valueForKeyPath("response.venues.contact.formattedPhone") as! NSArray
-            
+            let venueLat = venueJson.valueForKeyPath("response.venues.location.lat") as! NSArray
+            let venueLong = venueJson.valueForKeyPath("response.venues.location.lng") as! NSArray
             
             
             // store venueIds
@@ -171,11 +174,11 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             self.resultName.text = venueName0
             //trimming whitespace of venue to pass it in as hashtag
             var charSet = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ").invertedSet
-
             var takeoutnonalpha = venueName0.componentsSeparatedByCharactersInSet(charSet).joinWithSeparator("")
             let trimmedVenueName = takeoutnonalpha.stringByReplacingOccurrencesOfString(" ", withString: "")
             
-            print(trimmedVenueName)
+            venueLatitude = Double(venueLat[0].description)
+            venueLongitude = Double(venueLong[0].description)
             
             //calling instagram api
             self.getImage(trimmedVenueName)
@@ -228,7 +231,11 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                         
                         for var i = 0; i < menuItems[0][j].count; ++i {
                             
-                            let itemDictionary = menuItems[0][j][i] as! NSDictionary
+                            let x = menuItems[0] as! [AnyObject]
+                            let y = x[j] as! [NSDictionary]
+                            let itemDictionary = y[i]
+                            
+                            //let itemDictionary = menuItems[0][j][i] as! NSDictionary
                             let itemName = itemDictionary.valueForKeyPath("name") as! String
                             var itemDescription = ""
                             
@@ -313,10 +320,12 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                         
                         for var i = 0; i < menuItems[0][j].count; ++i {
                             
-                            let itemDictionary = menuItems[0][j][i] as! NSDictionary
+                            let x = menuItems[0] as! [AnyObject]
+                            let y = x[j] as! [NSDictionary]
+                            let itemDictionary = y[i]
+                            
                             let itemName = itemDictionary.valueForKeyPath("name") as! String
                             var itemDescription = ""
-                            
                             var itemString = ""
                             
                             // concatenate item name and item description stirng
@@ -395,7 +404,10 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                         
                         for var i = 0; i < menuItems[0][j].count; ++i {
                             
-                            let itemDictionary = menuItems[0][j][i] as! NSDictionary
+                            let x = menuItems[0] as! [AnyObject]
+                            let y = x[j] as! [NSDictionary]
+                            let itemDictionary = y[i]
+                            
                             let itemName = itemDictionary.valueForKeyPath("name") as! String
                             var itemDescription = ""
                             var itemString = ""
@@ -459,6 +471,18 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         print("in full menu")
     }
     
+    @IBAction func onGetDirections(sender: UIButton) {
+        var fallbackURL = "http://maps.google.com/maps?f=d&daddr=\(venueLatitude),\(venueLongitude)"
+        if (UIApplication.sharedApplication().canOpenURL(NSURL(string:"comgooglemaps://")!)) {
+            UIApplication.sharedApplication().openURL(NSURL(string:
+                "comgooglemaps://?saddr=&daddr=\(venueLatitude),\(venueLongitude)&directionsmode=driving")!)
+            
+        } else {
+            NSLog("Can't use comgooglemaps://");
+            UIApplication.sharedApplication().openURL(NSURL(string:"\(fallbackURL)")!)
+        }
+        print("comgooglemaps://?saddr=&daddr=\(venueLatitude),\(venueLongitude)&directionsmode=driving")
+    }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView,
         willDecelerate decelerate: Bool) {
