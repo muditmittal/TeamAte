@@ -50,6 +50,15 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     var long: Double!
     
     //menu array
+    var venueName: String!
+    var venues: [NSDictionary]!
+    var venueIndex: Int = 0
+    var venueLocations: [NSDictionary]!
+    var venueDistances: NSArray!
+    var venueMobileUrl: NSArray!
+    var venuePhoneNumber: NSArray!
+    var venueLat: NSArray!
+    var venueLong: NSArray!
     var matchedMenuItems: [String]!
     var matchedMenuDescriptions: [String]!
     
@@ -109,7 +118,94 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     func setSearchString(searchQuery: String) {
         
     }
-
+    
+//    func requestMenu(url: String) {
+//        
+//        
+//        NSURLConnection.sendAsynchronousRequest(menuRequest0, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+//        
+//    }
+    
+    func enumerateJSONToFindMenuItems(object:AnyObject, forKeyNamed named:String?, foodName: String) {
+        if let dict = object as? NSDictionary {
+            for (key, value) in dict {
+                self.enumerateJSONToFindMenuItems(value, forKeyNamed: key as? String, foodName: foodName)
+            }
+        }
+        else if let array = object as? NSArray {
+            for value in array {
+                self.enumerateJSONToFindMenuItems(value, forKeyNamed: nil, foodName: foodName)
+            }
+        }
+        else {
+            if named == "name" && object.lowercaseString.rangeOfString(foodName) != nil {
+                self.matchedMenuItems.append(object as! String)
+            }
+            
+        }
+    }
+    
+    func requestMenu(menuRequest: NSURLRequest, searchQuery: String, success: () -> ()) {
+        
+        NSURLConnection.sendAsynchronousRequest(menuRequest, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+            
+            let menuJson = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+            let menus = menuJson.valueForKeyPath("response.menu.menus") as! NSDictionary
+            
+            self.enumerateJSONToFindMenuItems(menus, forKeyNamed: "description", foodName: searchQuery)
+            let venue = self.venues[self.venueIndex]
+        
+            print(self.matchedMenuItems)
+            if self.matchedMenuItems.count < 3 {
+                self.matchedMenuItems = []
+                self.venueIndex = self.venueIndex + 1
+                let currentVenueId = venue.valueForKey("id")
+                self.requestMenu(self.buildMenuRequest(currentVenueId as! String), searchQuery: searchQuery, success: success)
+            }
+            else {
+                self.venueName = venue.valueForKey("name") as! String
+                self.matchedMenuItems = Array(self.matchedMenuItems[0..<3])
+                self.finishVenue(success)
+            }
+        }
+        
+    }
+    
+    func buildMenuRequest(venueId: String) -> NSURLRequest {
+        let menuUrl = NSURL(string:"https://api.foursquare.com/v2/venues/\(venueId)/menu?client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
+        return NSURLRequest(URL: menuUrl!)
+    }
+    
+    func finishVenue(success: () -> ()) {
+        
+        self.resultName.text = self.venueName
+        //trimming whitespace of venue to pass it in as hashtag
+        var charSet = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ").invertedSet
+        var takeoutnonalpha = self.venueName.componentsSeparatedByCharactersInSet(charSet).joinWithSeparator("")
+        let trimmedVenueName = takeoutnonalpha.stringByReplacingOccurrencesOfString(" ", withString: "")
+        
+        venueLatitude = Double(self.venueLat[0].description)
+        venueLongitude = Double(self.venueLong[0].description)
+        
+        //calling instagram api
+        
+        print (self.venueDistances[0])
+        
+        //setting phone number
+        self.resultPhone.text = self.venuePhoneNumber[0].description
+        
+        let distanceInMeters = self.venueDistances[0] as! Double
+        var distanceInMiles = (distanceInMeters / 1609.34)
+        distanceInMiles = Double(round(10*distanceInMiles)/10)
+        let distanceString = String(distanceInMiles)
+        self.resultDistance.text = distanceString + " mi"
+        // fetch 6 menus, if count > 0, then store data
+        // parse through menu items in menu; for menuItem in [menuItems] by string match
+        
+        // get menu information
+        
+        self.getImage(trimmedVenueName, success: success)
+    }
     
     func fetchVenues(searchQuery: String, success: () -> ()) {
         
@@ -117,13 +213,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
 //        lat = 37.755308
 //        long = -122.420972
         
-        //reset menu items
-        self.menuItem1.text = ""
-        self.menuItem2.text = ""
-        self.menuItem3.text = ""
         
-        matchedMenuItems = []
-        matchedMenuDescriptions = []
         let venueUrl = NSURL(string:"https://api.foursquare.com/v2/venues/search?ll=\(lat),\(long)&query=\(searchQuery)&client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
         
         //print(venueUrl)
@@ -136,332 +226,32 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             
             //print("RESPONSE \(venueJson.valueForKeyPath("response.venues") as! [NSDictionary])")
             
-            print(data)
             // store the venueIds, venueLocations, and venueNames from the search API request
             
-            self.data = venueJson.valueForKeyPath("response.venues") as! [NSDictionary]
-            let venueIds = venueJson.valueForKeyPath("response.venues.id") as! [String]
-            let venueNames = venueJson.valueForKeyPath("response.venues.name") as! [String]
-            let venueLocations = venueJson.valueForKeyPath("response.venues.location") as! [NSDictionary]
-            let venueDistances = venueJson.valueForKeyPath("response.venues.location.distance") as! NSArray
-            let venueMobileUrl = venueJson.valueForKeyPath("response.venues.menu.mobileUrl") as! NSArray
-            let venuePhoneNumber = venueJson.valueForKeyPath("response.venues.contact.formattedPhone") as! NSArray
-            let venueLat = venueJson.valueForKeyPath("response.venues.location.lat") as! NSArray
-            let venueLong = venueJson.valueForKeyPath("response.venues.location.lng") as! NSArray
+            self.venues = venueJson.valueForKeyPath("response.venues") as! [NSDictionary]
+            self.venueLocations = venueJson.valueForKeyPath("response.venues.location") as! [NSDictionary]
+            self.venueDistances = venueJson.valueForKeyPath("response.venues.location.distance") as! NSArray
+            self.venueMobileUrl = venueJson.valueForKeyPath("response.venues.menu.mobileUrl") as! NSArray
+            self.venuePhoneNumber = venueJson.valueForKeyPath("response.venues.contact.formattedPhone") as! NSArray
+            self.venueLat = venueJson.valueForKeyPath("response.venues.location.lat") as! NSArray
+            self.venueLong = venueJson.valueForKeyPath("response.venues.location.lng") as! NSArray
             
             
-            // store venueIds
-            let venueId0 = venueIds[0]
-            let venueId1 = venueIds[1]
-            let venueId2 = venueIds[2]
-            let venueId3 = venueIds[3]
-            let venueId4 = venueIds[4]
-            let venueId5 = venueIds[5]
+            self.matchedMenuItems = []
+            let venue = self.venues[self.venueIndex]
             
-            // store venueNames
-            let venueName0 = venueNames[0]
-            let venueName1 = venueNames[1]
-            let venueName2 = venueNames[2]
-            let venueName3 = venueNames[3]
-            let venueName4 = venueNames[4]
-            let venueName5 = venueNames[5]
+            self.venueName = venue.valueForKey("name") as! String
             
-            //store venueMobile URL
-            //print(venueMobileUrl[0])
-            print(venueId0)
+//            if venue.valueForKey("hasMenu") == nil {
+//                print("skipping venue because no menu")
+//                continue
+//            }
             
-            self.resultName.text = venueName0
-            //trimming whitespace of venue to pass it in as hashtag
-            var charSet = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ").invertedSet
-            var takeoutnonalpha = venueName0.componentsSeparatedByCharactersInSet(charSet).joinWithSeparator("")
-            let trimmedVenueName = takeoutnonalpha.stringByReplacingOccurrencesOfString(" ", withString: "")
-            
-            venueLatitude = Double(venueLat[0].description)
-            venueLongitude = Double(venueLong[0].description)
-            
-            //calling instagram api
-            
-            print (venueDistances[0])
+            let venueId = self.venues[self.venueIndex].valueForKey("id")!
+            let menuRequest = self.buildMenuRequest(venueId as! String)
+            self.requestMenu(menuRequest, searchQuery: searchQuery, success: success)
             
             
-            
-            if venueMobileUrl.count != 0{
-                menuURL = venueMobileUrl[0].description
-            }
-            
-            //setting phone number
-            self.resultPhone.text = venuePhoneNumber[0].description
-            
-            let distanceInMeters = venueDistances[0] as! Double
-            var distanceInMiles = (distanceInMeters / 1609.34)
-            distanceInMiles = Double(round(10*distanceInMiles)/10)
-            let distanceString = String(distanceInMiles)
-            self.resultDistance.text = distanceString + " mi"
-            // fetch 6 menus, if count > 0, then store data
-            // parse through menu items in menu; for menuItem in [menuItems] by string match
-            
-            // get menu information
-            
-            
-            // menu information 0
-            let menuUrl0 = NSURL(string:"https://api.foursquare.com/v2/venues/\(venueId0)/menu?client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
-            let menuRequest0 = NSURLRequest(URL: menuUrl0!)
-            
-            //print (menuUrl0)
-            
-            NSURLConnection.sendAsynchronousRequest(menuRequest0, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
-                
-                let menuJson0 = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-                
-                
-                //                    print (menuJson0)
-                
-                // check if there is a menu object in JSON response
-                
-                let menuCount0 = menuJson0.valueForKeyPath("response.menu.menus.count") as! Int
-                //print(menuJson0)
-                
-                if menuCount0 > 0 {
-                    // if there is a menu, store the items in an array
-                    
-                    let menuItems = menuJson0.valueForKeyPath("response.menu.menus.items.entries.items.entries.items") as! NSArray
-                    
-                    // the outer array is [0] for some reason
-                    
-                    for var j = 0; j < menuItems[0].count; ++j {
-                        
-                        for var i = 0; i < menuItems[0][j].count; ++i {
-                            
-                            let x = menuItems[0] as! [AnyObject]
-                            let y = x[j] as! [NSDictionary]
-                            let itemDictionary = y[i]
-                            
-                            //let itemDictionary = menuItems[0][j][i] as! NSDictionary
-                            let itemName = itemDictionary.valueForKeyPath("name") as! String
-                            var itemDescription = ""
-                            
-                            var itemString = ""
-                            
-                            // concatenate item name and item description stirng
-                            if itemDictionary.valueForKeyPath("description") != nil {
-                                itemDescription = itemDictionary.valueForKeyPath("description") as! String
-                                //itemString = itemName + " " + itemDescription
-                                itemString = itemName
-                            }
-                            // print (itemName)
-                            
-                            // string match itemString for the query string
-                            if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
-                                print ("menu0 query item: ", itemName)
-                                self.matchedMenuItems.append(itemName)
-                                self.matchedMenuDescriptions.append(itemDescription)
-                            }
-                        }
-                    }
-                    if self.matchedMenuItems.count != 0 {
-                        print(self.matchedMenuItems.count)
-                        if self.matchedMenuItems.count > 2 {
-                            self.menuItemHeader.alpha = 1
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.menuItem2.text = self.matchedMenuItems[1]
-                            self.menuItem3.text = self.matchedMenuItems[2]
-                            self.buttonView.center = self.buttonView3objects
-                            print("3 \(self.buttonView.center)")
-                        } else if self.matchedMenuItems.count == 2 {
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.menuItem2.text = self.matchedMenuItems[1]
-                            self.buttonView.center = self.buttonView2objects
-                        } else if self.matchedMenuItems.count == 1 {
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.buttonView.center = self.buttonView1object
-                            //self.scrollView.contentSize = CGSizeMake(300, 658)
-                        }
-                    }
-                    
-                }
-                else  {
-                    print("no menu")
-                    // if there is no menu
-                    //self.menuItemHeader.alpha = 0
-                    //offsetting when favorites aren't available
-                    self.buttonView.center = self.buttonView0objects
-                    //self.scrollView.contentSize = CGSizeMake(300, 628)
-                    print("0 \(self.buttonView.center)")
-                    
-                }
-                print(menuCount0)
-                
-            }
-            
-            // menu information 1
-            let menuUrl1 = NSURL(string:"https://api.foursquare.com/v2/venues/\(venueId1)/menu?client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
-            let menuRequest1 = NSURLRequest(URL: menuUrl1!)
-            
-            //print (menuUrl1)
-            
-            NSURLConnection.sendAsynchronousRequest(menuRequest1, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
-                
-                let menuJson1 = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-                
-                //                    print (menuJson1)
-                
-                // check if there is a menu object in JSON response
-                
-                let menuCount1 = menuJson1.valueForKeyPath("response.menu.menus.count") as! Int
-                //print(menuJson0)
-                if menuCount1 > 0 {
-                    print("IN MENUCOUNT")
-                    // if there is a menu, store the items in an array
-                    
-                    let menuItems = menuJson1.valueForKeyPath("response.menu.menus.items.entries.items.entries.items") as! NSArray
-                    
-                    // the outer array is [0] for some reason
-                    
-                    for var j = 0; j < menuItems[0].count; ++j {
-                        
-                        for var i = 0; i < menuItems[0][j].count; ++i {
-                            
-                            let x = menuItems[0] as! [AnyObject]
-                            let y = x[j] as! [NSDictionary]
-                            let itemDictionary = y[i]
-                            
-                            let itemName = itemDictionary.valueForKeyPath("name") as! String
-                            var itemDescription = ""
-                            var itemString = ""
-                            
-                            // concatenate item name and item description stirng
-                            if itemDictionary.valueForKeyPath("description") != nil {
-                                itemDescription = itemDictionary.valueForKeyPath("description") as! String
-                                //itemString = itemName + " " + itemDescription
-                                itemString = itemName
-                            }
-                            
-                            
-                            // print (itemName)
-                            
-                            // string match itemString for the query string
-                            if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
-                                print ("menu1 query item: ", itemName)
-                                self.matchedMenuItems.append(itemName)
-                                self.matchedMenuDescriptions.append(itemDescription)
-                            }
-                        }
-                    }
-                    if self.matchedMenuItems.count != 0 {
-                        
-                        if self.matchedMenuItems.count > 2 {
-                            self.menuItemHeader.alpha = 1
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.menuItem2.text = self.matchedMenuItems[1]
-                            self.menuItem3.text = self.matchedMenuItems[2]
-                            self.buttonView.center = self.buttonView3objects
-                        } else if self.matchedMenuItems.count == 2 {
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.menuItem2.text = self.matchedMenuItems[1]
-                            self.buttonView.center = self.buttonView2objects
-                            
-                        } else if self.matchedMenuItems.count == 1 {
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.buttonView.center = self.buttonView1object
-                            //self.scrollView.contentSize = CGSizeMake(300, 658)
-                        }
-                    }
-                    
-                }
-                else if menuCount1 == 0 {
-                    // if there is no menu
-                    self.menuItemHeader.alpha = 0
-                    //offsetting when favorites aren't available
-                    self.buttonView.center = self.buttonView0objects
-                    //self.scrollView.contentSize = CGSizeMake(300, 628)
-                }
-            }
-            
-            // menu information 2
-            let menuUrl2 = NSURL(string:"https://api.foursquare.com/v2/venues/\(venueId2)/menu?client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
-            let menuRequest2 = NSURLRequest(URL: menuUrl2!)
-            
-            //print (menuUrl2)
-            
-            NSURLConnection.sendAsynchronousRequest(menuRequest2, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
-                
-                let menuJson2 = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-                
-                //                    print (menuJson2)
-                
-                // check if there is a menu object in JSON response
-                
-                let menuCount2 = menuJson2.valueForKeyPath("response.menu.menus.count") as! Int
-                //print(menuJson0)
-                if menuCount2 > 0 {
-                    print("IN MENUCOUNT2")
-                    // if there is a menu, store the items in an array
-                    
-                    let menuItems = menuJson2.valueForKeyPath("response.menu.menus.items.entries.items.entries.items") as! NSArray
-                    
-                    // the outer array is [0] for some reason
-                    
-                    for var j = 0; j < menuItems[0].count; ++j {
-                        
-                        for var i = 0; i < menuItems[0][j].count; ++i {
-                            
-                            let x = menuItems[0] as! [AnyObject]
-                            let y = x[j] as! [NSDictionary]
-                            let itemDictionary = y[i]
-                            
-                            let itemName = itemDictionary.valueForKeyPath("name") as! String
-                            var itemDescription = ""
-                            var itemString = ""
-                            
-                            // concatenate item name and item description stirng
-                            if itemDictionary.valueForKeyPath("description") != nil {
-                                itemDescription = itemDictionary.valueForKeyPath("description") as! String
-                                //itemString = itemName + " " + itemDescription
-                                itemString = itemName
-                            }
-                            
-                            // print (itemName)
-                            // string match itemString for the query string
-                            if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
-                                print ("menu2 query item: ", itemName)
-                                self.matchedMenuItems.append(itemName)
-                                self.matchedMenuDescriptions.append(itemDescription)
-                            }
-                        }
-                    }
-                    if self.matchedMenuItems.count != 0 {
-                        
-                        if self.matchedMenuItems.count > 2 {
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.menuItem2.text = self.matchedMenuItems[1]
-                            self.menuItem3.text = self.matchedMenuItems[2]
-                            self.buttonView.center = self.buttonView3objects
-                            self.menuItemHeader.alpha = 1
-                            
-                        } else if self.matchedMenuItems.count == 2 {
-                            self.menuItemHeader.alpha = 1
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.menuItem2.text = self.matchedMenuItems[1]
-                            self.buttonView.center = self.buttonView2objects
-                        } else if self.matchedMenuItems.count == 1 {
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.buttonView.center = self.buttonView1object
-                            //self.scrollView.contentSize = CGSizeMake(300, 658)
-                        }
-                    }
-                    
-                }
-                else if menuCount2 == 0 {
-                    // if there is no menu
-                    self.menuItemHeader.alpha = 0
-                    //offsetting when favorites aren't available
-                    self.buttonView.center = self.buttonView0objects
-                    //self.scrollView.contentSize = CGSizeMake(300, 628)
-                }
-            self.getImage(trimmedVenueName, success: success)
-            }
-            
-            //success()
             
         }
         
@@ -492,9 +282,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 delegate?.finishedDragCard(self, finished: true)
             }
     }
-    func getImage(hashtag: String, success: () -> () ) {
+    func getImage(trimmedVenueName: String, success: () -> () ) {
         var access_token = "184004514.1677ed0.04d3543160674f6b87a47393cfe270da"
-        let instaUrl = NSURL(string: "https://api.instagram.com/v1/tags/\(hashtag)/media/recent?access_token=\(access_token)")
+        let instaUrl = NSURL(string: "https://api.instagram.com/v1/tags/\(trimmedVenueName)/media/recent?access_token=\(access_token)")
         let request = NSURLRequest(URL: instaUrl!)
         
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()){ (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
