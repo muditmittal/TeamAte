@@ -16,9 +16,6 @@ let screenWidth = screenSize.width
 let screenHeight = screenSize.height
 
 var duration = 0.4      //animation duration
-var cardInView = 0      //manages state of app 0: no card visible, 1: a card is visible
-
-
 
 class ContainerViewController: UIViewController, CardVCDelegate {
     
@@ -61,21 +58,13 @@ class ContainerViewController: UIViewController, CardVCDelegate {
     
     func initiateSearch(searchQuery: String) {
 
+        self.prepareContainerForCardExit(searchQuery)
         startLoader()
         updateLocation()
         cardViewController.fetchVenues(searchQuery, success: { () -> () in
             self.stopLoader()
+            self.prepareContainerForCardEntry(searchQuery)
         })
-
-        if cardInView == 0 {
-            
-            prepareContainerForCardEntry(searchQuery)
-        } else if cardInView == 1 {
-            
-            prepareContainerForCardSwap(searchQuery)
-        }
-        cardInView = 1
-        
     }
     
     
@@ -112,22 +101,12 @@ class ContainerViewController: UIViewController, CardVCDelegate {
         self.activityIndicatorView.stopAnimation()
     }
     
-    func prepareContainerForCardSwap(searchQuery: String) {
-        
+    func prepareContainerForCardExit(searchQuery: String) {
         UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
-            initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
-                
-                //1: Slide-down current cardView
-                self.cardView.center.y = self.cardViewOriginalCenter.y + screenHeight
-                
+                                   initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
+                                    //1: Slide-down current cardView
+                                    self.cardView.center.y = self.cardViewOriginalCenter.y + screenHeight
             }, completion: { (Bool) -> Void in
-                UIView.animateWithDuration(duration, delay: duration, options: [], animations: {
-                    
-                    //6: Slide-up new cardView
-                    self.cardView.center = self.cardViewOriginalCenter
-                    }, completion: { (Bool) -> Void in
-                        
-                })
         })
     }
     
@@ -137,10 +116,7 @@ class ContainerViewController: UIViewController, CardVCDelegate {
         //1: Slide-down cardView
         self.cardView.center.y = self.cardViewOriginalCenter.y + screenHeight
         
-        //2: Change app state
-        cardInView = 0
-        
-        //3: Open menuView
+        //2: Open menuView
         performSegueWithIdentifier("unanimatedMenuSegue", sender: nil)
     }
     

@@ -134,10 +134,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             
             let venueJson = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
             
-            
             //print("RESPONSE \(venueJson.valueForKeyPath("response.venues") as! [NSDictionary])")
             
-            
+            print(data)
             // store the venueIds, venueLocations, and venueNames from the search API request
             
             self.data = venueJson.valueForKeyPath("response.venues") as! [NSDictionary]
@@ -181,8 +180,10 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             venueLongitude = Double(venueLong[0].description)
             
             //calling instagram api
-            self.getImage(trimmedVenueName)
+            
             print (venueDistances[0])
+            
+            
             
             if venueMobileUrl.count != 0{
                 menuURL = venueMobileUrl[0].description
@@ -457,10 +458,10 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                     self.buttonView.center = self.buttonView0objects
                     //self.scrollView.contentSize = CGSizeMake(300, 628)
                 }
-                
+            self.getImage(trimmedVenueName, success: success)
             }
             
-            success()
+            //success()
             
         }
         
@@ -491,7 +492,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 delegate?.finishedDragCard(self, finished: true)
             }
     }
-    func getImage(hashtag: String) {
+    func getImage(hashtag: String, success: () -> () ) {
         var access_token = "184004514.1677ed0.04d3543160674f6b87a47393cfe270da"
         let instaUrl = NSURL(string: "https://api.instagram.com/v1/tags/\(hashtag)/media/recent?access_token=\(access_token)")
         let request = NSURLRequest(URL: instaUrl!)
@@ -511,6 +512,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 self.resultPhoto.image = UIImage(data: data!)
                 self.resultPhoto.contentMode = .ScaleAspectFill
             }
+            success()
         }
     }
     func scrollViewDidScroll(scrollView: UIScrollView) {
