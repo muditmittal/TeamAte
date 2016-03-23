@@ -65,6 +65,8 @@ class ContainerViewController: UIViewController, CardVCDelegate {
             self.stopLoader()
             self.prepareContainerForCardEntry(searchQuery)
         })
+
+        
     }
     
     
@@ -116,7 +118,7 @@ class ContainerViewController: UIViewController, CardVCDelegate {
         //1: Slide-down cardView
         self.cardView.center.y = self.cardViewOriginalCenter.y + screenHeight
         
-        //2: Open menuView
+        //3: Open menuView
         performSegueWithIdentifier("unanimatedMenuSegue", sender: nil)
     }
     

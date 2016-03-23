@@ -75,7 +75,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //adding action to See Menu Button
         menuButton.addTarget(self, action: "onFullMenuButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
         scrollView.delegate = self
@@ -109,13 +109,13 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     func setSearchString(searchQuery: String) {
         
     }
-
+    
     
     func fetchVenues(searchQuery: String, success: () -> ()) {
         
         // venue information
-//        lat = 37.755308
-//        long = -122.420972
+        //        lat = 37.755308
+        //        long = -122.420972
         
         //reset menu items
         self.menuItem1.text = ""
@@ -126,7 +126,6 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         matchedMenuDescriptions = []
         let venueUrl = NSURL(string:"https://api.foursquare.com/v2/venues/search?ll=\(lat),\(long)&query=\(searchQuery)&client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
         
-        //print(venueUrl)
         
         let venueRequest = NSURLRequest(URL: venueUrl!)
         
@@ -134,9 +133,6 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             
             let venueJson = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
             
-            //print("RESPONSE \(venueJson.valueForKeyPath("response.venues") as! [NSDictionary])")
-            
-            print(data)
             // store the venueIds, venueLocations, and venueNames from the search API request
             
             self.data = venueJson.valueForKeyPath("response.venues") as! [NSDictionary]
@@ -168,7 +164,6 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             
             //store venueMobile URL
             //print(venueMobileUrl[0])
-            print(venueId0)
             
             self.resultName.text = venueName0
             //trimming whitespace of venue to pass it in as hashtag
@@ -207,14 +202,11 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             let menuUrl0 = NSURL(string:"https://api.foursquare.com/v2/venues/\(venueId0)/menu?client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
             let menuRequest0 = NSURLRequest(URL: menuUrl0!)
             
-            //print (menuUrl0)
             
             NSURLConnection.sendAsynchronousRequest(menuRequest0, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
                 
                 let menuJson0 = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
                 
-                
-                //                    print (menuJson0)
                 
                 // check if there is a menu object in JSON response
                 
@@ -248,48 +240,16 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                                 //itemString = itemName + " " + itemDescription
                                 itemString = itemName
                             }
-                            // print (itemName)
                             
                             // string match itemString for the query string
                             if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
-                                print ("menu0 query item: ", itemName)
                                 self.matchedMenuItems.append(itemName)
                                 self.matchedMenuDescriptions.append(itemDescription)
                             }
                         }
                     }
-                    if self.matchedMenuItems.count != 0 {
-                        print(self.matchedMenuItems.count)
-                        if self.matchedMenuItems.count > 2 {
-                            self.menuItemHeader.alpha = 1
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.menuItem2.text = self.matchedMenuItems[1]
-                            self.menuItem3.text = self.matchedMenuItems[2]
-                            self.buttonView.center = self.buttonView3objects
-                            print("3 \(self.buttonView.center)")
-                        } else if self.matchedMenuItems.count == 2 {
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.menuItem2.text = self.matchedMenuItems[1]
-                            self.buttonView.center = self.buttonView2objects
-                        } else if self.matchedMenuItems.count == 1 {
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.buttonView.center = self.buttonView1object
-                            //self.scrollView.contentSize = CGSizeMake(300, 658)
-                        }
-                    }
                     
                 }
-                else  {
-                    print("no menu")
-                    // if there is no menu
-                    //self.menuItemHeader.alpha = 0
-                    //offsetting when favorites aren't available
-                    self.buttonView.center = self.buttonView0objects
-                    //self.scrollView.contentSize = CGSizeMake(300, 628)
-                    print("0 \(self.buttonView.center)")
-                    
-                }
-                print(menuCount0)
                 
             }
             
@@ -297,13 +257,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             let menuUrl1 = NSURL(string:"https://api.foursquare.com/v2/venues/\(venueId1)/menu?client_id=XX13QSMNHNNKUAIXH2U5KUNNQ3AT1JY2AX5OCT4Q34ZXXUZM&client_secret=2UFHBTTZNFTGLE5DRBJ0MUXRWKLSPSI3TX3X4AVQKL4KPSF5&v=20160313")
             let menuRequest1 = NSURLRequest(URL: menuUrl1!)
             
-            //print (menuUrl1)
-            
             NSURLConnection.sendAsynchronousRequest(menuRequest1, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
                 
                 let menuJson1 = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-                
-                //                    print (menuJson1)
                 
                 // check if there is a menu object in JSON response
                 
@@ -347,34 +303,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                             }
                         }
                     }
-                    if self.matchedMenuItems.count != 0 {
-                        
-                        if self.matchedMenuItems.count > 2 {
-                            self.menuItemHeader.alpha = 1
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.menuItem2.text = self.matchedMenuItems[1]
-                            self.menuItem3.text = self.matchedMenuItems[2]
-                            self.buttonView.center = self.buttonView3objects
-                        } else if self.matchedMenuItems.count == 2 {
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.menuItem2.text = self.matchedMenuItems[1]
-                            self.buttonView.center = self.buttonView2objects
-                            
-                        } else if self.matchedMenuItems.count == 1 {
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.buttonView.center = self.buttonView1object
-                            //self.scrollView.contentSize = CGSizeMake(300, 658)
-                        }
-                    }
                     
                 }
-                else if menuCount1 == 0 {
-                    // if there is no menu
-                    self.menuItemHeader.alpha = 0
-                    //offsetting when favorites aren't available
-                    self.buttonView.center = self.buttonView0objects
-                    //self.scrollView.contentSize = CGSizeMake(300, 628)
-                }
+                
             }
             
             // menu information 2
@@ -429,39 +360,42 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                             }
                         }
                     }
-                    if self.matchedMenuItems.count != 0 {
-                        
-                        if self.matchedMenuItems.count > 2 {
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.menuItem2.text = self.matchedMenuItems[1]
-                            self.menuItem3.text = self.matchedMenuItems[2]
-                            self.buttonView.center = self.buttonView3objects
-                            self.menuItemHeader.alpha = 1
-                            
-                        } else if self.matchedMenuItems.count == 2 {
-                            self.menuItemHeader.alpha = 1
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.menuItem2.text = self.matchedMenuItems[1]
-                            self.buttonView.center = self.buttonView2objects
-                        } else if self.matchedMenuItems.count == 1 {
-                            self.menuItem1.text = self.matchedMenuItems[0]
-                            self.buttonView.center = self.buttonView1object
-                            //self.scrollView.contentSize = CGSizeMake(300, 658)
-                        }
-                    }
+                    
                     
                 }
-                else if menuCount2 == 0 {
+                if self.matchedMenuItems.count != 0 {
+                    
+                    if self.matchedMenuItems.count > 2 {
+                        self.menuItemHeader.alpha = 1
+                        self.menuItem1.text = self.matchedMenuItems[0]
+                        self.menuItem2.text = self.matchedMenuItems[1]
+                        self.menuItem3.text = self.matchedMenuItems[2]
+                        self.buttonView.center = self.buttonView3objects
+                    } else if self.matchedMenuItems.count == 2 {
+                        self.menuItem1.text = self.matchedMenuItems[0]
+                        self.menuItem2.text = self.matchedMenuItems[1]
+                        self.menuItemHeader.alpha = 1
+                        self.buttonView.center = self.buttonView2objects
+                        
+                    } else if self.matchedMenuItems.count == 1 {
+                        self.menuItem1.text = self.matchedMenuItems[0]
+                        self.menuItemHeader.alpha = 1
+                        self.buttonView.center = self.buttonView1object
+                        //self.scrollView.contentSize = CGSizeMake(300, 658)
+                    }
+                }
+                else if self.matchedMenuItems.count == 0 {
                     // if there is no menu
                     self.menuItemHeader.alpha = 0
                     //offsetting when favorites aren't available
                     self.buttonView.center = self.buttonView0objects
                     //self.scrollView.contentSize = CGSizeMake(300, 628)
                 }
-            self.getImage(trimmedVenueName, success: success)
+                
+                self.getImage(trimmedVenueName, success: success)
+                
+                
             }
-            
-            //success()
             
         }
         
@@ -486,11 +420,11 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView,
-        willDecelerate decelerate: Bool) {
-            if scrollView.contentOffset.y <= -100 {
-                
-                delegate?.finishedDragCard(self, finished: true)
-            }
+                                  willDecelerate decelerate: Bool) {
+        if scrollView.contentOffset.y <= -100 {
+            
+            delegate?.finishedDragCard(self, finished: true)
+        }
     }
     func getImage(hashtag: String, success: () -> () ) {
         var access_token = "184004514.1677ed0.04d3543160674f6b87a47393cfe270da"
@@ -506,7 +440,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             
             //if no image url, show default image
             if imageURL.count != 0 {
-            //print (imageURL[0].description)
+                //print (imageURL[0].description)
                 let url = NSURL(string: imageURL[0].description)
                 let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
                 self.resultPhoto.image = UIImage(data: data!)
