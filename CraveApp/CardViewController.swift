@@ -85,7 +85,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         data = []
         
         //setting button view offsets
-        buttonView3objects = CGPoint(x: buttonView.center.x, y: 365)
+        buttonView3objects = CGPoint(x: buttonView.center.x, y: 400)
         buttonView2objects = CGPoint(x: buttonView.center.x, y: 325)
         buttonView1object = CGPoint(x: buttonView.center.x, y: 300)
         buttonView0objects = CGPoint(x: buttonView.center.x, y: 220)
@@ -114,8 +114,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     func fetchVenues(searchQuery: String, success: () -> ()) {
         
         // venue information
-        lat = 37.774929
-        long = -122.419416
+//        lat = 37.774929
+//        long = -122.419416
         
         //reset menu items
         self.menuItem1.text = ""
@@ -180,8 +180,10 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             
             
             
-            if venueMobileUrl.count != 0{
+            if venueMobileUrl.count != 0 {
                 menuURL = venueMobileUrl[0].description
+            } else {
+                
             }
             
             //setting phone number
