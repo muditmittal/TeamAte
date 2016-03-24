@@ -53,7 +53,7 @@ class MenuTransition: BaseTransition {
         fromViewController.view.alpha = 1
         
         for index in 0...8 {
-            UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
+            UIView.animateWithDuration(duration*2, delay: 0.0, usingSpringWithDamping: 0.8,
             initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
                     
                 //move all buttons to homeposition
@@ -77,7 +77,7 @@ class MenuTransition: BaseTransition {
         }
 
         //hide logo and cancel button
-        UIView.animateWithDuration(duration*2/3, delay: 0.0, usingSpringWithDamping: 0.8,
+        UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
             initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
             menuVC.craveLogo.alpha = 0
             menuVC.menuBackground.alpha = 0

@@ -49,15 +49,15 @@ class ContainerViewController: UIViewController, CardVCDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
-
+        
         super.viewDidAppear(animated)
         performSegueWithIdentifier("unanimatedMenuSegue", sender: nil)
     }
-
+    
     
     
     func initiateSearch(searchQuery: String) {
-
+        
         self.prepareContainerForCardExit(searchQuery)
         startLoader()
         updateLocation()
@@ -65,16 +65,16 @@ class ContainerViewController: UIViewController, CardVCDelegate {
             self.stopLoader()
             self.prepareContainerForCardEntry(searchQuery)
         })
-
+        
         
     }
     
     
     func updateLocation() {
     }
-
-
-
+    
+    
+    
     func prepareContainerForCardEntry(searchQuery: String) {
         
         UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
@@ -105,9 +105,9 @@ class ContainerViewController: UIViewController, CardVCDelegate {
     
     func prepareContainerForCardExit(searchQuery: String) {
         UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.8,
-                                   initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
-                                    //1: Slide-down current cardView
-                                    self.cardView.center.y = self.cardViewOriginalCenter.y + screenHeight
+            initialSpringVelocity: 0.5, options: [.CurveEaseInOut, .AllowUserInteraction], animations: {
+                //1: Slide-down current cardView
+                self.cardView.center.y = self.cardViewOriginalCenter.y + screenHeight
             }, completion: { (Bool) -> Void in
         })
     }
@@ -124,7 +124,7 @@ class ContainerViewController: UIViewController, CardVCDelegate {
     
     
     
-
+    
     @IBAction func onMenuButtonTap(sender: AnyObject) {
         //Don't delete this, the empty function calls menuTransition segue
     }
@@ -145,3 +145,5 @@ class ContainerViewController: UIViewController, CardVCDelegate {
     }
     
 }
+
+

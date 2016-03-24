@@ -13,7 +13,7 @@ import MapKit
 var menuURL = ""
 var venueLatitude: Double!
 var venueLongitude: Double!
-
+var matchedMenuItems: [String]!
 class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate, ContainerVCDelegate {
     
     weak var delegate: CardVCDelegate?
@@ -50,7 +50,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     var long: Double!
     
     //menu array
-    var matchedMenuItems: [String]!
+    //var matchedMenuItems: [String]!
     var matchedMenuDescriptions: [String]!
     
     // query string
@@ -114,8 +114,8 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     func fetchVenues(searchQuery: String, success: () -> ()) {
         
         // venue information
-        //        lat = 37.755308
-        //        long = -122.420972
+        lat = 37.774929
+        long = -122.419416
         
         //reset menu items
         self.menuItem1.text = ""
@@ -165,7 +165,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             //store venueMobile URL
             //print(venueMobileUrl[0])
             
-            self.resultName.text = venueName0
+            self.resultName.text = venueNames[0]
             //trimming whitespace of venue to pass it in as hashtag
             var charSet = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ").invertedSet
             var takeoutnonalpha = venueName0.componentsSeparatedByCharactersInSet(charSet).joinWithSeparator("")
@@ -185,7 +185,13 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             }
             
             //setting phone number
-            self.resultPhone.text = venuePhoneNumber[0].description
+            if (venuePhoneNumber[0].description != "<null>"){
+                self.resultPhone.text = venuePhoneNumber[0].description
+                print (venuePhoneNumber[0].description)
+            } else {
+                self.resultPhone.alpha = 0
+            }
+            
             
             let distanceInMeters = venueDistances[0] as! Double
             var distanceInMiles = (distanceInMeters / 1609.34)
@@ -243,8 +249,9 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                             
                             // string match itemString for the query string
                             if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
-                                self.matchedMenuItems.append(itemName)
-                                self.matchedMenuDescriptions.append(itemDescription)
+                                matchedMenuItems.append(itemName)
+                                print("append \(matchedMenuItems)")
+                                
                             }
                         }
                     }
@@ -298,13 +305,18 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                             // string match itemString for the query string
                             if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
                                 print ("menu1 query item: ", itemName)
-                                self.matchedMenuItems.append(itemName)
-                                self.matchedMenuDescriptions.append(itemDescription)
+                                matchedMenuItems.append(itemName)
+                                print("append \(matchedMenuItems)")
+                                
                             }
                         }
                     }
                     
                 }
+                if matchedMenuItems.count == 3 {
+                    self.getAllMenuItems()
+                }
+                print(matchedMenuItems.count)
                 
             }
             
@@ -355,52 +367,55 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                             // string match itemString for the query string
                             if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
                                 print ("menu2 query item: ", itemName)
-                                self.matchedMenuItems.append(itemName)
-                                self.matchedMenuDescriptions.append(itemDescription)
+                                matchedMenuItems.append(itemName)
+                                print("append \(matchedMenuItems)")
                             }
+                            print(matchedMenuItems)
                         }
                     }
                     
-                    
-                }
-                if self.matchedMenuItems.count != 0 {
-                    
-                    if self.matchedMenuItems.count > 2 {
-                        self.menuItemHeader.alpha = 1
-                        self.menuItem1.text = self.matchedMenuItems[0]
-                        self.menuItem2.text = self.matchedMenuItems[1]
-                        self.menuItem3.text = self.matchedMenuItems[2]
-                        self.buttonView.center = self.buttonView3objects
-                    } else if self.matchedMenuItems.count == 2 {
-                        self.menuItem1.text = self.matchedMenuItems[0]
-                        self.menuItem2.text = self.matchedMenuItems[1]
-                        self.menuItemHeader.alpha = 1
-                        self.buttonView.center = self.buttonView2objects
-                        
-                    } else if self.matchedMenuItems.count == 1 {
-                        self.menuItem1.text = self.matchedMenuItems[0]
-                        self.menuItemHeader.alpha = 1
-                        self.buttonView.center = self.buttonView1object
-                        //self.scrollView.contentSize = CGSizeMake(300, 658)
-                    }
-                }
-                else if self.matchedMenuItems.count == 0 {
-                    // if there is no menu
-                    self.menuItemHeader.alpha = 0
-                    //offsetting when favorites aren't available
-                    self.buttonView.center = self.buttonView0objects
-                    //self.scrollView.contentSize = CGSizeMake(300, 628)
                 }
                 
+                self.getAllMenuItems()
                 self.getImage(trimmedVenueName, success: success)
-                
                 
             }
             
         }
-        
     }
     
+    func getAllMenuItems(){
+        print("what \(matchedMenuItems.count)")
+        if matchedMenuItems.count != 0 {
+            
+            if matchedMenuItems.count > 2 {
+                self.menuItemHeader.alpha = 1
+                self.menuItem1.text = matchedMenuItems[0]
+                self.menuItem2.text = matchedMenuItems[1]
+                self.menuItem3.text = matchedMenuItems[2]
+                self.buttonView.center = self.buttonView3objects
+            } else if matchedMenuItems.count == 2 {
+                self.menuItem1.text = matchedMenuItems[0]
+                self.menuItem2.text = matchedMenuItems[1]
+                self.menuItemHeader.alpha = 1
+                self.buttonView.center = self.buttonView2objects
+                
+            } else if matchedMenuItems.count == 1 {
+                self.menuItem1.text = matchedMenuItems[0]
+                self.menuItemHeader.alpha = 1
+                self.buttonView.center = self.buttonView1object
+                //self.scrollView.contentSize = CGSizeMake(300, 658)
+            }
+        }
+        else if matchedMenuItems.count == 0 {
+            // if there is no menu
+            self.menuItemHeader.alpha = 0
+            //offsetting when favorites aren't available
+            self.buttonView.center = self.buttonView0objects
+            //self.scrollView.contentSize = CGSizeMake(300, 628)
+        }
+        
+    }
     @IBAction func onFullMenuButtonClick(sender: UIButton) {
         UIApplication.sharedApplication().openURL(NSURL(string: menuURL)!)
         print("in full menu")
@@ -420,11 +435,11 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView,
-                                  willDecelerate decelerate: Bool) {
-        if scrollView.contentOffset.y <= -100 {
-            
-            delegate?.finishedDragCard(self, finished: true)
-        }
+        willDecelerate decelerate: Bool) {
+            if scrollView.contentOffset.y <= -100 {
+                
+                delegate?.finishedDragCard(self, finished: true)
+            }
     }
     func getImage(hashtag: String, success: () -> () ) {
         var access_token = "184004514.1677ed0.04d3543160674f6b87a47393cfe270da"
@@ -460,3 +475,4 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     }
     
 }
+
