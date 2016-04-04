@@ -32,14 +32,14 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     @IBOutlet weak var menuItem2: UILabel!
     @IBOutlet weak var menuItem3: UILabel!
     @IBOutlet var menuItemHeader: UILabel!
-    @IBOutlet var menuButton: UIButton!
     @IBOutlet var buttonView: UIView!
     var buttonView3objects: CGPoint!
     var buttonView2objects: CGPoint!
     var buttonView1object: CGPoint!
     var buttonView0objects: CGPoint!
+    @IBOutlet var menuButton: UIButton!
     
-    
+    @IBOutlet var mapButton: UIButton!
     var viewOriginalCenter:CGPoint!
     
     // location variables
@@ -63,14 +63,18 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         var location = locations[0] as! CLLocation
         
-        lat = location.coordinate.latitude
-        long = location.coordinate.longitude
-        print("lat:", location.coordinate.latitude)
-        print("long:", location.coordinate.longitude)
+//        lat = location.coordinate.latitude
+//        long = location.coordinate.longitude
+        lat = 37.7767902
+        long = -122.4164055
         
+        //print("lat:", location.coordinate.latitude)
+        //print("long:", location.coordinate.longitude)
+        print(lat,long)
         locationManager.stopUpdatingLocation()
     }
     
+
     
     
     override func viewDidLoad() {
@@ -79,17 +83,17 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         //adding action to See Menu Button
         menuButton.addTarget(self, action: "onFullMenuButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
         scrollView.delegate = self
-        scrollView.contentSize = CGSizeMake(300, 800)
+        scrollView.contentSize = CGSizeMake(320, 800)
         viewOriginalCenter = CGPoint(x: self.fullCardView.center.x, y: self.fullCardView.center.y)
         
         data = []
         
         //setting button view offsets
-        buttonView3objects = CGPoint(x: buttonView.center.x, y: 400)
+        /*buttonView3objects = CGPoint(x: buttonView.center.x, y: 400)
         buttonView2objects = CGPoint(x: buttonView.center.x, y: 325)
         buttonView1object = CGPoint(x: buttonView.center.x, y: 300)
         buttonView0objects = CGPoint(x: buttonView.center.x, y: 220)
-        self.buttonView.center = self.buttonView3objects
+        self.buttonView.center = self.buttonView3objects*/
         
         // use location data
         
@@ -114,13 +118,14 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
     func fetchVenues(searchQuery: String, success: () -> ()) {
         
         // venue information
-//        lat = 37.774929
-//        long = -122.419416
+        lat = 37.7767902
+        long = -122.4164055
+
         
         //reset menu items
-        self.menuItem1.text = ""
-        self.menuItem2.text = ""
-        self.menuItem3.text = ""
+//        self.menuItem1.text = ""
+//        self.menuItem2.text = ""
+//        self.menuItem3.text = ""
         
         matchedMenuItems = []
         matchedMenuDescriptions = []
@@ -169,8 +174,14 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             //trimming whitespace of venue to pass it in as hashtag
             var charSet = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ").invertedSet
             var takeoutnonalpha = venueName0.componentsSeparatedByCharactersInSet(charSet).joinWithSeparator("")
-            let trimmedVenueName = takeoutnonalpha.stringByReplacingOccurrencesOfString(" ", withString: "")
-            
+            var trimmedVenueName = takeoutnonalpha.stringByReplacingOccurrencesOfString(" ", withString: "")
+            print (trimmedVenueName)
+            if (trimmedVenueName == "BurgerKing"){
+                trimmedVenueName = "nomnomburger"
+            } else if (trimmedVenueName.rangeOfString("TacoBell") != nil) {
+                trimmedVenueName = "pollotaco"
+            }
+            print (trimmedVenueName)
             venueLatitude = Double(venueLat[0].description)
             venueLongitude = Double(venueLong[0].description)
             
@@ -187,12 +198,12 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             }
             
             //setting phone number
-            if (venuePhoneNumber[0].description != "<null>"){
-                self.resultPhone.text = venuePhoneNumber[0].description
-                print (venuePhoneNumber[0].description)
-            } else {
-                self.resultPhone.alpha = 0
-            }
+//            if (venuePhoneNumber[0].description != "<null>"){
+//                self.resultPhone.text = venuePhoneNumber[0].description
+//                print (venuePhoneNumber[0].description)
+//            } else {
+//                self.resultPhone.alpha = 0
+//            }
             
             
             let distanceInMeters = venueDistances[0] as! Double
@@ -250,11 +261,11 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                             }
                             
                             // string match itemString for the query string
-                            if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
-                                matchedMenuItems.append(itemName)
-                                print("append \(matchedMenuItems)")
-                                
-                            }
+//                            if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
+//                                matchedMenuItems.append(itemName)
+//                                print("append \(matchedMenuItems)")
+//                                
+//                            }
                         }
                     }
                     
@@ -305,20 +316,20 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                             // print (itemName)
                             
                             // string match itemString for the query string
-                            if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
-                                print ("menu1 query item: ", itemName)
-                                matchedMenuItems.append(itemName)
-                                print("append \(matchedMenuItems)")
-                                
-                            }
+//                            if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
+//                                print ("menu1 query item: ", itemName)
+//                                matchedMenuItems.append(itemName)
+//                                print("append \(matchedMenuItems)")
+//                                
+//                            }
                         }
                     }
                     
                 }
-                if matchedMenuItems.count == 3 {
-                    self.getAllMenuItems()
-                }
-                print(matchedMenuItems.count)
+//                if matchedMenuItems.count == 3 {
+//                    self.getAllMenuItems()
+//                }
+//                print(matchedMenuItems.count)
                 
             }
             
@@ -367,18 +378,18 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                             
                             // print (itemName)
                             // string match itemString for the query string
-                            if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
-                                print ("menu2 query item: ", itemName)
-                                matchedMenuItems.append(itemName)
-                                print("append \(matchedMenuItems)")
-                            }
-                            print(matchedMenuItems)
+//                            if itemString.lowercaseString.rangeOfString(searchQuery) != nil {
+//                                print ("menu2 query item: ", itemName)
+//                                matchedMenuItems.append(itemName)
+//                                print("append \(matchedMenuItems)")
+//                            }
+//                            print(matchedMenuItems)
                         }
                     }
                     
                 }
                 
-                self.getAllMenuItems()
+                //self.getAllMenuItems()
                 self.getImage(trimmedVenueName, success: success)
                 
             }
@@ -386,42 +397,44 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
         }
     }
     
-    func getAllMenuItems(){
-        print("what \(matchedMenuItems.count)")
-        if matchedMenuItems.count != 0 {
-            
-            if matchedMenuItems.count > 2 {
-                self.menuItemHeader.alpha = 1
-                self.menuItem1.text = matchedMenuItems[0]
-                self.menuItem2.text = matchedMenuItems[1]
-                self.menuItem3.text = matchedMenuItems[2]
-                self.buttonView.center = self.buttonView3objects
-            } else if matchedMenuItems.count == 2 {
-                self.menuItem1.text = matchedMenuItems[0]
-                self.menuItem2.text = matchedMenuItems[1]
-                self.menuItemHeader.alpha = 1
-                self.buttonView.center = self.buttonView2objects
-                
-            } else if matchedMenuItems.count == 1 {
-                self.menuItem1.text = matchedMenuItems[0]
-                self.menuItemHeader.alpha = 1
-                self.buttonView.center = self.buttonView1object
-                //self.scrollView.contentSize = CGSizeMake(300, 658)
-            }
-        }
-        else if matchedMenuItems.count == 0 {
-            // if there is no menu
-            self.menuItemHeader.alpha = 0
-            //offsetting when favorites aren't available
-            self.buttonView.center = self.buttonView0objects
-            //self.scrollView.contentSize = CGSizeMake(300, 628)
-        }
-        
-    }
+//    func getAllMenuItems(){
+//        print("what \(matchedMenuItems.count)")
+//        if matchedMenuItems.count != 0 {
+//            
+//            if matchedMenuItems.count > 2 {
+//                self.menuItemHeader.alpha = 1
+//                self.menuItem1.text = matchedMenuItems[0]
+//                self.menuItem2.text = matchedMenuItems[1]
+//                self.menuItem3.text = matchedMenuItems[2]
+//                self.buttonView.center = self.buttonView3objects
+//            } else if matchedMenuItems.count == 2 {
+//                self.menuItem1.text = matchedMenuItems[0]
+//                self.menuItem2.text = matchedMenuItems[1]
+//                self.menuItemHeader.alpha = 1
+//                self.buttonView.center = self.buttonView2objects
+//                
+//            } else if matchedMenuItems.count == 1 {
+//                self.menuItem1.text = matchedMenuItems[0]
+//                self.menuItemHeader.alpha = 1
+//                self.buttonView.center = self.buttonView1object
+//                //self.scrollView.contentSize = CGSizeMake(300, 658)
+//            }
+//        }
+//        else if matchedMenuItems.count == 0 {
+//            // if there is no menu
+//            self.menuItemHeader.alpha = 0
+//            //offsetting when favorites aren't available
+//            self.buttonView.center = self.buttonView0objects
+//            //self.scrollView.contentSize = CGSizeMake(300, 628)
+//        }
+//        
+//    }
     @IBAction func onFullMenuButtonClick(sender: UIButton) {
         UIApplication.sharedApplication().openURL(NSURL(string: menuURL)!)
         print("in full menu")
     }
+    
+    
     
     @IBAction func onGetDirections(sender: UIButton) {
         var fallbackURL = "http://maps.google.com/maps?f=d&daddr=\(venueLatitude),\(venueLongitude)"
@@ -461,7 +474,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 let url = NSURL(string: imageURL[0].description)
                 let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
                 self.resultPhoto.image = UIImage(data: data!)
-                self.resultPhoto.contentMode = .ScaleAspectFill
+                //self.resultPhoto.contentMode = .ScaleAspectFill
             }
             success()
         }
