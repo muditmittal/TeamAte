@@ -179,7 +179,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
             if (trimmedVenueName == "BurgerKing"){
                 trimmedVenueName = "nomnomburger"
             } else if (trimmedVenueName.rangeOfString("TacoBell") != nil) {
-                trimmedVenueName = "pollotaco"
+                trimmedVenueName = "tacolicious"
             }
             print (trimmedVenueName)
             venueLatitude = Double(venueLat[0].description)
@@ -286,7 +286,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 let menuCount1 = menuJson1.valueForKeyPath("response.menu.menus.count") as! Int
                 //print(menuJson0)
                 if menuCount1 > 0 {
-                    print("IN MENUCOUNT")
+                 
                     // if there is a menu, store the items in an array
                     
                     let menuItems = menuJson1.valueForKeyPath("response.menu.menus.items.entries.items.entries.items") as! NSArray
@@ -350,7 +350,7 @@ class CardViewController: UIViewController, UIScrollViewDelegate, CLLocationMana
                 let menuCount2 = menuJson2.valueForKeyPath("response.menu.menus.count") as! Int
                 //print(menuJson0)
                 if menuCount2 > 0 {
-                    print("IN MENUCOUNT2")
+                    //print("IN MENUCOUNT2")
                     // if there is a menu, store the items in an array
                     
                     let menuItems = menuJson2.valueForKeyPath("response.menu.menus.items.entries.items.entries.items") as! NSArray
